@@ -1,0 +1,521 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppCard from '../components/AppCard.astro';
+import StatusWidget from '../components/StatusWidget.astro';
+import CalendarWidget from '../components/CalendarWidget.astro';
+---
+
+<Layout title="Hub de Aplicaciones - Policlínico Tabancura">
+  <main class="dashboard-container">
+    
+    <!-- Top Header Bar -->
+    <header class="dashboard-header glass-panel">
+      <div class="brand-section">
+        <div class="logo-glow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="brand-text">
+          <h1>Policlínico Tabancura</h1>
+          <span class="sub-brand">Hub Central de Aplicaciones</span>
+        </div>
+      </div>
+
+      <!-- Live Clock -->
+      <div class="header-clock">
+        <span id="live-time" class="time-display">17:08:01</span>
+        <span id="live-date" class="date-display">Lunes, 1 de Junio de 2026</span>
+      </div>
+    </header>
+
+    <!-- Sub-header Controls (Search and Filters) -->
+    <section class="controls-section glass-panel">
+      <div class="search-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="app-search" placeholder="Buscar aplicación..." aria-label="Buscar aplicación" />
+      </div>
+
+      <div class="category-tabs">
+        <button class="tab-btn active" data-filter="all">Todos</button>
+        <button class="tab-btn" data-filter="médica">Área Médica</button>
+        <button class="tab-btn" data-filter="administrativa">Área Administrativa</button>
+        <button class="tab-btn" data-filter="soporte">Soporte & TI</button>
+      </div>
+    </section>
+
+    <!-- Main Grid Layout -->
+    <div class="main-dashboard-grid">
+      
+      <!-- LEFT column: Widgets -->
+      <aside class="widgets-sidebar">
+        <div class="widget-wrapper">
+          <CalendarWidget />
+        </div>
+        <div class="widget-wrapper">
+          <StatusWidget />
+        </div>
+      </aside>
+
+      <!-- RIGHT column: App Grid -->
+      <section class="apps-container">
+        <div class="section-title">
+          <h2>Aplicaciones del Ecosistema</h2>
+          <span class="apps-count" id="apps-counter">7 Aplicaciones registradas</span>
+        </div>
+
+        <div class="apps-grid" id="apps-grid">
+          
+          <!-- App 1 -->
+          <AppCard 
+            name="Ficha Clínica Digital" 
+            description="Acceso unificado al historial médico electrónico de pacientes, recetas, diagnósticos y tratamientos." 
+            url="https://ficha.policlinicotabancura.cl" 
+            status="online" 
+            category="Médica" 
+            metric="99.98%" 
+            metricLabel="Uptime de servicio"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </AppCard>
+
+          <!-- App 2 -->
+          <AppCard 
+            name="Reserva de Horas" 
+            description="Sistema de agendamiento en línea para consultas presenciales y de telemedicina con médicos generales y especialistas." 
+            url="https://reservas.policlinicotabancura.cl" 
+            status="online" 
+            category="Médica" 
+            metric="140 turnos" 
+            metricLabel="Asignados hoy"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </AppCard>
+
+          <!-- App 3 -->
+          <AppCard 
+            name="Portal de Pacientes" 
+            description="Acceso seguro para que pacientes puedan descargar sus exámenes de laboratorio, recetas y boletas de consulta." 
+            url="https://paciente.policlinicotabancura.cl" 
+            status="online" 
+            category="Administrativa" 
+            metric="12,480" 
+            metricLabel="Usuarios inscritos"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </AppCard>
+
+          <!-- App 4 -->
+          <AppCard 
+            name="Inventario & Farmacia" 
+            description="Control integral de existencias de insumos médicos y farmacia interna. Alertas de caducidad e integraciones directas." 
+            url="https://inventario.policlinicotabancura.cl" 
+            status="online" 
+            category="Administrativa" 
+            metric="94%" 
+            metricLabel="Capacidad óptima"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 1-1h3l9-9"/><path d="M3 21h18v-3H3v3z"/><path d="M5 18V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v11"/></svg>
+          </AppCard>
+
+          <!-- App 5 -->
+          <AppCard 
+            name="Telemedicina" 
+            description="Consultas médicas a distancia mediante salas virtuales integradas de alta resolución con chat clínico en tiempo real." 
+            url="https://telemedicina.policlinicotabancura.cl" 
+            status="online" 
+            category="Médica" 
+            metric="4.9 / 5" 
+            metricLabel="Calificación usuarios"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"/></svg>
+          </AppCard>
+
+          <!-- App 6 -->
+          <AppCard 
+            name="Administración TI" 
+            description="Dashboard avanzado de administración de servidores, asignación de permisos, bases de datos y monitoreo de logs." 
+            url="https://admin.policlinicotabancura.cl" 
+            status="maintenance" 
+            category="Soporte" 
+            metric="Estable" 
+            metricLabel="Estado de despliegue"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </AppCard>
+
+          <!-- App 7 -->
+          <AppCard 
+            name="Soporte & Mesa de Ayuda" 
+            description="Portal de incidentes y requerimientos de soporte. Seguimiento de tickets de asistencia clínica en hardware y software." 
+            url="https://soporte.policlinicotabancura.cl" 
+            status="online" 
+            category="Soporte" 
+            metric="Avg 8m" 
+            metricLabel="SLA de Respuesta"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </AppCard>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Dashboard Footer -->
+    <footer class="dashboard-footer glass-panel">
+      <span>© 2026 Policlínico Tabancura - TI & Infraestructura Médica. Todos los derechos reservados.</span>
+      <div class="footer-links">
+        <a href="https://policlinicotabancura.cl" target="_blank" rel="noopener">Web Principal</a>
+        <span>•</span>
+        <a href="#" id="reload-btn">Actualizar Ecosistema</a>
+      </div>
+    </footer>
+
+  </main>
+</Layout>
+
+<script>
+  // Dynamic Live Clock & Date Update
+  function updateTime() {
+    const timeEl = document.getElementById('live-time');
+    const dateEl = document.getElementById('live-date');
+    if (!timeEl || !dateEl) return;
+
+    const now = new Date();
+    
+    // Time format HH:MM:SS
+    timeEl.textContent = now.toLocaleTimeString('es-CL', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+
+    // Date format
+    dateEl.textContent = now.toLocaleDateString('es-CL', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  setInterval(updateTime, 1000);
+  updateTime();
+
+  // Search & Category Filter logic
+  const searchInput = document.getElementById('app-search') as HTMLInputElement | null;
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const cards = document.querySelectorAll('.app-card');
+  const counterEl = document.getElementById('apps-counter');
+
+  let activeFilter = 'all';
+  let activeSearch = '';
+
+  function filterCards() {
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const htmlCard = card as HTMLElement;
+      const category = htmlCard.dataset.category || '';
+      const name = htmlCard.dataset.name || '';
+      const desc = htmlCard.dataset.desc || '';
+
+      const matchesFilter = activeFilter === 'all' || category === activeFilter;
+      const matchesSearch = name.includes(activeSearch) || desc.includes(activeSearch);
+
+      if (matchesFilter && matchesSearch) {
+        htmlCard.style.display = 'flex';
+        htmlCard.style.opacity = '1';
+        htmlCard.style.transform = 'scale(1)';
+        visibleCount++;
+      } else {
+        htmlCard.style.display = 'none';
+        htmlCard.style.opacity = '0';
+        htmlCard.style.transform = 'scale(0.95)';
+      }
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `${visibleCount} Aplicación${visibleCount !== 1 ? 'es' : ''} encontrada${visibleCount !== 1 ? 's' : ''}`;
+    }
+  }
+
+  // Search input listener
+  searchInput?.addEventListener('input', (e) => {
+    activeSearch = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    filterCards();
+  });
+
+  // Tab buttons listeners
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      const target = e.currentTarget as HTMLButtonElement;
+      target.classList.add('active');
+      activeFilter = target.dataset.filter || 'all';
+      filterCards();
+    });
+  });
+
+  // Reload action mock micro-interaction
+  const reloadBtn = document.getElementById('reload-btn');
+  reloadBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    reloadBtn.textContent = 'Actualizando...';
+    reloadBtn.style.opacity = '0.7';
+    setTimeout(() => {
+      reloadBtn.textContent = 'Actualizar Ecosistema';
+      reloadBtn.style.opacity = '1';
+      // Slight scale pop to notify user
+      document.getElementById('apps-grid')?.classList.add('pop-animation');
+      setTimeout(() => {
+        document.getElementById('apps-grid')?.classList.remove('pop-animation');
+      }, 500);
+    }, 800);
+  });
+</script>
+
+<style>
+  .dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-grow: 1;
+  }
+
+  /* Header styles */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+  }
+
+  .brand-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-glow {
+    background: rgba(0, 180, 240, 0.1);
+    color: var(--color-primary);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 180, 240, 0.2);
+    box-shadow: 0 0 15px rgba(0, 180, 240, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon {
+    filter: drop-shadow(0 0 4px var(--color-primary));
+  }
+
+  .brand-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .sub-brand {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header-clock {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .time-display {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px rgba(0, 180, 240, 0.25);
+  }
+
+  .date-display {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  /* Controls Section */
+  .controls-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .search-wrapper {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 250px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  .search-wrapper input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px 16px 12px 42px;
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .search-wrapper input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(0, 180, 240, 0.1);
+  }
+
+  .search-wrapper input:focus + .search-icon {
+    color: var(--color-primary);
+  }
+
+  .category-tabs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text-primary);
+  }
+
+  .tab-btn.active {
+    background: rgba(0, 180, 240, 0.1);
+    color: var(--color-primary);
+    border-color: rgba(0, 180, 240, 0.3);
+    box-shadow: inset 0 0 10px rgba(0, 180, 240, 0.05);
+  }
+
+  /* Main Grid */
+  .main-dashboard-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .main-dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .widgets-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .apps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .section-title h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .apps-count {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  /* pop effect during mock refresh */
+  .pop-animation {
+    transform: scale(0.985);
+    opacity: 0.9;
+  }
+
+  /* Footer styles */
+  .dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .footer-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+</style>

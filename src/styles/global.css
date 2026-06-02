@@ -1,0 +1,180 @@
+/* Core Design System for Policlínico Tabancura App Hub */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors - Obsidian Dark Palette */
+  --bg-base: hsl(222, 47%, 6%);
+  --bg-grid-glow: radial-gradient(circle at 50% -20%, hsl(222, 40%, 15%) 0%, hsl(222, 47%, 6%) 80%);
+  --bg-panel: rgba(13, 20, 35, 0.45);
+  --bg-panel-hover: rgba(20, 30, 55, 0.65);
+  
+  --border-panel: rgba(255, 255, 255, 0.05);
+  --border-panel-hover: rgba(255, 255, 255, 0.12);
+  
+  /* Text colors */
+  --color-text-primary: hsl(210, 40%, 98%);
+  --color-text-secondary: hsl(215, 25%, 70%);
+  --color-text-muted: hsl(215, 16%, 48%);
+  
+  /* Brand/Status accents */
+  --color-primary: hsl(196, 100%, 47%); /* Electric Cyan */
+  --color-primary-rgb: 0, 180, 240;
+  --color-success: hsl(145, 85%, 43%); /* Medical Emerald */
+  --color-success-rgb: 43, 218, 116;
+  --color-warning: hsl(38, 95%, 50%); /* Alert Amber */
+  --color-warning-rgb: 240, 150, 0;
+  --color-danger: hsl(355, 85%, 55%); /* Critical Crimson */
+  --color-danger-rgb: 242, 48, 81;
+  
+  /* Glassmorphism settings */
+  --glass-blur: blur(14px) saturate(180%);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(0, 180, 240, 0.08), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  
+  /* Font */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base resets & styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  background-image: var(--bg-grid-glow);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom gorgeous scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 180, 240, 0.3);
+}
+
+/* Grid & Layout Utilities */
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-panel);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-panel:hover {
+  background: var(--bg-panel-hover);
+  border-color: var(--border-panel-hover);
+}
+
+.glow-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Text utility classes */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00f0ff 0%, #00b4f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #2bda74 0%, #00b4f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-badge.online {
+  background: rgba(43, 218, 116, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(43, 218, 116, 0.2);
+}
+.status-badge.online::before {
+  background: var(--color-success);
+  box-shadow: 0 0 8px var(--color-success);
+  animation: pulse-glow 2s infinite;
+}
+
+.status-badge.maintenance {
+  background: rgba(240, 150, 0, 0.1);
+  color: var(--color-warning);
+  border: 1px solid rgba(240, 150, 0, 0.2);
+}
+.status-badge.maintenance::before {
+  background: var(--color-warning);
+  box-shadow: 0 0 8px var(--color-warning);
+}
+
+.status-badge.offline {
+  background: rgba(242, 48, 81, 0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(242, 48, 81, 0.2);
+}
+.status-badge.offline::before {
+  background: var(--color-danger);
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 0 12px var(--color-success);
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+}
