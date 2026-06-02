@@ -1,6 +1,7 @@
 import React from 'react';
 
 interface AppCardProps {
+  id?: number;
   name: string;
   description: string;
   url?: string;
@@ -10,9 +11,11 @@ interface AppCardProps {
   metricLabel?: string;
   icon?: React.ReactNode;
   isArticle?: boolean;
+  onOpenArticle?: (id: number) => void;
 }
 
 export default function AppCard({
+  id,
   name,
   description,
   url,
@@ -22,6 +25,7 @@ export default function AppCard({
   metricLabel,
   icon,
   isArticle,
+  onOpenArticle,
 }: AppCardProps) {
   const statusText = {
     online: 'Operativo',
@@ -29,6 +33,13 @@ export default function AppCard({
     offline: 'Inactivo',
     dev: 'En desarrollo',
   }[status];
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isArticle && id && onOpenArticle) {
+      e.preventDefault();
+      onOpenArticle(id);
+    }
+  };
 
   const content = (
     <>
@@ -67,7 +78,7 @@ export default function AppCard({
       {metric && (
         <div className="card-footer">
           <div className="metric-container">
-            <span className="metric-value">{url ? (isArticle ? "Leer" : "Visitar") : metric}</span>
+            <span className="metric-value">{isArticle ? "Leer" : (url ? "Visitar" : metric)}</span>
             <span className="metric-label">{metricLabel}</span>
           </div>
           {url && (
@@ -92,6 +103,21 @@ export default function AppCard({
       )}
     </>
   );
+
+  if (isArticle) {
+    return (
+      <div
+        onClick={handleCardClick}
+        className="app-card glass-panel glow-card article-card-trigger"
+        data-category={category.toLowerCase()}
+        data-name={name.toLowerCase()}
+        data-desc={description.toLowerCase()}
+        style={{ cursor: 'pointer' }}
+      >
+        {content}
+      </div>
+    );
+  }
 
   if (!url) {
     return (
