@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Colors - Obsidian Dark Palette */
-  --bg-base: hsl(222, 47%, 6%);
-  --bg-grid-glow: radial-gradient(circle at 50% -20%, hsl(222, 40%, 15%) 0%, hsl(222, 47%, 6%) 80%);
+  /* Colors - Obsidian Dark Palette (Default) */
+  --bg-base: #020617;
+  --bg-grid-glow: radial-gradient(circle at 50% -20%, #162158 0%, #020617 80%);
   --bg-panel: rgba(13, 20, 35, 0.45);
   --bg-panel-hover: rgba(20, 30, 55, 0.65);
   
@@ -12,27 +12,56 @@
   --border-panel-hover: rgba(255, 255, 255, 0.12);
   
   /* Text colors */
-  --color-text-primary: hsl(210, 40%, 98%);
-  --color-text-secondary: hsl(215, 25%, 70%);
-  --color-text-muted: hsl(215, 16%, 48%);
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
   
   /* Brand/Status accents */
-  --color-primary: hsl(196, 100%, 47%); /* Electric Cyan */
-  --color-primary-rgb: 0, 180, 240;
-  --color-success: hsl(145, 85%, 43%); /* Medical Emerald */
+  --color-primary: #162158; /* Azul oscuro Institucional */
+  --color-secondary: #31C4A4; /* Turquesa dinámico (Modo Oscuro) */
+  --color-primary-rgb: 22, 33, 88;
+  --color-secondary-rgb: 49, 196, 164;
+  --color-success: #2bda74; /* Medical Emerald */
   --color-success-rgb: 43, 218, 116;
-  --color-warning: hsl(38, 95%, 50%); /* Alert Amber */
-  --color-warning-rgb: 240, 150, 0;
-  --color-danger: hsl(355, 85%, 55%); /* Critical Crimson */
-  --color-danger-rgb: 242, 48, 81;
+  --color-warning: #f59e0b; /* Alert Amber */
+  --color-warning-rgb: 245, 158, 11;
+  --color-danger: #ef4444; /* Critical Crimson */
+  --color-danger-rgb: 239, 68, 68;
   
   /* Glassmorphism settings */
   --glass-blur: blur(14px) saturate(180%);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --glass-shadow-hover: 0 12px 40px 0 rgba(0, 180, 240, 0.08), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(49, 196, 164, 0.08), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
   
   /* Font */
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Light Mode Overrides */
+html[data-theme="light"] {
+  --bg-base: #F8FAFC;
+  --bg-grid-glow: radial-gradient(circle at 50% -20%, #e2e8f0 0%, #F8FAFC 80%);
+  --bg-panel: rgba(255, 255, 255, 0.7);
+  --bg-panel-hover: rgba(255, 255, 255, 0.9);
+  
+  --border-panel: rgba(22, 33, 88, 0.08);
+  --border-panel-hover: rgba(22, 33, 88, 0.15);
+  
+  /* Text colors */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  
+  /* Brand/Status accents */
+  --color-primary: #162158; /* Azul oscuro Institucional */
+  --color-secondary: #167F67; /* Turquesa dinámico (Modo Claro) */
+  --color-secondary-rgb: 22, 127, 103;
+  
+  /* Glassmorphism settings */
+  --glass-shadow: 0 8px 32px 0 rgba(22, 33, 88, 0.05);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(22, 127, 103, 0.12), 0 8px 32px 0 rgba(22, 33, 88, 0.08);
 }
 
 /* Base resets & styles */
