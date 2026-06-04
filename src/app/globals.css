@@ -1162,6 +1162,17 @@ html[data-theme="dark"] .logo-img {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Position tooltips in the header to render below the elements to avoid being cut off at the top viewport edge */
+.dashboard-header .has-tooltip::before {
+  bottom: auto;
+  top: 135%;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+.dashboard-header .has-tooltip:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
 .dentalink-btn {
   color: var(--color-medica) !important;
 }

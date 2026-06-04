@@ -70,8 +70,8 @@ const WhatsAppIcon = ({ size = 16 }: { size?: number }) => (
 const APPS_DATA = [
   {
     id: 1,
-    name: "Sitio Web Nuevo (v2)",
-    description: "Nueva plataforma web institucional del Policlínico Tabancura con servicios, especialidades e información para pacientes.",
+    name: "Nuevo Sitio Web (v2)",
+    description: "Nueva plataforma web institucional del Policlínico Tabancura con servicios, profesionales, especialidades e información para pacientes.",
     url: "http://v2.policlinicotabancura.cl",
     status: "online" as const,
     category: "Administrativa",
@@ -146,7 +146,7 @@ const APPS_DATA = [
   },
   {
     id: 8,
-    name: "Api inventarios En línea",
+    name: "API inventarios En línea",
     description: "Interfaz de consulta y sincronización en tiempo real del inventario y stock de insumos clínicos.",
     url: "https://apiinventarios.policlinicotabancura.cl/",
     status: "online" as const,
@@ -157,7 +157,7 @@ const APPS_DATA = [
   },
   {
     id: 9,
-    name: "Api cotizador En línea",
+    name: "API cotizador En línea",
     description: "Servicio backend para el procesamiento automatizado y cotizaciones en tiempo real del cotizador de exámenes.",
     status: "online" as const,
     category: "APIs",
@@ -167,7 +167,7 @@ const APPS_DATA = [
   },
   {
     id: 10,
-    name: "Api cerebro Dev",
+    name: "API Cerebro",
     description: "Middleware centralizado y consola de orquestación backend del ecosistema digital del Policlínico.",
     status: "dev" as const,
     category: "APIs",
@@ -198,6 +198,16 @@ const APPS_DATA = [
     metricLabel: "Directorio TI",
     icon: <BookOpen size={24} />,
     isArticle: true
+  },
+  {
+    id: 13,
+    name: "Registro de Radiología",
+    description: "Control y registro de todo lo relacionado con los trabajos radiológicos de la institución.",
+    status: "online" as const,
+    category: "Médica",
+    metric: "Radiología",
+    metricLabel: "Especialidad",
+    icon: <FileText size={24} />
   }
 ];
 
@@ -223,7 +233,7 @@ const KlapArticleDetail = () => (
         </div>
       </div>
     </div>
-    
+
     <div className="article-sidebar-card glass-panel animate-slide-up" style={{ animationDelay: '0.1s' }}>
       <h3>Soporte Klap & TI</h3>
       <div className="support-phone-large">
@@ -231,7 +241,7 @@ const KlapArticleDetail = () => (
         <span className="phone-num">600 300 3000</span>
         <span className="availability">Lunes a Domingo, 24/7</span>
       </div>
-      
+
       <div className="support-info-alert">
         <strong>¿Problema persistente?</strong>
         <p>Contacta al área de TI del Policlínico en el anexo 104 o envía un correo a soporte@policlinicotabancura.cl indicando el número de serie del terminal.</p>
@@ -344,7 +354,7 @@ const AnexosArticleDetail = () => {
               <a href="https://wa.me/56965781253" target="_blank" rel="noopener noreferrer">+56 9 6578 1253 (WhatsApp)</a>
             </div>
           </div>
-          
+
           <div className="external-branch-card">
             <h4>Sucursal Los Tribunales</h4>
             <div className="ext-num-item">
@@ -365,14 +375,14 @@ const AnexosArticleDetail = () => {
         <div className="anexos-section-header">
           <h3>Anexos Telefónicos Internos (VOIP)</h3>
           <div className="branch-tabs">
-            <button 
-              onClick={() => setActiveBranchTab('vitacura')} 
+            <button
+              onClick={() => setActiveBranchTab('vitacura')}
               className={`tab-btn ${activeBranchTab === 'vitacura' ? 'active' : ''}`}
             >
               Vitacura (200)
             </button>
-            <button 
-              onClick={() => setActiveBranchTab('tribunales')} 
+            <button
+              onClick={() => setActiveBranchTab('tribunales')}
               className={`tab-btn ${activeBranchTab === 'tribunales' ? 'active' : ''}`}
             >
               Los Tribunales (100)
@@ -512,6 +522,12 @@ export default function Home() {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (activeArticleId !== null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [activeArticleId]);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
