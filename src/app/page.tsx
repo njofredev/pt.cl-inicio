@@ -180,7 +180,7 @@ const APPS_DATA = [
     name: "Soporte Klap",
     description: "Guía paso a paso y manual de solución de problemas para el correcto funcionamiento del terminal de pagos Klap.",
     url: "#",
-    status: "online" as const,
+    status: "dev" as const,
     category: "Soporte",
     metric: "Artículo",
     metricLabel: "Manual de Insumos",
