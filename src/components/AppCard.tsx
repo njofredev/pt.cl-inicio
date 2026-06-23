@@ -35,9 +35,10 @@ export default function AppCard({
   }[status];
 
   const isDev = status === 'dev';
+  const isCardDisabled = isDev && (isArticle || url);
 
   const handleCardClick = (e: React.MouseEvent) => {
-    if (isDev) {
+    if (isCardDisabled) {
       e.preventDefault();
       return;
     }
@@ -85,11 +86,11 @@ export default function AppCard({
         <div className="card-footer">
           <div className="metric-container">
             <span className="metric-value">
-              {isDev ? (isArticle || url ? "Próximamente" : metric) : (isArticle ? "Leer" : (url ? "Visitar" : metric))}
+              {isCardDisabled ? "Próximamente" : (isArticle ? "Leer" : (url ? "Visitar" : metric))}
             </span>
             <span className="metric-label">{metricLabel}</span>
           </div>
-          {url && !isDev && (
+          {url && !isCardDisabled && (
             <div className="arrow-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -112,17 +113,17 @@ export default function AppCard({
     </>
   );
 
-  if (isDev || isArticle || !url) {
+  if (isCardDisabled || isArticle) {
     return (
       <div
-        onClick={isDev ? undefined : handleCardClick}
-        className={`app-card glass-panel ${isDev ? '' : 'glow-card'} ${isArticle && !isDev ? 'article-card-trigger' : ''} ${!url && !isArticle && !isDev ? 'no-link' : ''}`}
+        onClick={isCardDisabled ? undefined : handleCardClick}
+        className={`app-card glass-panel ${isCardDisabled ? '' : 'glow-card article-card-trigger'}`}
         data-category={category.toLowerCase()}
         data-name={name.toLowerCase()}
         data-desc={description.toLowerCase()}
         style={{ 
-          cursor: isDev ? 'not-allowed' : (isArticle ? 'pointer' : 'default'),
-          opacity: isDev ? 0.6 : 1 
+          cursor: isCardDisabled ? 'not-allowed' : 'pointer',
+          opacity: isCardDisabled ? 0.6 : 1 
         }}
       >
         {content}
