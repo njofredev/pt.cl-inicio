@@ -9,8 +9,15 @@ const monthNames = [
   "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 ];
 
+interface CalendarEvent {
+  text: string;
+  type: 'primary' | 'warning';
+  branch: 'vitacura' | 'tribunales' | 'all';
+}
+
 export default function CalendarWidget() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 5, 1)); // Initialize in June 2026
+  const [selectedBranch, setSelectedBranch] = useState<'all' | 'vitacura' | 'tribunales'>('all');
 
   const getDaysInMonth = (year: number, month: number) => {
     return new Date(year, month + 1, 0).getDate();
@@ -28,69 +35,107 @@ export default function CalendarWidget() {
 
   // Calendario 2026: Feriados Típicos de Chile y Cumpleaños del Personal
   // type: 'warning' para Feriados (Naranja), 'primary' para Cumpleaños (Turquesa)
-  const eventsData: Record<number, Record<number, { text: string; type: 'primary' | 'warning' }>> = {
+  const eventsData: Record<number, Record<number, CalendarEvent[]>> = {
     0: { // Enero 2026
-      1: { text: "Feriado: Año Nuevo", type: "warning" },
-      28: { text: "🎂 Cumpleaños: Natalia S.", type: "primary" }
+      1: [{ text: "Feriado: Año Nuevo", type: "warning", branch: "all" }],
+      8: [{ text: "🎂 Cumpleaños: Catalina Rojas", type: "primary", branch: "tribunales" }],
+      19: [{ text: "🎂 Cumpleaños: Antonia Pardo", type: "primary", branch: "tribunales" }],
+      28: [{ text: "🎂 Cumpleaños: Natalia S.", type: "primary", branch: "vitacura" }]
     },
     1: { // Febrero 2026
-      20: { text: "🎂 Cumpleaños: Marisol S.", type: "primary" }
+      10: [{ text: "🎂 Cumpleaños: Macarena Fuenzalida", type: "primary", branch: "tribunales" }],
+      20: [{ text: "🎂 Cumpleaños: Marisol S.", type: "primary", branch: "vitacura" }]
     },
     2: { // Marzo 2026
-      7: { text: "🎂 Cumpleaños: Martina T.", type: "primary" },
-      23: { text: "🎂 Cumpleaños: Antonio A.", type: "primary" }
+      6: [{ text: "🎂 Cumpleaños: Mjose Arteaga", type: "primary", branch: "tribunales" }],
+      7: [{ text: "🎂 Cumpleaños: Martina T.", type: "primary", branch: "vitacura" }],
+      23: [{ text: "🎂 Cumpleaños: Antonio Alvear", type: "primary", branch: "all" }],
+      26: [{ text: "🎂 Cumpleaños: Carolina Fones", type: "primary", branch: "tribunales" }]
     },
     3: { // Abril 2026
-      3: { text: "Feriado: Viernes Santo", type: "warning" },
-      4: { text: "Feriado: Sábado Santo", type: "warning" },
-      27: { text: "🎂 Cumpleaños: Nicolás J.", type: "primary" }
+      3: [{ text: "Feriado: Viernes Santo", type: "warning", branch: "all" }],
+      4: [{ text: "Feriado: Sábado Santo", type: "warning", branch: "all" }],
+      15: [{ text: "🎂 Cumpleaños: Camila dPuerto", type: "primary", branch: "tribunales" }],
+      18: [{ text: "🎂 Cumpleaños: Gabriela Lagos", type: "primary", branch: "tribunales" }],
+      22: [{ text: "🎂 Cumpleaños: Patricia Anguita", type: "primary", branch: "tribunales" }],
+      27: [{ text: "🎂 Cumpleaños: Nicolás Jofré", type: "primary", branch: "all" }]
     },
     4: { // Mayo 2026
-      1: { text: "Feriado: Día del Trabajo", type: "warning" },
-      21: { text: "Feriado: Día de las Glorias Navales", type: "warning" }
+      1: [{ text: "Feriado: Día del Trabajo", type: "warning", branch: "all" }],
+      4: [{ text: "🎂 Cumpleaños: Josefina Mass", type: "primary", branch: "tribunales" }],
+      7: [{ text: "🎂 Cumpleaños: Marcela Burgos", type: "primary", branch: "tribunales" }],
+      10: [{ text: "🎂 Cumpleaños: María Ormazab", type: "primary", branch: "tribunales" }],
+      21: [
+        { text: "Feriado: Día de las Glorias Navales", type: "warning", branch: "all" },
+        { text: "🎂 Cumpleaños: Fca Cisternas", type: "primary", branch: "tribunales" }
+      ],
+      25: [{ text: "🎂 Cumpleaños: Trinidad Sanchez", type: "primary", branch: "tribunales" }]
     },
     5: { // Junio 2026
-      8: { text: "🎂 Cumpleaños: Tamara S.", type: "primary" },
-      15: { text: "🎂 Cumpleaños: Karen M.", type: "primary" },
-      17: { text: "🎂 Cumpleaños: Javiera M.", type: "primary" },
-      21: { text: "Feriado: Día Nacional de los Pueblos Indígenas", type: "warning" },
-      29: { text: "Feriado: San Pedro y San Pablo", type: "warning" }
+      2: [{ text: "🎂 Cumpleaños: Flo Mizala", type: "primary", branch: "tribunales" }],
+      3: [{ text: "🎂 Cumpleaños: Consuelo Olivares", type: "primary", branch: "tribunales" }],
+      8: [{ text: "🎂 Cumpleaños: Tamara S.", type: "primary", branch: "vitacura" }],
+      9: [{ text: "🎂 Cumpleaños: Felipe Valenzuela", type: "primary", branch: "tribunales" }],
+      15: [{ text: "🎂 Cumpleaños: Karen M.", type: "primary", branch: "vitacura" }],
+      16: [{ text: "🎂 Cumpleaños: Isabel Braun", type: "primary", branch: "tribunales" }],
+      17: [{ text: "🎂 Cumpleaños: Javiera M.", type: "primary", branch: "vitacura" }],
+      20: [{ text: "🎂 Cumpleaños: Francisca Lagos", type: "primary", branch: "vitacura" }],
+      21: [{ text: "Feriado: Día Nacional de los Pueblos Indígenas", type: "warning", branch: "all" }],
+      29: [{ text: "Feriado: San Pedro y San Pablo", type: "warning", branch: "all" }]
     },
     6: { // Julio 2026
-      3: { text: "🎂 Cumpleaños: Álvaro M.", type: "primary" },
-      16: { text: "Feriado: Virgen del Carmen / 🎂 Cumpleaños: Teresita C.", type: "warning" },
-      22: { text: "🎂 Cumpleaños: Loreto F.", type: "primary" },
-      27: { text: "🎂 Cumpleaños: Isidora Q.", type: "primary" }
+      2: [{ text: "🎂 Cumpleaños: Valentina Pavez", type: "primary", branch: "tribunales" }],
+      3: [{ text: "🎂 Cumpleaños: Álvaro M.", type: "primary", branch: "vitacura" }],
+      15: [{ text: "🎂 Cumpleaños: Grace Martinson", type: "primary", branch: "tribunales" }],
+      16: [
+        { text: "Feriado: Virgen del Carmen", type: "warning", branch: "all" },
+        { text: "🎂 Cumpleaños: Teresita Covarrubias", type: "primary", branch: "all" }
+      ],
+      22: [{ text: "🎂 Cumpleaños: Loreto F.", type: "primary", branch: "vitacura" }],
+      26: [{ text: "🎂 Cumpleaños: Cecilia Tapia", type: "primary", branch: "tribunales" }],
+      27: [{ text: "🎂 Cumpleaños: Isidora Q.", type: "primary", branch: "vitacura" }],
+      30: [{ text: "🎂 Cumpleaños: Isidora Luengo", type: "primary", branch: "tribunales" }]
     },
     7: { // Agosto 2026
-      6: { text: "🎂 Cumpleaños: Felipe N.", type: "primary" },
-      9: { text: "🎂 Cumpleaños: Natalia A.", type: "primary" },
-      15: { text: "Feriado: Asunción de la Virgen", type: "warning" },
-      18: { text: "🎂 Cumpleaños: Javiera P.", type: "primary" },
-      27: { text: "🎂 Cumpleaños: Jacqueline M.", type: "primary" }
+      6: [{ text: "🎂 Cumpleaños: Felipe Nilo", type: "primary", branch: "all" }],
+      9: [{ text: "🎂 Cumpleaños: Natalia A.", type: "primary", branch: "vitacura" }],
+      15: [{ text: "Feriado: Asunción de la Virgen", type: "warning", branch: "all" }],
+      18: [{ text: "🎂 Cumpleaños: Javiera P.", type: "primary", branch: "vitacura" }],
+      21: [{ text: "🎂 Cumpleaños: Fernando Urbina", type: "primary", branch: "tribunales" }],
+      27: [{ text: "🎂 Cumpleaños: Jacqueline M.", type: "primary", branch: "vitacura" }]
     },
     8: { // Septiembre 2026
-      8: { text: "🎂 Cumpleaños: Fernanda C.", type: "primary" },
-      18: { text: "Feriado: Independencia Nacional (Fiestas Patrias 🇨🇱)", type: "warning" },
-      19: { text: "Feriado: Día de las Glorias del Ejército", type: "warning" }
+      8: [{ text: "🎂 Cumpleaños: Fernanda C.", type: "primary", branch: "vitacura" }],
+      18: [{ text: "Feriado: Independencia Nacional (Fiestas Patrias 🇨🇱)", type: "warning", branch: "all" }],
+      19: [{ text: "Feriado: Día de las Glorias del Ejército", type: "warning", branch: "all" }]
     },
     9: { // Octubre 2026
-      3: { text: "🎂 Cumpleaños: Carolina S.", type: "primary" },
-      9: { text: "🎂 Cumpleaños: Carolina H.", type: "primary" },
-      11: { text: "🎂 Cumpleaños: Verónica P.", type: "primary" },
-      12: { text: "Feriado: Encuentro de Dos Mundos", type: "warning" },
-      31: { text: "Feriado: Iglesias Protestantes / 🎂 Cumpleaños: Belkis V.", type: "warning" }
+      3: [{ text: "🎂 Cumpleaños: Carolina S.", type: "primary", branch: "vitacura" }],
+      9: [{ text: "🎂 Cumpleaños: Carolina H.", type: "primary", branch: "vitacura" }],
+      11: [{ text: "🎂 Cumpleaños: Verónica P.", type: "primary", branch: "vitacura" }],
+      12: [{ text: "Feriado: Encuentro de Dos Mundos", type: "warning", branch: "all" }],
+      17: [{ text: "🎂 Cumpleaños: Gloria Retti", type: "primary", branch: "tribunales" }],
+      19: [{ text: "🎂 Cumpleaños: Pauline Henriksen", type: "primary", branch: "tribunales" }],
+      31: [
+        { text: "Feriado: Iglesias Protestantes", type: "warning", branch: "all" },
+        { text: "🎂 Cumpleaños: Belkis V.", type: "primary", branch: "vitacura" }
+      ]
     },
     10: { // Noviembre 2026
-      1: { text: "Feriado: Día de Todos los Santos", type: "warning" },
-      8: { text: "🎂 Cumpleaños: Alejandro V.", type: "primary" }
+      1: [{ text: "Feriado: Día de Todos los Santos", type: "warning", branch: "all" }],
+      3: [{ text: "🎂 Cumpleaños: Constanza Jiménez", type: "primary", branch: "tribunales" }],
+      8: [{ text: "🎂 Cumpleaños: Alejandro Valenzuela", type: "primary", branch: "all" }],
+      18: [{ text: "🎂 Cumpleaños: Soledad Iturra", type: "primary", branch: "tribunales" }]
     },
     11: { // Diciembre 2026
-      8: { text: "Feriado: Inmaculada Concepción", type: "warning" },
-      9: { text: "🎂 Cumpleaños: Andrea P. & Valeria M.", type: "primary" },
-      25: { text: "Feriado: Navidad 🎄", type: "warning" },
-      26: { text: "🎂 Cumpleaños: Nicole J.", type: "primary" },
-      27: { text: "🎂 Cumpleaños: Gisella G.", type: "primary" }
+      1: [{ text: "🎂 Cumpleaños: Anabela Bello", type: "primary", branch: "tribunales" }],
+      3: [{ text: "🎂 Cumpleaños: Gardenia Saldia", type: "primary", branch: "tribunales" }],
+      8: [{ text: "Feriado: Inmaculada Concepción", type: "warning", branch: "all" }],
+      9: [{ text: "🎂 Cumpleaños: Andrea P. & Valeria M.", type: "primary", branch: "vitacura" }],
+      24: [{ text: "🎂 Cumpleaños: Ximena Greene", type: "primary", branch: "tribunales" }],
+      25: [{ text: "Feriado: Navidad 🎄", type: "warning", branch: "all" }],
+      26: [{ text: "🎂 Cumpleaños: Nicole J.", type: "primary", branch: "vitacura" }],
+      27: [{ text: "🎂 Cumpleaños: Gisella G.", type: "primary", branch: "vitacura" }]
     }
   };
 
@@ -107,13 +152,16 @@ export default function CalendarWidget() {
   };
 
   const handleGoToday = () => {
-    // Return to current month in 2026
     const now = new Date();
     if (now.getFullYear() === 2026) {
       setCurrentDate(now);
     } else {
       setCurrentDate(new Date(2026, 5, 1)); // Default fallback to June 2026
     }
+  };
+
+  const toggleBranch = (branch: 'vitacura' | 'tribunales') => {
+    setSelectedBranch(prev => prev === branch ? 'all' : branch);
   };
 
   const renderCells = () => {
@@ -127,28 +175,34 @@ export default function CalendarWidget() {
     // Days cells
     for (let i = 1; i <= totalDays; i++) {
       const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-      const holiday = monthEvents[i];
-      const hasEvent = !!holiday || isToday;
+      const dayEventsList = monthEvents[i] || [];
+      
+      const filteredDayEvents = dayEventsList.filter(event => 
+        selectedBranch === 'all' || event.branch === 'all' || event.branch === selectedBranch
+      );
+
+      const isHoliday = filteredDayEvents.find(e => e.type === 'warning');
+      const isBirthday = filteredDayEvents.find(e => e.type === 'primary');
+      const hasEvent = filteredDayEvents.length > 0 || isToday;
 
       const classes = ["day-cell"];
       if (isToday) classes.push("today");
       if (hasEvent) {
         classes.push("has-event");
-        const eventColor = isToday ? "today-marker" : (holiday?.type || "primary");
+        const eventColor = isToday ? "today-marker" : (isHoliday ? "warning" : "primary");
         classes.push(eventColor);
       }
 
       let tooltipText = "";
       if (isToday) {
         tooltipText = `Hoy: Día ${i} de ${monthNames[month]}`;
-        if (holiday) {
-          tooltipText += ` (${holiday.text})`;
+        if (filteredDayEvents.length > 0) {
+          const eventsText = filteredDayEvents.map(e => e.text).join(" / ");
+          tooltipText += ` (${eventsText})`;
         }
-      } else if (holiday) {
-        tooltipText = holiday.text;
+      } else if (filteredDayEvents.length > 0) {
+        tooltipText = filteredDayEvents.map(e => e.text).join(" / ");
       }
-
-      const isBirthday = holiday && holiday.type === 'primary';
 
       cells.push(
         <span
@@ -194,6 +248,22 @@ export default function CalendarWidget() {
             <ChevronRight size={16} />
           </button>
         </div>
+      </div>
+
+      {/* Branch selector buttons */}
+      <div className="calendar-branch-filter">
+        <button 
+          onClick={() => toggleBranch('vitacura')} 
+          className={`branch-filter-btn ${selectedBranch === 'vitacura' ? 'active' : ''}`}
+        >
+          S. Vitacura
+        </button>
+        <button 
+          onClick={() => toggleBranch('tribunales')} 
+          className={`branch-filter-btn ${selectedBranch === 'tribunales' ? 'active' : ''}`}
+        >
+          S. Tribunales
+        </button>
       </div>
 
       <div className="calendar-body">

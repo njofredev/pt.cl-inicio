@@ -70,9 +70,9 @@ const WhatsAppIcon = ({ size = 16 }: { size?: number }) => (
 const APPS_DATA = [
   {
     id: 1,
-    name: "Nuevo Sitio Web (v2)",
-    description: "Nueva plataforma web institucional del Policlínico Tabancura con servicios, profesionales, especialidades e información para pacientes.",
-    url: "http://v2.policlinicotabancura.cl",
+    name: "https://policlinicotabancura.cl",
+    description: "Nueva plataforma web institucional del Policlínico con servicios, profesionales, especialidades e información clave para pacientes.",
+    url: "https://policlinicotabancura.cl",
     status: "online" as const,
     category: "Administrativa",
     metric: "v2.0",
@@ -114,7 +114,7 @@ const APPS_DATA = [
   },
   {
     id: 5,
-    name: "Registro Dental",
+    name: "Registro Digital Dental",
     description: "Control y seguimiento clínico de los trabajos de laboratorio dental y prótesis solicitados.",
     status: "online" as const,
     category: "Médica",
@@ -433,8 +433,8 @@ const AnexosArticleDetail = () => {
                 {isOpen && (
                   <div className="accordion-content animate-slide-up">
                     <div className="email-directory-list">
-                      {category.emails.map((email) => (
-                        <div key={email.value} className="email-directory-item">
+                      {category.emails.map((email, idx) => (
+                        <div key={`${email.value}-${idx}`} className="email-directory-item">
                           <span className="email-title">{email.label}</span>
                           <a href={`mailto:${email.value}`}>{email.value}</a>
                         </div>
@@ -688,7 +688,40 @@ export default function Home() {
                   Promociones activas
                 </h3>
                 <div className="promotions-content">
-                  <span className="no-promotions">No disponible por el momento :(</span>
+                  <div className="promo-card glow-card">
+                    <div className="promo-badge">¡Nueva!</div>
+                    <h4 className="promo-title">Limpieza Dental</h4>
+
+                    <div className="promo-includes">
+                      <span className="includes-title">Incluye:</span>
+                      <ul>
+                        <li>Evaluación Dental</li>
+                        <li>Limpieza Profilaxis</li>
+                        <li>RX Bitewing Bilateral</li>
+                      </ul>
+                    </div>
+
+                    <div className="promo-price-box">
+                      <span className="price-old">Antes: $47.000</span>
+                      <div className="price-current-wrapper">
+                        <span className="price-currency">$</span>
+                        <span className="price-value">24.000</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href="https://ff.healthatom.io/be3WhX"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="promo-cta-btn"
+                    >
+                      Aprovechar Promoción
+                    </a>
+
+                    <div className="promo-footer">
+                      <span>* Válido hasta el 30 de junio de 2026. Para mayores de 15 años. Sujeto a evaluación clínica. Solo pago vía web. Excluye pacientes con diagnóstico de periodontitis.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </aside>
