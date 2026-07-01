@@ -149,7 +149,7 @@ const APPS_DATA = [
     name: "API inventarios En línea",
     description: "Interfaz de consulta y sincronización en tiempo real del inventario y stock de insumos clínicos.",
     url: "https://apiinventarios.policlinicotabancura.cl/",
-    status: "online" as const,
+    status: "dev" as const,
     category: "APIs",
     metric: "API REST",
     metricLabel: "Servicio Insumos",
@@ -682,48 +682,7 @@ export default function Home() {
               <div className="widget-wrapper">
                 <CalendarWidget />
               </div>
-              <div className="widget-wrapper promotions-widget glass-panel">
-                <h3 className="widget-title">
-                  <Tag size={18} />
-                  Promociones activas
-                </h3>
-                <div className="promotions-content">
-                  <div className="promo-card glow-card">
-                    <div className="promo-badge">¡Nueva!</div>
-                    <h4 className="promo-title">Limpieza Dental</h4>
 
-                    <div className="promo-includes">
-                      <span className="includes-title">Incluye:</span>
-                      <ul>
-                        <li>Evaluación Dental</li>
-                        <li>Limpieza Profilaxis</li>
-                        <li>RX Bitewing Bilateral</li>
-                      </ul>
-                    </div>
-
-                    <div className="promo-price-box">
-                      <span className="price-old">Antes: $47.000</span>
-                      <div className="price-current-wrapper">
-                        <span className="price-currency">$</span>
-                        <span className="price-value">24.000</span>
-                      </div>
-                    </div>
-
-                    <a
-                      href="https://ff.healthatom.io/be3WhX"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="promo-cta-btn"
-                    >
-                      Aprovechar Promoción
-                    </a>
-
-                    <div className="promo-footer">
-                      <span>* Válido hasta el 30 de junio de 2026. Para mayores de 15 años. Sujeto a evaluación clínica. Solo pago vía web. Excluye pacientes con diagnóstico de periodontitis.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </aside>
 
             {/* RIGHT column: App Grid */}
