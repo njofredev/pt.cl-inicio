@@ -16,7 +16,13 @@ interface CalendarEvent {
 }
 
 export default function CalendarWidget() {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 5, 1)); // Initialize in June 2026
+  const [currentDate, setCurrentDate] = useState<Date>(() => {
+    const now = new Date();
+    if (now.getFullYear() === 2026) {
+      return now;
+    }
+    return new Date(2026, now.getMonth(), 1);
+  }); // Initialize dynamically to current month mapped to 2026
   const [selectedBranch, setSelectedBranch] = useState<'all' | 'vitacura' | 'tribunales'>('all');
 
   const getDaysInMonth = (year: number, month: number) => {
@@ -156,7 +162,7 @@ export default function CalendarWidget() {
     if (now.getFullYear() === 2026) {
       setCurrentDate(now);
     } else {
-      setCurrentDate(new Date(2026, 5, 1)); // Default fallback to June 2026
+      setCurrentDate(new Date(2026, now.getMonth(), 1)); // Dynamic fallback to current month of 2026
     }
   };
 
