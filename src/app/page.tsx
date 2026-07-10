@@ -27,13 +27,15 @@ import {
   X,
   ArrowLeft,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Download
 } from 'lucide-react';
 import AppCard from '@/components/AppCard';
 import CalendarWidget from '@/components/CalendarWidget';
 import logo from '../assets/logo.svg';
 import uptimeKumaLogo from '../assets/uptime-kuma.svg';
 import owncloudLogo from '../assets/owncloud.svg';
+import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -682,7 +684,66 @@ export default function Home() {
               <div className="widget-wrapper">
                 <CalendarWidget />
               </div>
+              <div className="widget-wrapper promotions-widget glass-panel">
+                <h3 className="widget-title">
+                  <Tag size={18} />
+                  Promociones activas
+                </h3>
+                <div className="promotions-content">
+                  <div className="promo-card glow-card">
+                    <div className="promo-badge">¡Nueva!</div>
+                    <h4 className="promo-title">Ortodoncia Especializada</h4>
 
+                    <div className="promo-image-wrapper" style={{ overflow: 'hidden', borderRadius: '8px', margin: '4px 0' }}>
+                      <Image
+                        src={promoOrtodoncia}
+                        alt="Promo Ortodoncia Especializada"
+                        placeholder="blur"
+                        style={{ width: '100%', height: 'auto', display: 'block', transition: 'transform 0.3s' }}
+                      />
+                    </div>
+
+                    <div className="promo-includes">
+                      <span className="includes-title">Incluye:</span>
+                      <ul>
+                        <li>Consulta de Ortodoncia</li>
+                        <li>Set de Radiografías</li>
+                      </ul>
+                    </div>
+
+                    <div className="promo-price-box">
+                      <span className="price-old">Antes: $138.000</span>
+                      <div className="price-current-wrapper">
+                        <span className="price-currency">$</span>
+                        <span className="price-value">35.000</span>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+                      <a
+                        href="https://ff.healthatom.io/TzqaY4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="promo-cta-btn"
+                      >
+                        Agendar
+                      </a>
+                      <a
+                        href="/promociones-activas/promoOrtodoncia.jpg"
+                        download="Promo_Ortodoncia_Tabancura.jpg"
+                        className="promo-download-btn"
+                      >
+                        <Download size={16} />
+                        Descargar Imagen
+                      </a>
+                    </div>
+
+                    <div className="promo-footer">
+                      <span>* Válido hasta el 31 de Julio de 2026. Sucursal Vitacura #8620. Solo pago vía web.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </aside>
 
             {/* RIGHT column: App Grid */}

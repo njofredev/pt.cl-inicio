@@ -1303,6 +1303,38 @@ html[data-theme="light"] .promo-card {
   filter: brightness(1.1);
 }
 
+.promo-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary) !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.promo-download-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .promo-download-btn {
+  background: rgba(22, 33, 88, 0.03);
+  border-color: rgba(22, 33, 88, 0.08);
+}
+
+html[data-theme="light"] .promo-download-btn:hover {
+  background: rgba(22, 33, 88, 0.06);
+  border-color: rgba(22, 33, 88, 0.15);
+}
+
 .promo-footer {
   font-size: 0.68rem;
   color: var(--color-text-muted);
