@@ -28,7 +28,12 @@ import {
   ArrowLeft,
   ChevronDown,
   ChevronUp,
-  Download
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  ZoomIn,
+  Info,
+  AlertTriangle
 } from 'lucide-react';
 import AppCard from '@/components/AppCard';
 import CalendarWidget from '@/components/CalendarWidget';
@@ -146,17 +151,7 @@ const APPS_DATA = [
     metricLabel: "Gestión de Pacientes",
     icon: <GitPullRequest size={24} />
   },
-  {
-    id: 8,
-    name: "API inventarios En línea",
-    description: "Interfaz de consulta y sincronización en tiempo real del inventario y stock de insumos clínicos.",
-    url: "https://apiinventarios.policlinicotabancura.cl/",
-    status: "dev" as const,
-    category: "APIs",
-    metric: "API REST",
-    metricLabel: "Servicio Insumos",
-    icon: <Cpu size={24} />
-  },
+
   {
     id: 9,
     name: "API cotizador En línea",
@@ -182,7 +177,7 @@ const APPS_DATA = [
     name: "Soporte Klap",
     description: "Guía paso a paso y manual de solución de problemas para el correcto funcionamiento del terminal de pagos Klap.",
     url: "#",
-    status: "dev" as const,
+    status: "online" as const,
     category: "Soporte",
     metric: "Artículo",
     metricLabel: "Manual de Insumos",
@@ -213,44 +208,339 @@ const APPS_DATA = [
   }
 ];
 
-const KlapArticleDetail = () => (
-  <div className="full-article-grid">
-    <div className="article-main-card glass-panel animate-slide-up">
-      <h3>Guía Rápida de Solución de Problemas</h3>
-      <div className="article-steps-flow">
-        <div className="flow-step">
-          <div className="step-badge">1</div>
-          <h4>Reinicio de Terminal</h4>
-          <p>Mantén presionados los botones <strong>Amarillo</strong> + <strong>Borrar (Clear)</strong> simultáneamente por 3 segundos hasta que la pantalla se apague y se reinicie.</p>
-        </div>
-        <div className="flow-step">
-          <div className="step-badge">2</div>
-          <h4>Conexión a Red</h4>
-          <p>Verifica que la red Wi-Fi <code>PT-Invitados</code> o <code>PT-POS</code> esté conectada, o que el indicador de señal GPRS (chip de datos móvil) tenga cobertura activa.</p>
-        </div>
-        <div className="flow-step">
-          <div className="step-badge">3</div>
-          <h4>Transacción de Prueba</h4>
-          <p>Realiza una venta de prueba por un monto mínimo de <strong>$1 peso</strong>. Si la transacción es aprobada, el equipo está listo para operar.</p>
-        </div>
-      </div>
-    </div>
+interface KlapStep {
+  id: number;
+  title: string;
+  desc: string;
+  img?: string;
+  isInfo?: boolean;
+  instructions: string[];
+}
 
-    <div className="article-sidebar-card glass-panel animate-slide-up" style={{ animationDelay: '0.1s' }}>
-      <h3>Soporte Klap & TI</h3>
-      <div className="support-phone-large">
-        <span className="support-label">Línea Directa Klap</span>
-        <span className="phone-num">600 300 3000</span>
-        <span className="availability">Lunes a Domingo, 24/7</span>
+const klapTutorialSteps: KlapStep[] = [
+  {
+    id: 1,
+    isInfo: true,
+    title: "Validación de Transacción Pendiente",
+    desc: "Antes de proceder, verifica con Administración el estado real del cobro en la plataforma de Klap.",
+    instructions: [
+      "Contacta a Andrea Palma (Encargada de Administración - Anexo 219) para revisar en el portal web de Klap si la transacción fue aprobada o rechazada.",
+      "Si la transacción ya se confirmó o rechazó en la plataforma pero el equipo quedó bloqueado en pantalla, procede a realizar los siguientes pasos técnicos.",
+      "No intentes pasar la tarjeta nuevamente hasta completar este procedimiento para evitar cobros duplicados."
+    ]
+  },
+  {
+    id: 2,
+    title: "Desbloqueo del Terminal POS",
+    desc: "Presiona el botón lateral de encendido o bloqueo para activar e ingresar a la pantalla principal.",
+    img: "/klap/1.jpg",
+    instructions: [
+      "Presiona el botón físico de encendido/bloqueo en el lateral del equipo POS.",
+      "Desliza la pantalla hacia arriba o presiona para desbloquear el dispositivo.",
+      "Asegúrate de que la pantalla responda correctamente y muestre la hora y barra de estado."
+    ]
+  },
+  {
+    id: 3,
+    title: "Acceso al Menú del Sistema",
+    desc: "Ingresa a los ajustes del sistema operativo Android desde el menú principal del POS.",
+    img: "/klap/2.jpg",
+    instructions: [
+      "Navega a la pantalla del menú técnico/sistema.",
+      "Selecciona el ícono de Configuración o Ajustes (ícono de engranaje).",
+      "Verifica que tengas acceso a las opciones del sistema del POS."
+    ]
+  },
+  {
+    id: 4,
+    title: "Selección de Apps y Notificaciones",
+    desc: "Busca y selecciona la opción de administración de aplicaciones en la lista de ajustes.",
+    img: "/klap/3.jpg",
+    instructions: [
+      "Dentro del menú de Configuración, desplázate hasta encontrar la opción Apps y Notificaciones.",
+      "Presiona sobre la opción para desplegar las preferencias de aplicaciones."
+    ]
+  },
+  {
+    id: 5,
+    title: "Despliegue Total de Aplicaciones",
+    desc: "Haz clic en \"Ver todas las aplicaciones\" para mostrar el listado completo de servicios del POS.",
+    img: "/klap/4.jpg",
+    instructions: [
+      "Selecciona la opción \"Ver todas las 18 apps\".",
+      "Se abrirá el listado general con todos los componentes del terminal."
+    ]
+  },
+  {
+    id: 6,
+    title: "Búsqueda de Aplicaciones Klap",
+    desc: "Desplázate hacia la parte inferior del listado para ubicar las aplicaciones del sistema Klap.",
+    img: "/klap/5.jpg",
+    instructions: [
+      "Desliza con el dedo hacia el fondo de la lista de aplicaciones.",
+      "Las aplicaciones del terminal se encuentran ordenadas alfabéticamente o al final del listado."
+    ]
+  },
+  {
+    id: 7,
+    title: "Identificación de Apps Críticas",
+    desc: "Ubica las tres aplicaciones claves del terminal.",
+    img: "/klap/6.jpg",
+    instructions: [
+      "Localiza específicamente los siguientes tres nombres en la lista: Klap Integrador, Klap Multipago POS y Smart Pago MC.",
+      "Deberás realizar la limpieza de datos/caché en cada una de ellas secuencialmente."
+    ]
+  },
+  {
+    id: 8,
+    title: "Limpieza de Caché y Datos",
+    desc: "Ingresa a Almacenamiento en cada app y presiona \"Borrar memoria caché\" y \"Borrar almacenamiento.\"",
+    img: "/klap/7.jpg",
+    instructions: [
+      "Selecciona la primera app de la lista (Klap Integrador).",
+      "Ingresa a la sección de \"Almacenamiento y Caché\".",
+      "Presiona \"Borrar memoria caché\" y luego \"Borrar almacenamiento\" (o liberar espacio).",
+      "Repite este exacto procedimiento para Klap Multipago POS y Smart Pago MC."
+    ]
+  },
+  {
+    id: 9,
+    title: "Reinicio y Verificación del Terminal",
+    desc: "Reinicia el POS Klap para aplicar los cambios y confirma que el error haya desaparecido.",
+    img: "/klap/8.jpg",
+    instructions: [
+      "Mantén presionado el botón físico de encendido y selecciona la opción \"Reiniciar\".",
+      "Una vez encendido el equipo, abre nuevamente la aplicación de cobro Klap.",
+      "Verifica que el mensaje de \"Reversa Pendiente\" haya desaparecido y el POS quede disponible para operar normalmente."
+    ]
+  },
+  {
+    id: 10,
+    title: "Confirmación y Prueba de Cobro",
+    desc: "Realiza una prueba final y confirma que el terminal de pagos está 100% operativo.",
+    img: "/klap/9.jpg",
+    instructions: [
+      "Confirma que la pantalla de inicio de Klap cargue correctamente.",
+      "De ser necesario, realiza una transacción de prueba por $1 peso para validar la comunicación con el servidor.",
+      "Si el equipo vuelve a mostrar un mensaje de error, contacta a Soporte TI (Anexo 222)."
+    ]
+  }
+];
+
+const KlapArticleDetail = () => {
+  const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
+
+  const handlePrev = () => {
+    if (selectedStepIndex === null) return;
+    setSelectedStepIndex(prev => (prev! > 0 ? prev! - 1 : klapTutorialSteps.length - 1));
+  };
+
+  const handleNext = () => {
+    if (selectedStepIndex === null) return;
+    setSelectedStepIndex(prev => (prev! < klapTutorialSteps.length - 1 ? prev! + 1 : 0));
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedStepIndex === null) return;
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'Escape') setSelectedStepIndex(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedStepIndex]);
+
+  const activeStep = selectedStepIndex !== null ? klapTutorialSteps[selectedStepIndex] : null;
+
+  return (
+    <div className="full-article-grid">
+      <div className="article-main-card glass-panel animate-slide-up">
+        <h3>Guía de Uso y Tutorial Paso a Paso</h3>
+        <p style={{ color: 'var(--color-text-secondary)', marginBottom: '16px', fontSize: '0.9rem' }}>
+          Sigue estos 10 pasos para el correcto uso y solución de incidencias en los terminales Klap. Haz clic en cualquier parte de la tarjeta para ver los detalles.
+        </p>
+
+        <div className="klap-tutorial-grid">
+          {klapTutorialSteps.map((step, idx) => (
+            <div key={step.id} className="klap-step-card" onClick={() => setSelectedStepIndex(idx)}>
+              <div className="klap-step-header">
+                <span className="klap-step-badge">{step.id}</span>
+                <h4 className="klap-step-title">{step.title}</h4>
+              </div>
+
+              <div className="klap-img-wrapper">
+                {step.img ? (
+                  <img src={step.img} alt={`Klap paso ${step.id}: ${step.title}`} />
+                ) : (
+                  <div className="klap-icon-placeholder">
+                    <AlertTriangle size={36} />
+                    <span className="klap-icon-placeholder-text">Aviso Importante</span>
+                  </div>
+                )}
+
+                <div className="klap-img-hover-overlay">
+                  <span className="klap-img-hover-pill">
+                    <Search size={15} />
+                    Ver más
+                  </span>
+                </div>
+              </div>
+
+              <p className="klap-step-desc">{step.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="support-info-alert">
-        <strong>¿Problema persistente?</strong>
-        <p>Contacta al área de TI del Policlínico en el anexo 104 o envía un correo a soporte@policlinicotabancura.cl indicando el número de serie del terminal.</p>
+      <div className="article-sidebar-column">
+        {/* Bloque 1: Soporte Externo Klap */}
+        <div className="article-sidebar-card glass-panel animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <h3>Soporte Externo (Klap)</h3>
+
+          <div className="klap-sidebar-section">
+            <h4 className="klap-sidebar-subtitle">Escríbenos</h4>
+            <div className="support-contact-item">
+              <WhatsAppIcon size={18} />
+              <a href="https://wa.me/56935547429" target="_blank" rel="noopener noreferrer">
+                +56 9 3554 7429
+              </a>
+            </div>
+          </div>
+
+          <div className="klap-sidebar-section">
+            <h4 className="klap-sidebar-subtitle">Contacto Soporte Klap</h4>
+            <div className="support-contact-item">
+              <Phone size={18} />
+              <a href="tel:6003632020">600 363 2020</a>
+            </div>
+            <div className="support-contact-item">
+              <Mail size={18} />
+              <a href="mailto:contacto@klap.cl">contacto@klap.cl</a>
+            </div>
+            <span className="availability" style={{ marginTop: '6px', display: 'block' }}>
+              Contact Center 24 horas los 7 días de la semana.
+            </span>
+          </div>
+        </div>
+
+        {/* Bloque 2: Soporte Interno Policlínico */}
+        <div className="article-sidebar-card glass-panel animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <h3>Soporte Interno (Policlínico)</h3>
+
+          <div className="internal-contact-card">
+            <div className="contact-role-badge">Incidencias Técnicas</div>
+            <span className="contact-name">Nicolás Jofré Andrade</span>
+            <span className="contact-title">Encargado de TI</span>
+            <div className="contact-links">
+              <a href="mailto:njofre@policlinicotabancura.cl" className="contact-link">
+                <Mail size={14} /> njofre@policlinicotabancura.cl
+              </a>
+              <span className="contact-ext">
+                <Phone size={14} /> Anexo <strong>222</strong>
+              </span>
+            </div>
+          </div>
+
+          <div className="internal-contact-card">
+            <div className="contact-role-badge admin">Financieras & Pagos</div>
+            <span className="contact-name">Andrea Palma Cabezas</span>
+            <span className="contact-title">Encargada de Administración</span>
+            <div className="contact-links">
+              <a href="mailto:apalma@policlinicotabancura.cl" className="contact-link">
+                <Mail size={14} /> apalma@policlinicotabancura.cl
+              </a>
+              <span className="contact-ext">
+                <Phone size={14} /> Anexo <strong>219</strong>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Popup Modal Modal de Detalle con Flechas */}
+      {activeStep !== null && (
+        <div className="klap-modal-backdrop" onClick={() => setSelectedStepIndex(null)}>
+          {/* Left Arrow Button */}
+          <button
+            className="klap-modal-nav-btn klap-modal-nav-prev"
+            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+            aria-label="Paso anterior"
+            title="Paso anterior (Flecha izquierda)"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="klap-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="klap-modal-close"
+              onClick={() => setSelectedStepIndex(null)}
+              aria-label="Cerrar detalle"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="klap-modal-img-container">
+              {activeStep.img ? (
+                <img src={activeStep.img} alt={`Klap paso ${activeStep.id}: ${activeStep.title}`} />
+              ) : (
+                <div className="klap-modal-icon-placeholder">
+                  <AlertTriangle size={56} />
+                  <span>Aviso e Información Importante</span>
+                </div>
+              )}
+            </div>
+
+            <div className="klap-modal-info">
+              <div className="klap-modal-header">
+                <span className="klap-modal-badge">{activeStep.id}</span>
+                <h4 className="klap-modal-title">{activeStep.title}</h4>
+              </div>
+
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', margin: 0 }}>
+                {activeStep.desc}
+              </p>
+
+              <div className="klap-modal-instructions">
+                <h5>Instrucciones paso a paso</h5>
+                <ul>
+                  {activeStep.instructions.map((inst, index) => (
+                    <li key={index}>{inst}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="klap-modal-footer-nav">
+                <span className="klap-step-counter">
+                  Paso {activeStep.id} de {klapTutorialSteps.length}
+                </span>
+
+                <div className="klap-footer-nav-btns">
+                  <button className="klap-footer-btn" onClick={handlePrev}>
+                    <ChevronLeft size={16} /> Anterior
+                  </button>
+                  <button className="klap-footer-btn" onClick={handleNext}>
+                    Siguiente <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            className="klap-modal-nav-btn klap-modal-nav-next"
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
+            aria-label="Paso siguiente"
+            title="Paso siguiente (Flecha derecha)"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 const AnexosArticleDetail = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>('clinica');
