@@ -329,15 +329,41 @@ const klapTutorialSteps: KlapStep[] = [
 
 const KlapArticleDetail = () => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
+  const [zoomState, setZoomState] = useState<{
+    show: boolean;
+    x: number;
+    y: number;
+    cursorX: number;
+    cursorY: number;
+  }>({ show: false, x: 0, y: 0, cursorX: 0, cursorY: 0 });
 
   const handlePrev = () => {
     if (selectedStepIndex === null) return;
+    setZoomState(prev => ({ ...prev, show: false }));
     setSelectedStepIndex(prev => (prev! > 0 ? prev! - 1 : klapTutorialSteps.length - 1));
   };
 
   const handleNext = () => {
     if (selectedStepIndex === null) return;
+    setZoomState(prev => ({ ...prev, show: false }));
     setSelectedStepIndex(prev => (prev! < klapTutorialSteps.length - 1 ? prev! + 1 : 0));
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomState({
+      show: true,
+      x,
+      y,
+      cursorX: e.clientX - rect.left,
+      cursorY: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomState(prev => ({ ...prev, show: false }));
   };
 
   useEffect(() => {
@@ -481,9 +507,27 @@ const KlapArticleDetail = () => {
                 <X size={20} />
               </button>
 
-              <div className="klap-modal-img-container">
+              <div
+                className="klap-modal-img-container"
+                onMouseMove={activeStep.img ? handleMouseMove : undefined}
+                onMouseLeave={activeStep.img ? handleMouseLeave : undefined}
+              >
                 {activeStep.img ? (
-                  <img src={activeStep.img} alt={`Klap paso ${activeStep.id}: ${activeStep.title}`} />
+                  <>
+                    <img src={activeStep.img} alt={`Klap paso ${activeStep.id}: ${activeStep.title}`} />
+                    {zoomState.show && (
+                      <div
+                        className="klap-zoom-lens"
+                        style={{
+                          left: `${zoomState.cursorX}px`,
+                          top: `${zoomState.cursorY}px`,
+                          backgroundImage: `url(${activeStep.img})`,
+                          backgroundPosition: `${zoomState.x}% ${zoomState.y}%`,
+                          backgroundSize: '280% 280%',
+                        }}
+                      />
+                    )}
+                  </>
                 ) : (
                   <div className="klap-modal-icon-placeholder">
                     <AlertTriangle size={56} />

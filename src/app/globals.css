@@ -2597,6 +2597,7 @@ html[data-theme="light"] .modal-close-btn:hover {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #000;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
 }
 
 .klap-modal-img-container img {
@@ -2605,6 +2606,20 @@ html[data-theme="light"] .modal-close-btn:hover {
   display: block;
   object-fit: contain;
   max-height: 60vh;
+}
+
+.klap-zoom-lens {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 2px solid #00d2ff;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 255, 0.5), inset 0 0 15px rgba(0, 210, 255, 0.2);
+  pointer-events: none;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  animation: fadeIn 0.15s ease-out;
 }
 
 .klap-modal-info {
