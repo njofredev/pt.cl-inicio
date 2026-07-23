@@ -503,11 +503,11 @@ const KlapArticleDetail = () => {
 
               <div className="klap-modal-instructions">
                 <h5>Instrucciones paso a paso</h5>
-                <ul>
+                <ol>
                   {activeStep.instructions.map((inst, index) => (
                     <li key={index}>{inst}</li>
                   ))}
-                </ul>
+                </ol>
               </div>
 
               <div className="klap-modal-footer-nav">

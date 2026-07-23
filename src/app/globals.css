@@ -2661,17 +2661,24 @@ html[data-theme="light"] .modal-close-btn:hover {
   font-weight: 700;
 }
 
+.klap-modal-instructions ol,
 .klap-modal-instructions ul {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   color: #cbd5e1;
   font-size: 0.9rem;
   line-height: 1.5;
 }
 
+.klap-modal-instructions ol li::marker {
+  color: #00d2ff;
+  font-weight: 700;
+}
+
+.klap-modal-instructions ol li strong,
 .klap-modal-instructions ul li strong {
   color: #ffffff;
 }
