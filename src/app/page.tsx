@@ -461,81 +461,74 @@ const KlapArticleDetail = () => {
       {/* Popup Modal Modal de Detalle con Flechas */}
       {activeStep !== null && (
         <div className="klap-modal-backdrop" onClick={() => setSelectedStepIndex(null)}>
-          {/* Left Arrow Button */}
-          <button
-            className="klap-modal-nav-btn klap-modal-nav-prev"
-            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            aria-label="Paso anterior"
-            title="Paso anterior (Flecha izquierda)"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <div className="klap-modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="klap-modal-wrapper" onClick={(e) => e.stopPropagation()}>
+            {/* Left Arrow Button */}
             <button
-              className="klap-modal-close"
-              onClick={() => setSelectedStepIndex(null)}
-              aria-label="Cerrar detalle"
+              className="klap-modal-nav-btn klap-modal-nav-prev"
+              onClick={handlePrev}
+              aria-label="Paso anterior"
+              title="Paso anterior (Flecha izquierda)"
             >
-              <X size={20} />
+              <ChevronLeft size={24} />
             </button>
 
-            <div className="klap-modal-img-container">
-              {activeStep.img ? (
-                <img src={activeStep.img} alt={`Klap paso ${activeStep.id}: ${activeStep.title}`} />
-              ) : (
-                <div className="klap-modal-icon-placeholder">
-                  <AlertTriangle size={56} />
-                  <span>Aviso e Información Importante</span>
+            <div className="klap-modal-content">
+              <button
+                className="klap-modal-close"
+                onClick={() => setSelectedStepIndex(null)}
+                aria-label="Cerrar detalle"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="klap-modal-img-container">
+                {activeStep.img ? (
+                  <img src={activeStep.img} alt={`Klap paso ${activeStep.id}: ${activeStep.title}`} />
+                ) : (
+                  <div className="klap-modal-icon-placeholder">
+                    <AlertTriangle size={56} />
+                    <span>Aviso e Información Importante</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="klap-modal-info">
+                <div className="klap-modal-header">
+                  <span className="klap-modal-badge">{activeStep.id}</span>
+                  <h4 className="klap-modal-title">{activeStep.title}</h4>
                 </div>
-              )}
+
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', margin: 0 }}>
+                  {activeStep.desc}
+                </p>
+
+                <div className="klap-modal-instructions">
+                  <h5>Instrucciones paso a paso</h5>
+                  <ol>
+                    {activeStep.instructions.map((inst, index) => (
+                      <li key={index}>{inst}</li>
+                    ))}
+                  </ol>
+                </div>
+
+                <div className="klap-modal-footer-nav">
+                  <span className="klap-step-counter">
+                    Paso {activeStep.id} de {klapTutorialSteps.length}
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div className="klap-modal-info">
-              <div className="klap-modal-header">
-                <span className="klap-modal-badge">{activeStep.id}</span>
-                <h4 className="klap-modal-title">{activeStep.title}</h4>
-              </div>
-
-              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', margin: 0 }}>
-                {activeStep.desc}
-              </p>
-
-              <div className="klap-modal-instructions">
-                <h5>Instrucciones paso a paso</h5>
-                <ol>
-                  {activeStep.instructions.map((inst, index) => (
-                    <li key={index}>{inst}</li>
-                  ))}
-                </ol>
-              </div>
-
-              <div className="klap-modal-footer-nav">
-                <span className="klap-step-counter">
-                  Paso {activeStep.id} de {klapTutorialSteps.length}
-                </span>
-
-                <div className="klap-footer-nav-btns">
-                  <button className="klap-footer-btn" onClick={handlePrev}>
-                    <ChevronLeft size={16} /> Anterior
-                  </button>
-                  <button className="klap-footer-btn" onClick={handleNext}>
-                    Siguiente <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
-            </div>
+            {/* Right Arrow Button */}
+            <button
+              className="klap-modal-nav-btn klap-modal-nav-next"
+              onClick={handleNext}
+              aria-label="Paso siguiente"
+              title="Paso siguiente (Flecha derecha)"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
-
-          {/* Right Arrow Button */}
-          <button
-            className="klap-modal-nav-btn klap-modal-nav-next"
-            onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            aria-label="Paso siguiente"
-            title="Paso siguiente (Flecha derecha)"
-          >
-            <ChevronRight size={24} />
-          </button>
         </div>
       )}
     </div>

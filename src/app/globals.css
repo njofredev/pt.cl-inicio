@@ -2684,6 +2684,15 @@ html[data-theme="light"] .modal-close-btn:hover {
 }
 
 /* Modal Navigation Buttons & Footer Controls */
+.klap-modal-wrapper {
+  position: relative;
+  max-width: 880px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .klap-modal-nav-btn {
   position: absolute;
   top: 50%;
@@ -2721,11 +2730,21 @@ html[data-theme="light"] .modal-close-btn:hover {
 }
 
 .klap-modal-nav-prev {
-  left: 16px;
+  left: -22px;
 }
 
 .klap-modal-nav-next {
-  right: 16px;
+  right: -22px;
+}
+
+@media (max-width: 960px) {
+  .klap-modal-nav-prev {
+    left: 8px;
+  }
+
+  .klap-modal-nav-next {
+    right: 8px;
+  }
 }
 
 .klap-modal-footer-nav {
