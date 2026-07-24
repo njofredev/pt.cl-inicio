@@ -951,6 +951,25 @@ export default function Home() {
     return text.charAt(0).toUpperCase() + text.slice(1);
   };
 
+  const handleFilterClick = (filter: string) => {
+    setActiveFilter(filter);
+    if (typeof window !== 'undefined') {
+      const el = document.getElementById('apps-container');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
+  const handlePromotionsClick = () => {
+    if (typeof window !== 'undefined') {
+      const el = document.getElementById('promotions-widget');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <main className="dashboard-container">
       {/* Top Header Bar */}
@@ -1024,25 +1043,30 @@ export default function Home() {
             </div>
 
             <div className="category-tabs">
-              <button onClick={() => setActiveFilter('all')} className={`tab-btn ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
+              <button onClick={() => handleFilterClick('all')} className={`tab-btn ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
                 <LayoutGrid size={16} />
                 Todos
               </button>
-              <button onClick={() => setActiveFilter('médica')} className={`tab-btn ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
+              <button onClick={() => handleFilterClick('médica')} className={`tab-btn ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
                 <Stethoscope size={16} />
                 Área Médica
               </button>
-              <button onClick={() => setActiveFilter('administrativa')} className={`tab-btn ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
+              <button onClick={() => handleFilterClick('administrativa')} className={`tab-btn ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
                 <Briefcase size={16} />
                 Área Administrativa
               </button>
-              <button onClick={() => setActiveFilter('soporte')} className={`tab-btn ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
+              <button onClick={() => handleFilterClick('soporte')} className={`tab-btn ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
                 <Wrench size={16} />
                 Soporte & TI
               </button>
-              <button onClick={() => setActiveFilter('apis')} className={`tab-btn ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
+              <button onClick={() => handleFilterClick('apis')} className={`tab-btn ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
                 <Cpu size={16} />
                 APIs
+              </button>
+
+              <button onClick={handlePromotionsClick} className="tab-btn promo-mobile-btn" aria-label="Ver Promociones">
+                <Tag size={16} />
+                Promociones
               </button>
 
               <button onClick={() => setIsHelpOpen(true)} className="tab-btn help-btn" aria-label="Ayuda de categorías">
@@ -1059,7 +1083,7 @@ export default function Home() {
               <div className="widget-wrapper">
                 <CalendarWidget />
               </div>
-              <div className="widget-wrapper promotions-widget glass-panel">
+              <div className="widget-wrapper promotions-widget glass-panel" id="promotions-widget">
                 <h3 className="widget-title">
                   <Tag size={18} />
                   Promociones activas
@@ -1133,7 +1157,7 @@ export default function Home() {
             </aside>
 
             {/* RIGHT column: App Grid */}
-            <section className="apps-container">
+            <section className="apps-container" id="apps-container">
               <div className="section-title">
                 <h2>Apps</h2>
                 <span className="apps-count">
