@@ -41,6 +41,43 @@ import logo from '../assets/logo.svg';
 import uptimeKumaLogo from '../assets/uptime-kuma.svg';
 import owncloudLogo from '../assets/owncloud.svg';
 import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
+import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
+
+const PROMOTIONS_DATA = [
+  {
+    id: 'ortodoncia',
+    badge: '¡Nueva!',
+    title: 'Ortodoncia Especializada',
+    image: promoOrtodoncia,
+    imageDownloadPath: '/promociones-activas/promoOrtodoncia.jpg',
+    downloadFilename: 'Promo_Ortodoncia_Tabancura.jpg',
+    includes: [
+      'Consulta de Ortodoncia',
+      'Set de Radiografías'
+    ],
+    priceOld: '138.000',
+    priceCurrent: '35.000',
+    scheduleUrl: 'https://ff.healthatom.io/TzqaY4',
+    footerText: '* Válido hasta el 31 de Julio de 2026. Sucursal Vitacura #8620. Solo pago vía web.'
+  },
+  {
+    id: 'limpieza',
+    badge: '¡Nueva!',
+    title: 'Limpieza Dental',
+    image: promoLimpieza,
+    imageDownloadPath: '/promociones-activas/promoLimpieza.png',
+    downloadFilename: 'Promo_Limpieza_Dental_Tabancura.png',
+    includes: [
+      'Evaluación Dental',
+      'Limpieza Profilaxis',
+      'RX Bitewing Bilateral'
+    ],
+    priceOld: '47.000',
+    priceCurrent: '24.000',
+    scheduleUrl: 'https://ff.healthatom.io/be3WhX',
+    footerText: '* Promoción para mayores de 15 años. Sujeto a evaluación clínica. Solo pago vía web. Válido hasta el 31 de Julio de 2026. Excluye pacientes con Diagnóstico de Periodontitis.'
+  }
+];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -822,6 +859,17 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
+  const [selectedPromoModal, setSelectedPromoModal] = useState<typeof PROMOTIONS_DATA[0] | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedPromoModal(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     setIsMounted(true);
@@ -1016,59 +1064,70 @@ export default function Home() {
                   <Tag size={18} />
                   Promociones activas
                 </h3>
-                <div className="promotions-content">
-                  <div className="promo-card glow-card">
-                    <div className="promo-badge">¡Nueva!</div>
-                    <h4 className="promo-title">Ortodoncia Especializada</h4>
+                <div className="promotions-content" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  {PROMOTIONS_DATA.map((promo) => (
+                    <div key={promo.id} className="promo-card glow-card">
+                      {promo.badge && <div className="promo-badge">{promo.badge}</div>}
+                      <h4 className="promo-title">{promo.title}</h4>
 
-                    <div className="promo-image-wrapper" style={{ overflow: 'hidden', borderRadius: '8px', margin: '4px 0' }}>
-                      <Image
-                        src={promoOrtodoncia}
-                        alt="Promo Ortodoncia Especializada"
-                        placeholder="blur"
-                        style={{ width: '100%', height: 'auto', display: 'block', transition: 'transform 0.3s' }}
-                      />
-                    </div>
+                      <div
+                        className="promo-image-clickable"
+                        onClick={() => setSelectedPromoModal(promo)}
+                        title="Haz clic para ver en detalle"
+                      >
+                        <Image
+                          src={promo.image}
+                          alt={`Promo ${promo.title}`}
+                          placeholder="blur"
+                          style={{ width: '100%', height: 'auto', display: 'block' }}
+                        />
+                        <div className="promo-image-hover-overlay">
+                          <ZoomIn size={18} />
+                          <span>Ver en detalle</span>
+                        </div>
+                      </div>
 
-                    <div className="promo-includes">
-                      <span className="includes-title">Incluye:</span>
-                      <ul>
-                        <li>Consulta de Ortodoncia</li>
-                        <li>Set de Radiografías</li>
-                      </ul>
-                    </div>
+                      <div className="promo-includes">
+                        <span className="includes-title">Incluye:</span>
+                        <ul>
+                          {promo.includes.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div className="promo-price-box">
-                      <span className="price-old">Antes: $138.000</span>
-                      <div className="price-current-wrapper">
-                        <span className="price-currency">$</span>
-                        <span className="price-value">35.000</span>
+                      <div className="promo-price-box">
+                        <span className="price-old">Antes: ${promo.priceOld}</span>
+                        <div className="price-current-wrapper">
+                          <span className="price-currency">$</span>
+                          <span className="price-value">{promo.priceCurrent}</span>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+                        <a
+                          href={promo.scheduleUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="promo-cta-btn"
+                        >
+                          Agendar
+                        </a>
+                        <a
+                          href={promo.imageDownloadPath}
+                          download={promo.downloadFilename}
+                          className="promo-download-btn"
+                        >
+                          <Download size={16} />
+                          Descargar Imagen
+                        </a>
+                      </div>
+
+                      <div className="promo-footer">
+                        <span>{promo.footerText}</span>
                       </div>
                     </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
-                      <a
-                        href="https://ff.healthatom.io/TzqaY4"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="promo-cta-btn"
-                      >
-                        Agendar
-                      </a>
-                      <a
-                        href="/promociones-activas/promoOrtodoncia.jpg"
-                        download="Promo_Ortodoncia_Tabancura.jpg"
-                        className="promo-download-btn"
-                      >
-                        <Download size={16} />
-                        Descargar Imagen
-                      </a>
-                    </div>
-
-                    <div className="promo-footer">
-                      <span>* Válido hasta el 31 de Julio de 2026. Sucursal Vitacura #8620. Solo pago vía web.</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </aside>
@@ -1227,6 +1286,80 @@ export default function Home() {
                     <h4>APIs</h4>
                     <p>Servicios de consulta y sincronización de datos en tiempo real que operan de forma silenciosa en el backend.</p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Promo Image & Details Modal Viewer */}
+      {selectedPromoModal && (
+        <div className="promo-modal-backdrop" onClick={() => setSelectedPromoModal(null)}>
+          <div className="promo-modal-container glass-panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="promo-modal-close"
+              onClick={() => setSelectedPromoModal(null)}
+              aria-label="Cerrar modal"
+              title="Cerrar (Escape)"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="promo-modal-body">
+              <div className="promo-modal-image-col">
+                <Image
+                  src={selectedPromoModal.image}
+                  alt={selectedPromoModal.title}
+                  placeholder="blur"
+                  className="promo-modal-img"
+                />
+              </div>
+
+              <div className="promo-modal-details-col">
+                {selectedPromoModal.badge && (
+                  <div className="promo-badge">{selectedPromoModal.badge}</div>
+                )}
+                <h3 className="promo-modal-title">{selectedPromoModal.title}</h3>
+
+                <div className="promo-includes">
+                  <span className="includes-title">Incluye:</span>
+                  <ul>
+                    {selectedPromoModal.includes.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="promo-price-box">
+                  <span className="price-old">Antes: ${selectedPromoModal.priceOld}</span>
+                  <div className="price-current-wrapper">
+                    <span className="price-currency">$</span>
+                    <span className="price-value">{selectedPromoModal.priceCurrent}</span>
+                  </div>
+                </div>
+
+                <div className="promo-modal-actions">
+                  <a
+                    href={selectedPromoModal.scheduleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="promo-cta-btn"
+                    style={{ textAlign: 'center' }}
+                  >
+                    Agendar Promoción
+                  </a>
+                  <a
+                    href={selectedPromoModal.imageDownloadPath}
+                    download={selectedPromoModal.downloadFilename}
+                    className="promo-download-btn"
+                  >
+                    <Download size={16} />
+                    Descargar Imagen Completa
+                  </a>
+                </div>
+
+                <div className="promo-footer">
+                  <span>{selectedPromoModal.footerText}</span>
                 </div>
               </div>
             </div>
