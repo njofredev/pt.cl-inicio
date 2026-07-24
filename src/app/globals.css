@@ -87,6 +87,7 @@ html[data-theme="light"] {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -452,6 +453,15 @@ html[data-theme="dark"] .logo-img {
 .category-tabs {
   display: flex;
   gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-btn {
@@ -3138,6 +3148,182 @@ html[data-theme="light"] .modal-close-btn:hover {
   gap: 10px;
   width: 100%;
   margin-top: 8px;
+}
+
+/* ==========================================================================
+   Mobile Responsive Adjustments & Enhancements (320px - 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .dashboard-header {
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .brand-section {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .welcome-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .brand-time {
+    font-size: 0.85rem;
+  }
+
+  .brand-date {
+    font-size: 0.78rem;
+  }
+
+  .logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 12px;
+  }
+
+  .controls-section {
+    padding: 12px 14px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .search-wrapper input {
+    font-size: 0.88rem;
+    padding: 10px 14px 10px 38px;
+  }
+
+  .tab-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .promo-modal-backdrop {
+    padding: 10px;
+  }
+
+  .promo-modal-container {
+    padding: 16px 14px;
+    max-height: 94vh;
+    border-radius: 14px;
+  }
+
+  .promo-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .promo-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .calendar-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .calendar-body {
+    padding: 12px 8px;
+  }
+
+  .days-header-grid,
+  .days-cells-grid {
+    gap: 4px;
+  }
+
+  .day-cell {
+    height: 30px;
+    font-size: 0.78rem;
+  }
+
+  .day-name {
+    font-size: 0.68rem;
+  }
+
+  .branch-filter-btn {
+    padding: 7px 8px;
+    font-size: 0.75rem;
+  }
+
+  .dashboard-footer {
+    padding: 14px 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-links {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 12px 8px;
+    gap: 12px;
+  }
+
+  .apps-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .app-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .welcome-title {
+    font-size: 1.15rem;
+  }
+
+  .social-link-btn,
+  .theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .external-numbers-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 
