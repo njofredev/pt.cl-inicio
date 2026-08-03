@@ -98,13 +98,11 @@ export default function CalendarWidget() {
         { text: "🎂 Cumpleaños: Teresita Covarrubias", type: "primary", branch: "all" }
       ],
       22: [{ text: "🎂 Cumpleaños: Loreto F.", type: "primary", branch: "vitacura" }],
-      26: [{ text: "🎂 Cumpleaños: Cecilia Tapia", type: "primary", branch: "tribunales" }],
       27: [{ text: "🎂 Cumpleaños: Isidora Q.", type: "primary", branch: "vitacura" }],
       30: [{ text: "🎂 Cumpleaños: Isidora Luengo", type: "primary", branch: "tribunales" }]
     },
     7: { // Agosto 2026
       6: [{ text: "🎂 Cumpleaños: Felipe Nilo", type: "primary", branch: "all" }],
-      9: [{ text: "🎂 Cumpleaños: Natalia A.", type: "primary", branch: "vitacura" }],
       15: [{ text: "Feriado: Asunción de la Virgen", type: "warning", branch: "all" }],
       18: [{ text: "🎂 Cumpleaños: Javiera P.", type: "primary", branch: "vitacura" }],
       21: [{ text: "🎂 Cumpleaños: Fernando Urbina", type: "primary", branch: "tribunales" }],
