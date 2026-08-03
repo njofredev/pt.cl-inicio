@@ -43,7 +43,22 @@ import owncloudLogo from '../assets/owncloud.svg';
 import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
 
-const PROMOTIONS_DATA = [
+interface Promotion {
+  id: string;
+  badge?: string;
+  title: string;
+  image: any;
+  imageDownloadPath: string;
+  downloadFilename: string;
+  includes: string[];
+  priceOld: string;
+  priceCurrent: string;
+  scheduleUrl: string;
+  footerText: string;
+}
+
+const PROMOTIONS_DATA: Promotion[] = [
+  /*
   {
     id: 'ortodoncia',
     badge: '¡Nueva!',
@@ -77,6 +92,7 @@ const PROMOTIONS_DATA = [
     scheduleUrl: 'https://ff.healthatom.io/be3WhX',
     footerText: '* Promoción para mayores de 15 años. Sujeto a evaluación clínica. Solo pago vía web. Válido hasta el 31 de Julio de 2026. Excluye pacientes con Diagnóstico de Periodontitis.'
   }
+  */
 ];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
@@ -859,7 +875,7 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
-  const [selectedPromoModal, setSelectedPromoModal] = useState<typeof PROMOTIONS_DATA[0] | null>(null);
+  const [selectedPromoModal, setSelectedPromoModal] = useState<Promotion | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1089,69 +1105,75 @@ export default function Home() {
                   Promociones activas
                 </h3>
                 <div className="promotions-content" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {PROMOTIONS_DATA.map((promo) => (
-                    <div key={promo.id} className="promo-card glow-card">
-                      {promo.badge && <div className="promo-badge">{promo.badge}</div>}
-                      <h4 className="promo-title">{promo.title}</h4>
+                  {PROMOTIONS_DATA.length > 0 ? (
+                    PROMOTIONS_DATA.map((promo) => (
+                      <div key={promo.id} className="promo-card glow-card">
+                        {promo.badge && <div className="promo-badge">{promo.badge}</div>}
+                        <h4 className="promo-title">{promo.title}</h4>
 
-                      <div
-                        className="promo-image-clickable"
-                        onClick={() => setSelectedPromoModal(promo)}
-                        title="Haz clic para ver en detalle"
-                      >
-                        <Image
-                          src={promo.image}
-                          alt={`Promo ${promo.title}`}
-                          placeholder="blur"
-                          style={{ width: '100%', height: 'auto', display: 'block' }}
-                        />
-                        <div className="promo-image-hover-overlay">
-                          <ZoomIn size={18} />
-                          <span>Ver en detalle</span>
+                        <div
+                          className="promo-image-clickable"
+                          onClick={() => setSelectedPromoModal(promo)}
+                          title="Haz clic para ver en detalle"
+                        >
+                          <Image
+                            src={promo.image}
+                            alt={`Promo ${promo.title}`}
+                            placeholder="blur"
+                            style={{ width: '100%', height: 'auto', display: 'block' }}
+                          />
+                          <div className="promo-image-hover-overlay">
+                            <ZoomIn size={18} />
+                            <span>Ver en detalle</span>
+                          </div>
+                        </div>
+
+                        <div className="promo-includes">
+                          <span className="includes-title">Incluye:</span>
+                          <ul>
+                            {promo.includes.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="promo-price-box">
+                          <span className="price-old">Antes: ${promo.priceOld}</span>
+                          <div className="price-current-wrapper">
+                            <span className="price-currency">$</span>
+                            <span className="price-value">{promo.priceCurrent}</span>
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+                          <a
+                            href={promo.scheduleUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="promo-cta-btn"
+                          >
+                            Agendar
+                          </a>
+                          <a
+                            href={promo.imageDownloadPath}
+                            download={promo.downloadFilename}
+                            className="promo-download-btn"
+                          >
+                            <Download size={16} />
+                            Descargar Imagen
+                          </a>
+                        </div>
+
+                        <div className="promo-footer">
+                          <span>{promo.footerText}</span>
                         </div>
                       </div>
-
-                      <div className="promo-includes">
-                        <span className="includes-title">Incluye:</span>
-                        <ul>
-                          {promo.includes.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="promo-price-box">
-                        <span className="price-old">Antes: ${promo.priceOld}</span>
-                        <div className="price-current-wrapper">
-                          <span className="price-currency">$</span>
-                          <span className="price-value">{promo.priceCurrent}</span>
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
-                        <a
-                          href={promo.scheduleUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="promo-cta-btn"
-                        >
-                          Agendar
-                        </a>
-                        <a
-                          href={promo.imageDownloadPath}
-                          download={promo.downloadFilename}
-                          className="promo-download-btn"
-                        >
-                          <Download size={16} />
-                          Descargar Imagen
-                        </a>
-                      </div>
-
-                      <div className="promo-footer">
-                        <span>{promo.footerText}</span>
-                      </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <p className="no-promotions">
+                      No hay promociones activas por el momento.
+                    </p>
+                  )}
                 </div>
               </div>
             </aside>
