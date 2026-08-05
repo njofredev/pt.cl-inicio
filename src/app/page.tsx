@@ -229,7 +229,8 @@ const APPS_DATA = [
     id: 11,
     name: "Soporte Klap",
     description: "Guía paso a paso y manual de solución de problemas para el correcto funcionamiento del terminal de pagos Klap.",
-    url: "#",
+    url: "/soporte-klap",
+    slug: "soporte-klap",
     status: "online" as const,
     category: "Soporte",
     metric: "Artículo",
@@ -241,11 +242,25 @@ const APPS_DATA = [
     id: 12,
     name: "Anexos y correos",
     description: "Listado oficial de anexos telefónicos internos, cuentas de correo corporativas y canales de comunicación.",
-    url: "#",
+    url: "/anexos-y-correos",
+    slug: "anexos-y-correos",
     status: "online" as const,
     category: "Administrativa",
     metric: "Artículo",
     metricLabel: "Directorio TI",
+    icon: <BookOpen size={24} />,
+    isArticle: true
+  },
+  {
+    id: 14,
+    name: "Recepción",
+    description: "Centro de información, procedimientos, protocolos y noticias de atención para el equipo de recepción.",
+    url: "/recepcion",
+    slug: "recepcion",
+    status: "online" as const,
+    category: "Administrativa",
+    metric: "Artículo",
+    metricLabel: "Procedimientos y Noticias",
     icon: <BookOpen size={24} />,
     isArticle: true
   },
@@ -377,6 +392,139 @@ const klapTutorialSteps: KlapStep[] = [
       "De ser necesario, realiza una transacción de prueba por $1 peso para validar la comunicación con el servidor.",
       "Si el equipo vuelve a mostrar un mensaje de error, contacta a Soporte TI (Anexo 222)."
     ]
+  }
+];
+
+interface RecepcionPoint {
+  num: number;
+  title: string;
+  desc: string;
+}
+
+interface RecepcionStepItem {
+  stepNumber: number;
+  title: string;
+  description: string;
+  image?: string;
+  points?: RecepcionPoint[];
+}
+
+interface RecepcionNewsItem {
+  id: string;
+  title: string;
+  date: string;
+  category: 'Procedimiento' | 'Protocolo' | 'Aviso' | 'Capacitación';
+  badge?: string;
+  author: string;
+  summary: string;
+  tutorialSteps?: RecepcionStepItem[];
+  importantNote?: string;
+}
+
+const INITIAL_RECEPCION_NEWS: RecepcionNewsItem[] = [
+  {
+    id: '1',
+    title: '¿Cómo ingresar un bono PAD en Policlínico Tabancura?',
+    date: '05 de Agosto, 2026',
+    category: 'Procedimiento',
+    badge: 'Nuevo aviso',
+    author: 'Recepción Central',
+    summary: 'Tutorial paso a paso con respaldo gráfico para la validación Fonasa e ingreso de cobro en Dentalink.',
+    tutorialSteps: [
+      {
+        stepNumber: 1,
+        title: 'Validar el bono en portal Fonasa',
+        description: 'Solicitar la cédula de identidad y el documento del Bono PAD (físico o digital) para verificar y corroborar en el portal web Fonasa / sistemas los 4 datos obligatorios:',
+        image: '/recepcion/1bonopad.jpg',
+        points: [
+          {
+            num: 1,
+            title: 'Datos del Paciente',
+            desc: 'Verificar RUT, nombre completo del asegurado/cargas y corroborar con su documento de identidad.'
+          },
+          {
+            num: 2,
+            title: 'Detalle de la Prestación y Copago',
+            desc: 'Comprobar el código de bono PAD Fonasa, la especialidad asignada y la confirmación del monto de copago.'
+          },
+          {
+            num: 3,
+            title: 'Información sobre la Institución',
+            desc: 'Validar que el bono señale explícitamente a Policlínico Tabancura como prestador autorizado.'
+          },
+          {
+            num: 4,
+            title: 'Nro. del Bono',
+            desc: 'Identificar y digitar el número único del Bono en el sistema para la emisión de la atención.'
+          }
+        ]
+      },
+      {
+        stepNumber: 2,
+        title: 'En Dentalink, seleccionar el plan de tratamiento del paciente',
+        description: 'Ingresar a la ficha del paciente en Dentalink y seguir los pasos indicados en la pantalla de cobro:',
+        image: '/recepcion/2seleccion.jpg',
+        points: [
+          {
+            num: 1,
+            title: 'Selecciona el plan de tratamiento',
+            desc: ''
+          },
+          {
+            num: 2,
+            title: 'Seleccionar pago de tratamiento(s)',
+            desc: ''
+          }
+        ]
+      },
+      {
+        stepNumber: 3,
+        title: 'Validar las prestaciones asociadas al plan de tratamiento',
+        description: 'Verificar y marcar con exactitud las prestaciones del plan de tratamiento registradas que corresponden al bono PAD Fonasa a ingresar:',
+        image: '/recepcion/3prestaciones.jpg',
+        points: [
+          {
+            num: 1,
+            title: 'Selección de prestación',
+            desc: ''
+          },
+          {
+            num: 2,
+            title: 'Resumen de totales',
+            desc: ''
+          }
+        ]
+      },
+      {
+        stepNumber: 4,
+        title: 'Registrar el pago del bono en el sistema',
+        description: 'Completar el registro de pago en el módulo de Dentalink ingresando los datos del comprobante:',
+        image: '/recepcion/4pago.jpg',
+        points: [
+          {
+            num: 1,
+            title: 'Seleccione el medio de pago',
+            desc: ''
+          },
+          {
+            num: 2,
+            title: 'Ingrese el número del bono',
+            desc: ''
+          },
+          {
+            num: 3,
+            title: 'Ingrese la transacción',
+            desc: ''
+          }
+        ]
+      },
+      {
+        stepNumber: 5,
+        title: 'Emitir la boleta correspondiente',
+        description: 'Generar y emitir el documento tributario electrónico (boleta de atención) correspondiente al cobro registrado para el paciente.'
+      }
+    ],
+    importantNote: 'Ante cualquier inconsistencia en los datos del paciente, código de prestación o monto de copago, derivar a Administración (Anexo 219) antes de autorizar el ingreso.'
   }
 ];
 
@@ -632,6 +780,281 @@ const KlapArticleDetail = () => {
   );
 };
 
+const RecepcionArticleDetail = () => {
+  const [newsList] = useState<RecepcionNewsItem[]>(INITIAL_RECEPCION_NEWS);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>('Todas');
+  const [expandedNewsId, setExpandedNewsId] = useState<string | null>(null);
+
+  const filteredNews = selectedCategoryFilter === 'Todas'
+    ? newsList
+    : newsList.filter(item => item.category === selectedCategoryFilter);
+
+  return (
+    <div className="full-article-grid">
+      <div className="article-main-card glass-panel animate-slide-up">
+        <div style={{ marginBottom: '20px' }}>
+          <h3 style={{ margin: 0 }}>Procedimientos y Noticias de Recepción</h3>
+          <p style={{ color: 'var(--color-text-secondary)', margin: '4px 0 0 0', fontSize: '0.9rem' }}>
+            Base de conocimiento interna con instructivos, avisos y protocolos de atención diaria.
+          </p>
+        </div>
+
+        {/* Filtros por Categoría */}
+        <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px' }}>
+          {['Todas', 'Procedimiento', 'Protocolo', 'Aviso', 'Capacitación'].map(cat => {
+            const count = cat === 'Todas'
+              ? newsList.length
+              : newsList.filter(item => item.category === cat).length;
+            const isActive = selectedCategoryFilter === cat;
+
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategoryFilter(cat)}
+                className={`tab-btn ${isActive ? 'active' : ''}`}
+                style={{
+                  position: 'relative',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  paddingRight: '12px'
+                }}
+              >
+                <span>{cat}</span>
+                <span
+                  style={{
+                    fontSize: '0.72rem',
+                    fontWeight: 800,
+                    padding: '2px 6px',
+                    borderRadius: '10px',
+                    background: isActive ? '#00d2ff' : 'rgba(255, 255, 255, 0.12)',
+                    color: isActive ? '#020617' : '#cbd5e1',
+                    lineHeight: 1,
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Lista de Noticias / Procedimientos */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {filteredNews.length === 0 ? (
+            <div style={{ padding: '30px', textAlign: 'center', color: 'var(--color-text-muted)' }}>
+              No hay publicaciones en la categoría seleccionada.
+            </div>
+          ) : (
+            filteredNews.map(item => {
+              const isExpanded = expandedNewsId === item.id;
+              return (
+                <div
+                  key={item.id}
+                  className="glass-panel"
+                  style={{
+                    padding: '16px 20px',
+                    borderRadius: '12px',
+                    border: isExpanded ? '1px solid rgba(0, 210, 255, 0.35)' : '1px solid rgba(255, 255, 255, 0.06)',
+                    background: isExpanded ? 'rgba(0, 210, 255, 0.04)' : 'rgba(255, 255, 255, 0.02)',
+                    transition: 'all 0.25s ease'
+                  }}
+                >
+                  <div
+                    onClick={() => setExpandedNewsId(isExpanded ? null : item.id)}
+                    style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                        <span className="category-tag" style={{ background: 'rgba(0, 210, 255, 0.15)', color: '#00d2ff' }}>
+                          {item.category}
+                        </span>
+                        {item.badge && (
+                          <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: 'linear-gradient(135deg, #ef4444 0%, #ec4899 100%)', color: '#ffffff', boxShadow: '0 2px 6px rgba(239, 68, 68, 0.4)' }}>
+                            {item.badge}
+                          </span>
+                        )}
+                        <span style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
+                          {item.date} • {item.author}
+                        </span>
+                      </div>
+                      <h4 style={{ margin: 0, fontSize: '1.05rem', color: 'var(--color-text-primary)' }}>
+                        {item.title}
+                      </h4>
+                      <p style={{ margin: '6px 0 0 0', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
+                        {item.summary}
+                      </p>
+                    </div>
+
+                    <button
+                      style={{ background: 'none', border: 'none', color: 'var(--color-text-muted)', cursor: 'pointer', padding: '4px' }}
+                      aria-label="Expandir o contraer noticia"
+                    >
+                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                    </button>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="animate-slide-up" style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                      {item.tutorialSteps && item.tutorialSteps.length > 0 && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '20px' }}>
+                          {item.tutorialSteps.map((st) => (
+                            <div
+                              key={st.stepNumber}
+                              style={{
+                                background: 'rgba(255, 255, 255, 0.02)',
+                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                                borderRadius: '14px',
+                                padding: '18px'
+                              }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                                <span
+                                  style={{
+                                    width: '30px',
+                                    height: '30px',
+                                    borderRadius: '50%',
+                                    background: 'linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%)',
+                                    color: '#ffffff',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontWeight: 800,
+                                    fontSize: '0.95rem',
+                                    flexShrink: 0,
+                                    boxShadow: '0 3px 10px rgba(0, 210, 255, 0.35)'
+                                  }}
+                                >
+                                  {st.stepNumber}
+                                </span>
+                                <h5 style={{ margin: 0, fontSize: '1.05rem', color: '#ffffff', fontWeight: 700 }}>
+                                  {st.title}
+                                </h5>
+                              </div>
+
+                              <p style={{ margin: '0 0 14px 0', fontSize: '0.92rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
+                                {st.description}
+                              </p>
+
+                              {st.image && (
+                                <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.12)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)', marginBottom: st.points && st.points.length > 0 ? '18px' : '0' }}>
+                                  <img
+                                    src={st.image}
+                                    alt={`Paso ${st.stepNumber}: ${st.title}`}
+                                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+                                  />
+                                </div>
+                              )}
+
+                              {st.points && st.points.length > 0 && (
+                                <div style={{ marginTop: '12px' }}>
+                                  <h6 style={{ fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#56b48c', margin: '0 0 10px 0', fontWeight: 700 }}>
+                                    Campos a revisar en el bono:
+                                  </h6>
+                                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '10px' }}>
+                                    {st.points.map((pt) => (
+                                      <div
+                                        key={pt.num}
+                                        style={{
+                                          padding: '10px 14px',
+                                          borderRadius: '8px',
+                                          background: 'rgba(255, 255, 255, 0.03)',
+                                          border: '1px solid rgba(86, 180, 140, 0.25)',
+                                          display: 'flex',
+                                          gap: '10px',
+                                          alignItems: 'center'
+                                        }}
+                                      >
+                                        <span
+                                          style={{
+                                            width: '26px',
+                                            height: '26px',
+                                            borderRadius: '50%',
+                                            background: 'linear-gradient(135deg, #56b48c 0%, #3e8869 100%)',
+                                            color: '#ffffff',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontWeight: 800,
+                                            fontSize: '0.85rem',
+                                            flexShrink: 0,
+                                            boxShadow: '0 2px 8px rgba(86, 180, 140, 0.4)'
+                                          }}
+                                        >
+                                          {pt.num}
+                                        </span>
+                                        <h6 style={{ margin: 0, fontSize: '0.9rem', color: '#ffffff', fontWeight: 700 }}>
+                                          {pt.title}
+                                        </h6>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {item.importantNote && (
+                        <div style={{ padding: '12px 14px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', display: 'flex', gap: '10px', alignItems: 'center' }}>
+                          <AlertTriangle size={18} style={{ color: '#f59e0b', flexShrink: 0 }} />
+                          <span style={{ fontSize: '0.85rem', color: '#fcd34d' }}>
+                            <strong>Nota:</strong> {item.importantNote}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      <div className="article-sidebar-column">
+        {/* Panel lateral: Resumen de Recepción */}
+        <div className="article-sidebar-card glass-panel animate-slide-up">
+          <h3>Información de Recepción</h3>
+          <p style={{ fontSize: '0.88rem', color: 'var(--color-text-secondary)', marginBottom: '16px' }}>
+            Canales de comunicación directa y anexos clave para la gestión de recepción en ambas sucursales.
+          </p>
+
+          <div className="klap-sidebar-section">
+            <h4 className="klap-sidebar-subtitle">Anexos Directos</h4>
+            <div className="support-contact-item">
+              <Phone size={16} />
+              <span>Recepción Vitacura 1p: <strong>200 / 201</strong></span>
+            </div>
+            <div className="support-contact-item">
+              <Phone size={16} />
+              <span>Recepción Vitacura 3p: <strong>212</strong></span>
+            </div>
+            <div className="support-contact-item">
+              <Phone size={16} />
+              <span>Recepción Los Tribunales: <strong>100 / 101</strong></span>
+            </div>
+          </div>
+
+          <div className="klap-sidebar-section">
+            <h4 className="klap-sidebar-subtitle">Correos Oficiales</h4>
+            <div className="support-contact-item">
+              <Mail size={16} />
+              <a href="mailto:recepciondental@policlinicotabancura.cl">recepciondental@policlinicotabancura.cl</a>
+            </div>
+            <div className="support-contact-item">
+              <Mail size={16} />
+              <a href="mailto:recepcionmedica@policlinicotabancura.cl">recepcionmedica@policlinicotabancura.cl</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AnexosArticleDetail = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>('clinica');
   const [activeBranchTab, setActiveBranchTab] = useState<'vitacura' | 'tribunales'>('vitacura');
@@ -858,7 +1281,7 @@ function ArticleDetailView({ id, onClose }: { id: number; onClose: () => void })
       </div>
 
       <div className="article-detail-body">
-        {id === 11 ? <KlapArticleDetail /> : id === 12 ? <AnexosArticleDetail /> : null}
+        {id === 11 ? <KlapArticleDetail /> : id === 12 ? <AnexosArticleDetail /> : id === 14 ? <RecepcionArticleDetail /> : null}
       </div>
     </div>
   );
@@ -894,6 +1317,22 @@ export default function Home() {
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
 
+    // Initial route check from URL path (e.g. /recepcion, /soporte-klap)
+    const handleRouteChange = () => {
+      const path = window.location.pathname.replace('/', '').toLowerCase();
+      if (path) {
+        const found = APPS_DATA.find(app => app.isArticle && app.slug === path);
+        if (found) {
+          setActiveArticleId(found.id);
+          return;
+        }
+      }
+      setActiveArticleId(null);
+    };
+
+    handleRouteChange();
+    window.addEventListener('popstate', handleRouteChange);
+
     // Clock setup
     const updateTime = () => {
       const now = new Date();
@@ -913,7 +1352,10 @@ export default function Home() {
 
     updateTime();
     const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -921,6 +1363,23 @@ export default function Home() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [activeArticleId]);
+
+  const handleOpenArticle = (id: number) => {
+    const found = APPS_DATA.find(app => app.id === id);
+    if (found?.slug) {
+      window.history.pushState({}, '', `/${found.slug}`);
+      setActiveArticleId(id);
+    } else {
+      setActiveArticleId(id);
+    }
+  };
+
+  const handleCloseArticle = () => {
+    if (window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+    }
+    setActiveArticleId(null);
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
@@ -1002,7 +1461,7 @@ export default function Home() {
             />
           </div>
           <div className="brand-text">
-            <h1 className="welcome-title">Ecosistema Digital</h1>
+            <h1 className="welcome-title">Portal Digital - Policlínico Tabancura</h1>
             {isMounted && (
               <div className="brand-datetime">
                 <span className="brand-time">{time}</span>
@@ -1042,7 +1501,7 @@ export default function Home() {
       </header>
 
       {activeArticleId !== null ? (
-        <ArticleDetailView id={activeArticleId} onClose={() => setActiveArticleId(null)} />
+        <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} />
       ) : (
         <>
           {/* Sub-header Controls (Search and Filters) */}
@@ -1201,7 +1660,7 @@ export default function Home() {
                     metricLabel={app.metricLabel}
                     icon={app.icon}
                     isArticle={app.isArticle}
-                    onOpenArticle={(id) => setActiveArticleId(id)}
+                    onOpenArticle={handleOpenArticle}
                   />
                 ))}
               </div>
