@@ -42,6 +42,7 @@ import uptimeKumaLogo from '../assets/uptime-kuma.svg';
 import owncloudLogo from '../assets/owncloud.svg';
 import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
+import promocionOrtodonciaAgosto from '../assets/promociones-activas/promocionOrtodonciaAgosto.jpg';
 
 interface Promotion {
   id: string;
@@ -58,41 +59,23 @@ interface Promotion {
 }
 
 const PROMOTIONS_DATA: Promotion[] = [
-  /*
   {
-    id: 'ortodoncia',
+    id: 'ortodoncia-agosto',
     badge: '¡Nueva!',
-    title: 'Ortodoncia Especializada',
-    image: promoOrtodoncia,
-    imageDownloadPath: '/promociones-activas/promoOrtodoncia.jpg',
-    downloadFilename: 'Promo_Ortodoncia_Tabancura.jpg',
+    title: 'Consulta de Ortodoncia',
+    image: promocionOrtodonciaAgosto,
+    imageDownloadPath: '/promociones-activas/promocionOrtodonciaAgosto.jpg',
+    downloadFilename: 'Promo_Ortodoncia_Agosto_Tabancura.jpg',
     includes: [
-      'Consulta de Ortodoncia',
-      'Set de Radiografías'
+      'Frenillos Tradicionales (Brackets Metálicos)',
+      'Alineadores 100% Invisibles',
+      'Evaluación de la mejor opción para tu sonrisa'
     ],
-    priceOld: '138.000',
-    priceCurrent: '35.000',
-    scheduleUrl: 'https://ff.healthatom.io/TzqaY4',
-    footerText: '* Válido hasta el 31 de Julio de 2026. Sucursal Vitacura #8620. Solo pago vía web.'
-  },
-  {
-    id: 'limpieza',
-    badge: '¡Nueva!',
-    title: 'Limpieza Dental',
-    image: promoLimpieza,
-    imageDownloadPath: '/promociones-activas/promoLimpieza.png',
-    downloadFilename: 'Promo_Limpieza_Dental_Tabancura.png',
-    includes: [
-      'Evaluación Dental',
-      'Limpieza Profilaxis',
-      'RX Bitewing Bilateral'
-    ],
-    priceOld: '47.000',
-    priceCurrent: '24.000',
-    scheduleUrl: 'https://ff.healthatom.io/be3WhX',
-    footerText: '* Promoción para mayores de 15 años. Sujeto a evaluación clínica. Solo pago vía web. Válido hasta el 31 de Julio de 2026. Excluye pacientes con Diagnóstico de Periodontitis.'
+    priceOld: '18.000',
+    priceCurrent: '6.000',
+    scheduleUrl: 'https://ff.healthatom.io/gNJNh6',
+    footerText: '* Sólo pago vía web. Promoción válida hasta el 31 de Agosto del 2026. No acumulable con otras promociones. Válido SÓLO en Sucursal Vitacura #8620.'
   }
-  */
 ];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
@@ -1299,6 +1282,40 @@ export default function Home() {
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
   const [selectedPromoModal, setSelectedPromoModal] = useState<Promotion | null>(null);
+  const [isBannerVisible, setIsBannerVisible] = useState<boolean>(true);
+  const [bannerSlideIndex, setBannerSlideIndex] = useState<number>(0);
+
+  const bannerSlides = [
+    {
+      id: 'bonopad',
+      type: 'article',
+      badge: 'Nuevo Artículo',
+      icon: <BookOpen size={15} />,
+      text: 'Tutorial Recepción: Valida el paso a paso del Bono PAD Fonasa.',
+      actionLabel: 'Ver tutorial',
+      onClick: () => handleOpenArticle(14)
+    },
+    {
+      id: 'promo-ortodoncia',
+      type: 'promo',
+      badge: 'Promoción Activa',
+      icon: <Tag size={15} />,
+      text: '¡Nueva promoción de Ortodoncia de Agosto disponible desde $6.000!',
+      actionLabel: 'Ver promoción',
+      onClick: () => {
+        const promo = PROMOTIONS_DATA.find(p => p.id === 'ortodoncia-agosto');
+        if (promo) setSelectedPromoModal(promo);
+      }
+    }
+  ];
+
+  useEffect(() => {
+    if (!isBannerVisible) return;
+    const interval = setInterval(() => {
+      setBannerSlideIndex((prev) => (prev + 1) % bannerSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isBannerVisible, bannerSlides.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1446,9 +1463,54 @@ export default function Home() {
   };
 
   return (
-    <main className="dashboard-container">
-      {/* Top Header Bar */}
-      <header className="dashboard-header glass-panel">
+    <>
+      {/* Sticky Announcement Bar - Absolute Full Width Top */}
+      {isBannerVisible && (
+        <div className={`sticky-announcement-bar type-${bannerSlides[bannerSlideIndex].type}`}>
+          <div className="sticky-bar-inner">
+            <div className="sticky-bar-content">
+              <span className="sticky-badge">
+                {bannerSlides[bannerSlideIndex].icon}
+                {bannerSlides[bannerSlideIndex].badge}
+              </span>
+              <p className="sticky-text">
+                {bannerSlides[bannerSlideIndex].text}
+              </p>
+              <button
+                onClick={bannerSlides[bannerSlideIndex].onClick}
+                className="sticky-action-btn"
+              >
+                {bannerSlides[bannerSlideIndex].actionLabel} &rarr;
+              </button>
+            </div>
+
+            <div className="sticky-bar-controls">
+              <div className="sticky-dots">
+                {bannerSlides.map((slide, idx) => (
+                  <button
+                    key={idx}
+                    className={`sticky-dot type-${slide.type} ${idx === bannerSlideIndex ? 'active' : ''}`}
+                    onClick={() => setBannerSlideIndex(idx)}
+                    aria-label={`Ir al anuncio ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={() => setIsBannerVisible(false)}
+                className="sticky-close-btn"
+                title="Cerrar aviso"
+                aria-label="Cerrar aviso"
+              >
+                <X size={15} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <main className="dashboard-container">
+        {/* Top Header Bar */}
+        <header className="dashboard-header glass-panel">
         <div className="brand-section">
           <div className="logo-glow">
             <Image
@@ -1872,5 +1934,6 @@ export default function Home() {
         </div>
       )}
     </main>
+    </>
   );
 }
