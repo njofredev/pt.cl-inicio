@@ -491,6 +491,28 @@ html[data-theme="dark"] .logo-img {
   box-shadow: inset 0 0 10px rgba(var(--color-secondary-rgb), 0.05);
 }
 
+.tab-count {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-muted);
+  line-height: 1;
+  transition: all 0.25s ease;
+  margin-left: 2px;
+}
+
+.tab-btn:hover .tab-count {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-primary);
+}
+
+.tab-btn.active .tab-count {
+  background: var(--color-secondary);
+  color: var(--bg-base);
+}
+
 .promo-mobile-btn {
   display: none;
 }

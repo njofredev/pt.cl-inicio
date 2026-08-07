@@ -1423,6 +1423,15 @@ export default function Home() {
     return matchesFilter && matchesSearch;
   });
 
+  const getCategoryCount = (cat: string) => {
+    return APPS_DATA.filter((app) => {
+      const matchesCategory = cat === 'all' || app.category.toLowerCase() === cat.toLowerCase();
+      const matchesSearch = !search || app.name.toLowerCase().includes(search.toLowerCase()) ||
+        app.description.toLowerCase().includes(search.toLowerCase());
+      return matchesCategory && matchesSearch;
+    }).length;
+  };
+
   const appsCount = filteredApps.filter(app => !app.isArticle).length;
   const articlesCount = filteredApps.filter(app => app.isArticle).length;
 
@@ -1582,23 +1591,28 @@ export default function Home() {
             <div className="category-tabs">
               <button onClick={() => handleFilterClick('all')} className={`tab-btn ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
                 <LayoutGrid size={16} />
-                Todos
+                <span>Todos</span>
+                <span className="tab-count">{getCategoryCount('all')}</span>
               </button>
               <button onClick={() => handleFilterClick('médica')} className={`tab-btn ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
                 <Stethoscope size={16} />
-                Área Médica
+                <span>Área Médica</span>
+                <span className="tab-count">{getCategoryCount('médica')}</span>
               </button>
               <button onClick={() => handleFilterClick('administrativa')} className={`tab-btn ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
                 <Briefcase size={16} />
-                Área Administrativa
+                <span>Área Administrativa</span>
+                <span className="tab-count">{getCategoryCount('administrativa')}</span>
               </button>
               <button onClick={() => handleFilterClick('soporte')} className={`tab-btn ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
                 <Wrench size={16} />
-                Soporte & TI
+                <span>Soporte & TI</span>
+                <span className="tab-count">{getCategoryCount('soporte')}</span>
               </button>
               <button onClick={() => handleFilterClick('apis')} className={`tab-btn ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
                 <Cpu size={16} />
-                APIs
+                <span>APIs</span>
+                <span className="tab-count">{getCategoryCount('apis')}</span>
               </button>
 
               <button onClick={handlePromotionsClick} className="tab-btn promo-mobile-btn" aria-label="Ver Promociones">
