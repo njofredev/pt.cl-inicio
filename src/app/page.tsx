@@ -43,6 +43,7 @@ import owncloudLogo from '../assets/owncloud.svg';
 import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
 import promocionOrtodonciaAgosto from '../assets/promociones-activas/promocionOrtodonciaAgosto.jpg';
+import promocionLimpiezaSeptiembre from '../assets/promociones-activas/PromocionLimpiezaSeptiembre.png';
 
 interface Promotion {
   id: string;
@@ -60,21 +61,21 @@ interface Promotion {
 
 const PROMOTIONS_DATA: Promotion[] = [
   {
-    id: 'ortodoncia-agosto',
+    id: 'limpieza-septiembre',
     badge: '¡Nueva!',
-    title: 'Consulta de Ortodoncia',
-    image: promocionOrtodonciaAgosto,
-    imageDownloadPath: '/promociones-activas/promocionOrtodonciaAgosto.jpg',
-    downloadFilename: 'Promo_Ortodoncia_Agosto_Tabancura.jpg',
+    title: 'Limpieza Dental',
+    image: promocionLimpiezaSeptiembre,
+    imageDownloadPath: '/promociones-activas/PromocionLimpiezaSeptiembre.png',
+    downloadFilename: 'Promo_Limpieza_Septiembre_Tabancura.png',
     includes: [
-      'Frenillos Tradicionales (Brackets Metálicos)',
-      'Alineadores 100% Invisibles',
-      'Evaluación de la mejor opción para tu sonrisa'
+      'Evaluación Dental',
+      'Limpieza Profilaxis',
+      'RX Bitewing Bilateral'
     ],
-    priceOld: '18.000',
-    priceCurrent: '6.000',
-    scheduleUrl: 'https://ff.healthatom.io/gNJNh6',
-    footerText: '* Sólo pago vía web. Promoción válida hasta el 31 de Agosto del 2026. No acumulable con otras promociones. Válido SÓLO en Sucursal Vitacura #8620.'
+    priceOld: '47.000',
+    priceCurrent: '24.000',
+    scheduleUrl: 'https://ff.healthatom.io/be3WhX',
+    footerText: '* Promoción para personas sobre 15 años. Sujeto a evaluación clínica. Sólo pago vía web. Promoción válida hasta el 15 de Septiembre del 2026. Promoción excluye pacientes con Diagnóstico de Periodontitis.'
   }
 ];
 
@@ -1296,14 +1297,14 @@ export default function Home() {
       onClick: () => handleOpenArticle(14)
     },
     {
-      id: 'promo-ortodoncia',
+      id: 'promo-limpieza',
       type: 'promo',
       badge: 'Promoción Activa',
       icon: <Tag size={15} />,
-      text: '¡Nueva promoción de Ortodoncia de Agosto disponible desde $6.000!',
+      text: '¡Nueva promoción de Limpieza Dental de Septiembre disponible a $24.000!',
       actionLabel: 'Ver promoción',
       onClick: () => {
-        const promo = PROMOTIONS_DATA.find(p => p.id === 'ortodoncia-agosto');
+        const promo = PROMOTIONS_DATA.find(p => p.id === 'limpieza-septiembre');
         if (promo) setSelectedPromoModal(promo);
       }
     }
@@ -1631,9 +1632,6 @@ export default function Home() {
           <div className="main-dashboard-grid">
             {/* LEFT column: Widgets */}
             <aside className="widgets-sidebar">
-              <div className="widget-wrapper">
-                <CalendarWidget />
-              </div>
               <div className="widget-wrapper promotions-widget glass-panel" id="promotions-widget">
                 <h3 className="widget-title">
                   <Tag size={18} />
@@ -1710,6 +1708,9 @@ export default function Home() {
                     </p>
                   )}
                 </div>
+              </div>
+              <div className="widget-wrapper">
+                <CalendarWidget />
               </div>
             </aside>
 
