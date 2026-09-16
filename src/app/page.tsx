@@ -59,25 +59,7 @@ interface Promotion {
   footerText: string;
 }
 
-const PROMOTIONS_DATA: Promotion[] = [
-  {
-    id: 'limpieza-septiembre',
-    badge: '¡Nueva!',
-    title: 'Limpieza Dental',
-    image: promocionLimpiezaSeptiembre,
-    imageDownloadPath: '/promociones-activas/PromocionLimpiezaSeptiembre.png',
-    downloadFilename: 'Promo_Limpieza_Septiembre_Tabancura.png',
-    includes: [
-      'Evaluación Dental',
-      'Limpieza Profilaxis',
-      'RX Bitewing Bilateral'
-    ],
-    priceOld: '47.000',
-    priceCurrent: '24.000',
-    scheduleUrl: 'https://ff.healthatom.io/be3WhX',
-    footerText: '* Promoción para personas sobre 15 años. Sujeto a evaluación clínica. Sólo pago vía web. Promoción válida hasta el 15 de Septiembre del 2026. Promoción excluye pacientes con Diagnóstico de Periodontitis.'
-  }
-];
+const PROMOTIONS_DATA: Promotion[] = [];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -1295,18 +1277,6 @@ export default function Home() {
       text: 'Tutorial Recepción: Valida el paso a paso del Bono PAD Fonasa.',
       actionLabel: 'Ver tutorial',
       onClick: () => handleOpenArticle(14)
-    },
-    {
-      id: 'promo-limpieza',
-      type: 'promo',
-      badge: 'Promoción Activa',
-      icon: <Tag size={15} />,
-      text: '¡Nueva promoción de Limpieza Dental de Septiembre disponible a $24.000!',
-      actionLabel: 'Ver promoción',
-      onClick: () => {
-        const promo = PROMOTIONS_DATA.find(p => p.id === 'limpieza-septiembre');
-        if (promo) setSelectedPromoModal(promo);
-      }
     }
   ];
 
@@ -1495,16 +1465,18 @@ export default function Home() {
             </div>
 
             <div className="sticky-bar-controls">
-              <div className="sticky-dots">
-                {bannerSlides.map((slide, idx) => (
-                  <button
-                    key={idx}
-                    className={`sticky-dot type-${slide.type} ${idx === bannerSlideIndex ? 'active' : ''}`}
-                    onClick={() => setBannerSlideIndex(idx)}
-                    aria-label={`Ir al anuncio ${idx + 1}`}
-                  />
-                ))}
-              </div>
+              {bannerSlides.length > 1 && (
+                <div className="sticky-dots">
+                  {bannerSlides.map((slide, idx) => (
+                    <button
+                      key={idx}
+                      className={`sticky-dot type-${slide.type} ${idx === bannerSlideIndex ? 'active' : ''}`}
+                      onClick={() => setBannerSlideIndex(idx)}
+                      aria-label={`Ir al anuncio ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
               <button
                 onClick={() => setIsBannerVisible(false)}
                 className="sticky-close-btn"
