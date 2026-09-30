@@ -44,6 +44,7 @@ import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
 import promocionOrtodonciaAgosto from '../assets/promociones-activas/promocionOrtodonciaAgosto.jpg';
 import promocionLimpiezaSeptiembre from '../assets/promociones-activas/PromocionLimpiezaSeptiembre.png';
+import promocionLimpiezaOctubre from '../assets/promociones-activas/PromocionLimpiezaOctubre.png';
 
 interface Promotion {
   id: string;
@@ -59,7 +60,25 @@ interface Promotion {
   footerText: string;
 }
 
-const PROMOTIONS_DATA: Promotion[] = [];
+const PROMOTIONS_DATA: Promotion[] = [
+  {
+    id: 'limpieza-octubre-2026',
+    badge: 'Nueva Promoción',
+    title: 'Limpieza Dental',
+    image: promocionLimpiezaOctubre,
+    imageDownloadPath: '/promociones-activas/PromocionLimpiezaOctubre.png',
+    downloadFilename: 'PromocionLimpiezaOctubre.png',
+    includes: [
+      'Evaluación Dental',
+      'Limpieza Profilaxis',
+      'RX Bitewing Bilateral'
+    ],
+    priceOld: '47.000',
+    priceCurrent: '24.000',
+    scheduleUrl: 'https://ff.healthatom.io/CpAdwX',
+    footerText: 'Promoción para personas sobre 15 años. Sujeto a evaluación clínica. Sólo pago vía web. Válida hasta el 15 de Octubre del 2026. Excluye pacientes con Diagnóstico de Periodontitis.'
+  }
+];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
