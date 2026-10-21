@@ -44,7 +44,7 @@ import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
 import promocionOrtodonciaAgosto from '../assets/promociones-activas/promocionOrtodonciaAgosto.jpg';
 import promocionLimpiezaSeptiembre from '../assets/promociones-activas/PromocionLimpiezaSeptiembre.png';
-import promocionLimpiezaOctubre from '../assets/promociones-activas/PromocionLimpiezaOctubre.png';
+import promocionLimpiezaOct from '../assets/promociones-activas/PromocionLimpiezaOct.jpg';
 
 interface Promotion {
   id: string;
@@ -60,7 +60,25 @@ interface Promotion {
   footerText: string;
 }
 
-const PROMOTIONS_DATA: Promotion[] = [];
+const PROMOTIONS_DATA: Promotion[] = [
+  {
+    id: 'limpieza-octubre',
+    badge: 'Nueva Promoción',
+    title: 'Limpieza Dental',
+    image: promocionLimpiezaOct,
+    imageDownloadPath: '/promociones-activas/PromocionLimpiezaOct.jpg',
+    downloadFilename: 'Promo_Limpieza_Octubre_Tabancura.jpg',
+    includes: [
+      'Evaluación Dental',
+      'Limpieza Profilaxis',
+      'RX Bitewing Bilateral'
+    ],
+    priceOld: '47.000',
+    priceCurrent: '24.000',
+    scheduleUrl: 'https://ff.healthatom.io/TReFqg',
+    footerText: '* Promoción para personas sobre 15 años. Sujeto a evaluación clínica. Sólo pago vía web. Promoción válida hasta el 31 de Octubre del 2026. Promoción excluye pacientes con Diagnóstico de Periodontitis.'
+  }
+];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -1278,6 +1296,18 @@ export default function Home() {
       text: 'Tutorial Recepción: Valida el paso a paso del Bono PAD Fonasa.',
       actionLabel: 'Ver tutorial',
       onClick: () => handleOpenArticle(14)
+    },
+    {
+      id: 'promo-limpieza',
+      type: 'promo',
+      badge: 'Promoción Activa',
+      icon: <Tag size={15} />,
+      text: '¡Nueva promoción de Limpieza Dental de Octubre disponible a $24.000!',
+      actionLabel: 'Ver promoción',
+      onClick: () => {
+        const promo = PROMOTIONS_DATA.find(p => p.id === 'limpieza-octubre');
+        if (promo) setSelectedPromoModal(promo);
+      }
     }
   ];
 
