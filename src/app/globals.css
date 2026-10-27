@@ -1709,6 +1709,15 @@ html[data-theme="light"] .promo-footer {
   box-shadow: 0 0 10px rgba(168, 85, 247, 0.2) !important;
 }
 
+.ticket-header-btn {
+  color: #f59e0b !important;
+}
+.ticket-header-btn:hover {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25) !important;
+}
+
 /* Redesigned Footer with Branch Info */
 .dashboard-footer-new {
   display: flex;

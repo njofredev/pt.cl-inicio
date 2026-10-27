@@ -33,7 +33,8 @@ import {
   Download,
   ZoomIn,
   Info,
-  AlertTriangle
+  AlertTriangle,
+  Ticket
 } from 'lucide-react';
 import AppCard, { HelpInfo } from '@/components/AppCard';
 import CalendarWidget from '@/components/CalendarWidget';
@@ -387,6 +388,29 @@ const APPS_DATA: Array<{
       description: "Asistencia para carga de informes y radiografías dentales / médicas.",
       contactName: "Tecnólogo / Radiología",
       contactPhone: "Anexo 212"
+    }
+  },
+  {
+    id: 15,
+    name: "Gestión de Tickets TI",
+    description: "Plataforma oficial para la creación, seguimiento y resolución de requerimientos y tickets de soporte TI.",
+    url: "https://gestion.policlinicotabancura.cl/ticket",
+    status: "online" as const,
+    category: "Soporte",
+    metric: "Tickets",
+    metricLabel: "Mesa de Ayuda",
+    icon: <Ticket size={24} />,
+    helpInfo: {
+      title: "Mesa de Ayuda y Tickets TI",
+      description: "Canal oficial para solicitar asistencia técnica, soporte de sistemas, redes, telefonía o periféricos.",
+      steps: [
+        "Ingresa a la plataforma con tu cuenta institucional o genera un nuevo requerimiento.",
+        "Detalla con claridad la incidencia o necesidad, equipo afectado y piso/box de atención.",
+        "Podrás revisar el estado y las respuestas de TI en tiempo real."
+      ],
+      contactName: "Soporte TI",
+      contactEmail: "ti@policlinicotabancura.cl",
+      contactPhone: "Anexo 104"
     }
   }
 ];
@@ -1490,6 +1514,8 @@ export default function Home() {
         return <Cpu size={24} />;
       case 'book-open':
         return <BookOpen size={24} />;
+      case 'ticket':
+        return <Ticket size={24} />;
       default:
         return <Globe size={24} />;
     }
@@ -1752,6 +1778,9 @@ export default function Home() {
             </a>
             <a href="https://ptabancura.app.softwaremedilink.com/medilink/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip medilink-btn" data-tooltip="Acceso Medilink" aria-label="Acceso Medilink">
               <Stethoscope size={20} />
+            </a>
+            <a href="https://gestion.policlinicotabancura.cl/ticket" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip ticket-header-btn" data-tooltip="Tickets TI & Mesa de Ayuda" aria-label="Tickets TI & Mesa de Ayuda">
+              <Ticket size={20} />
             </a>
             <a href="https://www.instagram.com/politabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Instagram" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
