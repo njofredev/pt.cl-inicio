@@ -1371,9 +1371,15 @@ const AnexosArticleDetail = () => {
   );
 };
 
-function ArticleDetailView({ id, onClose }: { id: number; onClose: () => void }) {
-  const activeArticle = APPS_DATA.find(app => app.id === id);
+function ArticleDetailView({ id, onClose, apps }: { id: number; onClose: () => void; apps: Array<typeof APPS_DATA[number]> }) {
+  const activeArticle = apps.find(app => app.id === id) || APPS_DATA.find(app => app.id === id);
   if (!activeArticle) return null;
+
+  const slug = activeArticle.slug || (
+    activeArticle.name.toLowerCase().includes('klap') ? 'soporte-klap' :
+    activeArticle.name.toLowerCase().includes('anexo') ? 'anexos-y-correos' :
+    activeArticle.name.toLowerCase().includes('recep') ? 'recepcion' : ''
+  );
 
   return (
     <div className="article-detail-container glass-panel animate-fade-in">
@@ -1396,7 +1402,9 @@ function ArticleDetailView({ id, onClose }: { id: number; onClose: () => void })
       </div>
 
       <div className="article-detail-body">
-        {id === 11 ? <KlapArticleDetail /> : id === 12 ? <AnexosArticleDetail /> : id === 14 ? <RecepcionArticleDetail /> : null}
+        {slug === 'soporte-klap' && <KlapArticleDetail />}
+        {slug === 'anexos-y-correos' && <AnexosArticleDetail />}
+        {slug === 'recepcion' && <RecepcionArticleDetail />}
       </div>
     </div>
   );
@@ -1427,7 +1435,10 @@ export default function Home() {
       icon: <BookOpen size={15} />,
       text: 'Tutorial Recepción: Valida el paso a paso del Bono PAD Fonasa.',
       actionLabel: 'Ver tutorial',
-      onClick: () => handleOpenArticle(14)
+      onClick: () => {
+        const found = appsData.find(app => app.slug === 'recepcion') || APPS_DATA.find(app => app.slug === 'recepcion');
+        if (found) handleOpenArticle(found.id);
+      }
     },
     {
       id: 'promo-limpieza',
@@ -1525,7 +1536,7 @@ export default function Home() {
     const handleRouteChange = () => {
       const path = window.location.pathname.replace('/', '').toLowerCase();
       if (path) {
-        const found = APPS_DATA.find(app => app.isArticle && app.slug === path);
+        const found = appsData.find(app => app.isArticle && app.slug === path) || APPS_DATA.find(app => app.isArticle && app.slug === path);
         if (found) {
           setActiveArticleId(found.id);
           return;
@@ -1569,7 +1580,7 @@ export default function Home() {
   }, [activeArticleId]);
 
   const handleOpenArticle = (id: number) => {
-    const found = APPS_DATA.find(app => app.id === id);
+    const found = appsData.find(app => app.id === id) || APPS_DATA.find(app => app.id === id);
     if (found?.slug) {
       window.history.pushState({}, '', `/${found.slug}`);
       setActiveArticleId(id);
@@ -1762,7 +1773,7 @@ export default function Home() {
       </header>
 
       {activeArticleId !== null ? (
-        <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} />
+        <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} apps={appsData} />
       ) : (
         <>
           {/* Sub-header Controls (Search and Filters) */}
