@@ -1,4 +1,18 @@
+'use client';
+
 import React from 'react';
+import { HelpCircle } from 'lucide-react';
+
+export interface HelpInfo {
+  title?: string;
+  description?: string;
+  contactName?: string;
+  contactPhone?: string;
+  contactEmail?: string;
+  guideUrl?: string;
+  steps?: string[];
+  notes?: string;
+}
 
 interface AppCardProps {
   id?: number;
@@ -12,6 +26,8 @@ interface AppCardProps {
   icon?: React.ReactNode;
   isArticle?: boolean;
   onOpenArticle?: (id: number) => void;
+  helpInfo?: HelpInfo;
+  onOpenHelp?: (appName: string, help: HelpInfo) => void;
 }
 
 export default function AppCard({
@@ -26,6 +42,8 @@ export default function AppCard({
   icon,
   isArticle,
   onOpenArticle,
+  helpInfo,
+  onOpenHelp,
 }: AppCardProps) {
   const statusText = {
     online: 'Operativo',
@@ -45,6 +63,14 @@ export default function AppCard({
     if (isArticle && id && onOpenArticle) {
       e.preventDefault();
       onOpenArticle(id);
+    }
+  };
+
+  const handleHelpClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (helpInfo && onOpenHelp) {
+      onOpenHelp(name, helpInfo);
     }
   };
 
@@ -71,9 +97,23 @@ export default function AppCard({
             </svg>
           )}
         </div>
-        <span className={`status-badge ${status}`}>
-          {status !== 'online' && status !== 'dev' && statusText}
-        </span>
+        <div className="card-header-actions">
+          {helpInfo && (
+            <button
+              type="button"
+              onClick={handleHelpClick}
+              className="help-toggle-btn"
+              title="Abrir ayuda y soporte"
+              aria-label={`Ayuda para ${name}`}
+            >
+              <HelpCircle size={15} />
+              <span className="help-btn-text">Ayuda</span>
+            </button>
+          )}
+          <span className={`status-badge ${status}`}>
+            {status !== 'online' && status !== 'dev' && statusText}
+          </span>
+        </div>
       </div>
 
       <div className="card-body">

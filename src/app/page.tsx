@@ -35,7 +35,7 @@ import {
   Info,
   AlertTriangle
 } from 'lucide-react';
-import AppCard from '@/components/AppCard';
+import AppCard, { HelpInfo } from '@/components/AppCard';
 import CalendarWidget from '@/components/CalendarWidget';
 import logo from '../assets/logo.svg';
 import uptimeKumaLogo from '../assets/uptime-kuma.svg';
@@ -112,7 +112,20 @@ const WhatsAppIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
-const APPS_DATA = [
+const APPS_DATA: Array<{
+  id: number;
+  name: string;
+  description: string;
+  url?: string;
+  slug?: string;
+  status: 'online' | 'maintenance' | 'offline' | 'dev';
+  category: string;
+  metric?: string;
+  metricLabel?: string;
+  icon?: React.ReactNode;
+  isArticle?: boolean;
+  helpInfo?: HelpInfo;
+}> = [
   {
     id: 1,
     name: "https://policlinicotabancura.cl",
@@ -122,7 +135,18 @@ const APPS_DATA = [
     category: "Administrativa",
     metric: "v2.0",
     metricLabel: "Versión de sitio",
-    icon: <Globe size={24} />
+    icon: <Globe size={24} />,
+    helpInfo: {
+      title: "Soporte Sitio Web Institucional",
+      description: "Si el sitio web presenta lentitud o fallas en el formulario de contacto/reserva:",
+      steps: [
+        "Verifica primero el estado general en 'Estado de Sistemas' (Uptime Kuma).",
+        "Prueba ingresando en modo incógnito para descartar caché del navegador."
+      ],
+      contactName: "Equipo TI Policlínico",
+      contactEmail: "soporte@policlinicotabancura.cl",
+      notes: "Para cambios de contenidos o actualización de profesionales, contactar a Administración."
+    }
   },
   {
     id: 2,
@@ -133,7 +157,18 @@ const APPS_DATA = [
     category: "Soporte",
     metric: "99.98%",
     metricLabel: "Kuma Self-Hosted",
-    icon: <Image src={uptimeKumaLogo} alt="Uptime Kuma" width={24} height={24} style={{ objectFit: 'contain' }} />
+    icon: <Image src={uptimeKumaLogo} alt="Uptime Kuma" width={24} height={24} style={{ objectFit: 'contain' }} />,
+    helpInfo: {
+      title: "Ayuda Monitor Uptime Kuma",
+      description: "Monitor de disponibilidad técnica para saber si algún servicio interno o externo está caído.",
+      steps: [
+        "Revisa si el servicio afectado aparece en rojo (Degradado/Caído).",
+        "Si observas un servicio caído de forma prolongada, notifica de inmediato al equipo TI."
+      ],
+      contactName: "Mesa de Ayuda TI",
+      contactPhone: "+56 9 8888 0000",
+      contactEmail: "ti@policlinicotabancura.cl"
+    }
   },
   {
     id: 3,
@@ -144,7 +179,17 @@ const APPS_DATA = [
     category: "Soporte",
     metric: "Activo",
     metricLabel: "Acceso TI",
-    icon: <Cloud size={24} />
+    icon: <Cloud size={24} />,
+    helpInfo: {
+      title: "Soporte Nube y Accesos TI",
+      description: "Acceso restringido para el equipo administrativo y de sistemas.",
+      steps: [
+        "Si perdiste tus credenciales o el autenticador 2FA falló, solicita un restablecimiento seguro.",
+        "Asegúrate de estar conectado a la red autorizada o VPN institucional."
+      ],
+      contactName: "Administrador de Redes & TI",
+      contactEmail: "ti@policlinicotabancura.cl"
+    }
   },
   {
     id: 4,
@@ -155,7 +200,18 @@ const APPS_DATA = [
     category: "Administrativa",
     metric: "Mi Vita",
     metricLabel: "Convenio Municipal",
-    icon: <CreditCard size={24} />
+    icon: <CreditCard size={24} />,
+    helpInfo: {
+      title: "Problemas con Tarjeta Mi Vita",
+      description: "En caso de rechazo o no reconocimiento del RUT del paciente:",
+      steps: [
+        "Confirma que el RUT esté ingresado sin puntos y con guion.",
+        "Verifica que la tarjeta Mi Vita del paciente se encuentre vigente en el portal comunal.",
+        "Si el sistema no responde, reportar con el anexo de convenios o caja."
+      ],
+      contactName: "Convenios & Administración",
+      contactPhone: "Anexo 219"
+    }
   },
   {
     id: 5,
@@ -165,7 +221,17 @@ const APPS_DATA = [
     category: "Médica",
     metric: "Dental",
     metricLabel: "Especialidad",
-    icon: <FileText size={24} />
+    icon: <FileText size={24} />,
+    helpInfo: {
+      title: "Ayuda Registro Dental",
+      description: "Seguimiento de órdenes y fichas de laboratorio clínico dental.",
+      steps: [
+        "Si no puedes registrar una orden, valida que el ID de paciente coincida con Dentalink.",
+        "Comunícate con coordinación dental en caso de retraso en prótesis o trabajos externos."
+      ],
+      contactName: "Coordinación Dental",
+      contactPhone: "Anexo 214"
+    }
   },
   {
     id: 6,
@@ -176,7 +242,17 @@ const APPS_DATA = [
     category: "Administrativa",
     metric: "En línea",
     metricLabel: "Cotizaciones",
-    icon: <Calculator size={24} />
+    icon: <Calculator size={24} />,
+    helpInfo: {
+      title: "Soporte Cotizador de Exámenes",
+      description: "Asistencia para cotización de exámenes de sangre, imágenes y procedimientos:",
+      steps: [
+        "Verifica que el código de prestación o nombre del examen esté bien escrito.",
+        "Si el arancel parece desactualizado o arroja error de cálculo, notifícalo a Caja/Facturación."
+      ],
+      contactName: "Recepción y Aranceles",
+      contactPhone: "Anexo 201"
+    }
   },
   {
     id: 7,
@@ -187,7 +263,17 @@ const APPS_DATA = [
     category: "Médica",
     metric: "Derivaciones",
     metricLabel: "Gestión de Pacientes",
-    icon: <GitPullRequest size={24} />
+    icon: <GitPullRequest size={24} />,
+    helpInfo: {
+      title: "Ayuda Portal Derivaciones",
+      description: "Emisión y confirmación de interconsultas y derivaciones clínicas.",
+      steps: [
+        "Verifica que los datos de contacto y previsión del paciente estén actualizados antes de derivar.",
+        "Si el centro de destino no confirma la recepción, contacta a Enfermería Coordinadora."
+      ],
+      contactName: "Enfermería Coordinadora",
+      contactPhone: "Anexo 210"
+    }
   },
 
   {
@@ -198,7 +284,17 @@ const APPS_DATA = [
     category: "APIs",
     metric: "API REST",
     metricLabel: "Servicio Cotizador",
-    icon: <Cpu size={24} />
+    icon: <Cpu size={24} />,
+    helpInfo: {
+      title: "Soporte API Cotizador",
+      description: "Servicio técnico backend. Si devuelve respuestas 500 o fallas de CORS:",
+      steps: [
+        "Verifica los logs en el panel de Uptime Kuma o Cloudflare.",
+        "Reinicia el contenedor de la API si los timeouts persisten."
+      ],
+      contactName: "Desarrollo & Backend TI",
+      contactEmail: "ti@policlinicotabancura.cl"
+    }
   },
   {
     id: 10,
@@ -208,7 +304,12 @@ const APPS_DATA = [
     category: "APIs",
     metric: "API REST",
     metricLabel: "Servicio Central",
-    icon: <Cpu size={24} />
+    icon: <Cpu size={24} />,
+    helpInfo: {
+      title: "Módulo en Desarrollo (API Cerebro)",
+      description: "Esta API se encuentra actualmente en fase de pruebas internas.",
+      notes: "El acceso está reservado exclusivamente al equipo de desarrollo."
+    }
   },
   {
     id: 11,
@@ -221,7 +322,17 @@ const APPS_DATA = [
     metric: "Artículo",
     metricLabel: "Manual de Insumos",
     icon: <BookOpen size={24} />,
-    isArticle: true
+    isArticle: true,
+    helpInfo: {
+      title: "¿Problemas con el POS Klap?",
+      description: "Si el equipo está pegado, sin papel o la transacción quedó pendiente:",
+      steps: [
+        "Revisa el tutorial paso a paso haciendo clic en esta tarjeta.",
+        "Antes de reintentar el cobro, consulta con Administración para evitar duplicidad."
+      ],
+      contactName: "Andrea Palma (Admin)",
+      contactPhone: "Anexo 219"
+    }
   },
   {
     id: 12,
@@ -234,7 +345,14 @@ const APPS_DATA = [
     metric: "Artículo",
     metricLabel: "Directorio TI",
     icon: <BookOpen size={24} />,
-    isArticle: true
+    isArticle: true,
+    helpInfo: {
+      title: "Directorio Telefónico y Correos",
+      description: "Guía con todas las extensiones por piso, box y especialidad.",
+      contactName: "Mesa Central",
+      contactPhone: "Anexo 200 / 201",
+      notes: "Para solicitar nuevas líneas o cambios de extensión, contactar a TI."
+    }
   },
   {
     id: 14,
@@ -247,7 +365,13 @@ const APPS_DATA = [
     metric: "Artículo",
     metricLabel: "Procedimientos y Noticias",
     icon: <BookOpen size={24} />,
-    isArticle: true
+    isArticle: true,
+    helpInfo: {
+      title: "Protocolos de Recepción",
+      description: "Contiene instrucciones para bonos I-Med, bono PAD Fonasa, pagos y flujos de pacientes.",
+      contactName: "Jefatura de Recepción",
+      contactPhone: "Anexo 202"
+    }
   },
   {
     id: 13,
@@ -257,7 +381,13 @@ const APPS_DATA = [
     category: "Médica",
     metric: "Radiología",
     metricLabel: "Especialidad",
-    icon: <FileText size={24} />
+    icon: <FileText size={24} />,
+    helpInfo: {
+      title: "Soporte Servicio Radiología",
+      description: "Asistencia para carga de informes y radiografías dentales / médicas.",
+      contactName: "Tecnólogo / Radiología",
+      contactPhone: "Anexo 212"
+    }
   }
 ];
 
@@ -1281,7 +1411,9 @@ export default function Home() {
   const [isReloading, setIsReloading] = useState<boolean>(false);
   const [reloadText, setReloadText] = useState<string>('Actualizar Ecosistema');
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [appsData, setAppsData] = useState<typeof APPS_DATA>(APPS_DATA);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
+  const [selectedAppHelp, setSelectedAppHelp] = useState<{ appName: string; help: HelpInfo } | null>(null);
   const [activeArticleId, setActiveArticleId] = useState<number | null>(null);
   const [selectedPromoModal, setSelectedPromoModal] = useState<Promotion | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState<boolean>(true);
@@ -1327,6 +1459,59 @@ export default function Home() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const getIconElement = (type: string, name: string) => {
+    switch (type) {
+      case 'uptime':
+        return <Image src={uptimeKumaLogo} alt="Uptime Kuma" width={24} height={24} style={{ objectFit: 'contain' }} />;
+      case 'cloud':
+        return <Cloud size={24} />;
+      case 'credit-card':
+        return <CreditCard size={24} />;
+      case 'file-text':
+        return <FileText size={24} />;
+      case 'calculator':
+        return <Calculator size={24} />;
+      case 'git-pull-request':
+        return <GitPullRequest size={24} />;
+      case 'cpu':
+        return <Cpu size={24} />;
+      case 'book-open':
+        return <BookOpen size={24} />;
+      default:
+        return <Globe size={24} />;
+    }
+  };
+
+  const loadAppsFromDb = async () => {
+    try {
+      const res = await fetch('/api/apps');
+      const data = await res.json();
+      if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+        const mapped = data.data.map((row: any) => ({
+          id: row.id,
+          name: row.name,
+          description: row.description,
+          url: row.url || undefined,
+          slug: row.slug || undefined,
+          status: row.status,
+          category: row.category,
+          metric: row.metric || undefined,
+          metricLabel: row.metric_label || undefined,
+          isArticle: Boolean(row.is_article),
+          icon: getIconElement(row.icon_type, row.name),
+          helpInfo: row.help_info || undefined,
+        }));
+        setAppsData(mapped);
+      }
+    } catch {
+      // Si falla, se mantiene con APPS_DATA por defecto
+    }
+  };
+
+  useEffect(() => {
+    loadAppsFromDb();
   }, []);
 
   useEffect(() => {
@@ -1411,6 +1596,7 @@ export default function Home() {
     e.preventDefault();
     setReloadText('Actualizando...');
     setIsReloading(true);
+    loadAppsFromDb();
     setTimeout(() => {
       setReloadText('Actualizar Ecosistema');
       setIsReloading(false);
@@ -1418,7 +1604,7 @@ export default function Home() {
   };
 
   // Filter APPS
-  const filteredApps = APPS_DATA.filter((app) => {
+  const filteredApps = appsData.filter((app) => {
     const matchesFilter = activeFilter === 'all' || app.category.toLowerCase() === activeFilter.toLowerCase();
     const matchesSearch = app.name.toLowerCase().includes(search.toLowerCase()) ||
       app.description.toLowerCase().includes(search.toLowerCase());
@@ -1426,7 +1612,7 @@ export default function Home() {
   });
 
   const getCategoryCount = (cat: string) => {
-    return APPS_DATA.filter((app) => {
+    return appsData.filter((app) => {
       const matchesCategory = cat === 'all' || app.category.toLowerCase() === cat.toLowerCase();
       const matchesSearch = !search || app.name.toLowerCase().includes(search.toLowerCase()) ||
         app.description.toLowerCase().includes(search.toLowerCase());
@@ -1741,6 +1927,8 @@ export default function Home() {
                     icon={app.icon}
                     isArticle={app.isArticle}
                     onOpenArticle={handleOpenArticle}
+                    helpInfo={app.helpInfo}
+                    onOpenHelp={(appName, help) => setSelectedAppHelp({ appName, help })}
                   />
                 ))}
               </div>
@@ -1822,9 +2010,98 @@ export default function Home() {
             <a href="https://policlinicotabancura.cl" target="_blank" rel="noopener noreferrer">Web Principal</a>
             <span>•</span>
             <a href="#" onClick={handleReload}>{reloadText}</a>
+            <span>•</span>
+            <a href="/admin" className="admin-footer-link" title="Panel de Administración TI">Admin</a>
           </div>
         </div>
       </footer>
+
+      {/* App Specific Help Modal / Popup */}
+      {selectedAppHelp && (
+        <div className="help-modal-overlay" onClick={() => setSelectedAppHelp(null)}>
+          <div className="app-help-modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="app-help-title-area">
+                <div className="app-help-icon-wrap">
+                  <HelpCircle size={22} />
+                </div>
+                <div>
+                  <div className="app-help-name">{selectedAppHelp.appName}</div>
+                  <h3 className="app-help-heading">{selectedAppHelp.help.title || "Ayuda y Soporte Técnico"}</h3>
+                </div>
+              </div>
+              <button
+                className="modal-close-btn"
+                onClick={() => setSelectedAppHelp(null)}
+                aria-label="Cerrar ventana de ayuda"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="app-help-body">
+              {selectedAppHelp.help.description && (
+                <p className="app-help-desc">{selectedAppHelp.help.description}</p>
+              )}
+
+              {selectedAppHelp.help.steps && selectedAppHelp.help.steps.length > 0 && (
+                <div>
+                  <div className="app-help-section-title">Pasos de solución / Verificación:</div>
+                  <ul className="app-help-steps-list">
+                    {selectedAppHelp.help.steps.map((step, idx) => (
+                      <li key={idx} className="app-help-step-item">
+                        <span className="app-help-step-number">{idx + 1}</span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {(selectedAppHelp.help.contactName || selectedAppHelp.help.contactPhone || selectedAppHelp.help.contactEmail) && (
+                <div className="app-help-contact-box">
+                  <div className="app-help-section-title" style={{ margin: 0 }}>Canales de soporte directo:</div>
+                  <div className="app-help-contact-row">
+                    {selectedAppHelp.help.contactName && (
+                      <span className="app-help-contact-name">{selectedAppHelp.help.contactName}</span>
+                    )}
+                    {selectedAppHelp.help.contactPhone && (
+                      <a href={`tel:${selectedAppHelp.help.contactPhone}`} className="app-help-contact-link">
+                        <Phone size={14} />
+                        <span>{selectedAppHelp.help.contactPhone}</span>
+                      </a>
+                    )}
+                    {selectedAppHelp.help.contactEmail && (
+                      <a href={`mailto:${selectedAppHelp.help.contactEmail}`} className="app-help-contact-link">
+                        <Mail size={14} />
+                        <span>{selectedAppHelp.help.contactEmail}</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {selectedAppHelp.help.guideUrl && (
+                <a
+                  href={selectedAppHelp.help.guideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-help-guide-btn"
+                >
+                  <BookOpen size={16} />
+                  <span>Ver artículo o manual completo</span>
+                </a>
+              )}
+
+              {selectedAppHelp.help.notes && (
+                <p className="app-help-notes">
+                  ℹ️ {selectedAppHelp.help.notes}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {isHelpOpen && (
         <div className="help-modal-overlay" onClick={() => setIsHelpOpen(false)}>
