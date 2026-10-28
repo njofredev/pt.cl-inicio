@@ -4715,3 +4715,140 @@ html[data-theme="light"] .sticky-announcement-bar.type-promo {
   color: var(--color-text-primary);
   background: rgba(255, 255, 255, 0.05);
 }
+/* Light Theme Optimizations for Hero Search and Category Pills */
+html[data-theme="light"] .search-hero-container {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(12, 74, 110, 0.14);
+  box-shadow: 0 10px 25px -8px rgba(12, 74, 110, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+html[data-theme="light"] .search-hero-container:focus-within {
+  background: #ffffff;
+  border-color: var(--color-secondary);
+  box-shadow: 0 12px 30px -5px rgba(3, 105, 161, 0.18), 0 0 0 2px rgba(var(--color-secondary-rgb), 0.15);
+}
+
+html[data-theme="light"] .search-wrapper input {
+  color: #0f172a;
+}
+
+html[data-theme="light"] .search-wrapper input::placeholder {
+  color: #64748b;
+}
+
+html[data-theme="light"] .search-actions-group {
+  border-left-color: rgba(12, 74, 110, 0.12);
+}
+
+html[data-theme="light"] .search-action-chip {
+  background: rgba(12, 74, 110, 0.04);
+  border-color: rgba(12, 74, 110, 0.12);
+  color: #334155;
+}
+
+html[data-theme="light"] .search-action-chip:hover {
+  background: rgba(12, 74, 110, 0.08);
+  color: #0f172a;
+  border-color: rgba(12, 74, 110, 0.2);
+}
+
+html[data-theme="light"] .promo-chip {
+  color: #d97706;
+}
+
+html[data-theme="light"] .promo-chip:hover {
+  background: rgba(217, 119, 6, 0.1);
+  color: #b45309;
+}
+
+html[data-theme="light"] .help-chip:hover {
+  color: var(--color-secondary);
+}
+
+html[data-theme="light"] .search-clear-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #64748b;
+}
+
+html[data-theme="light"] .search-clear-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+}
+
+/* Light Theme: Filter Pills */
+html[data-theme="light"] .filter-pill {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(12, 74, 110, 0.12);
+  color: #334155;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme="light"] .filter-pill:hover:not(.active) {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(12, 74, 110, 0.25);
+  box-shadow: 0 4px 12px rgba(12, 74, 110, 0.08);
+}
+
+html[data-theme="light"] .pill-badge {
+  background: rgba(0, 0, 0, 0.06);
+  color: #475569;
+}
+
+/* Category Active states in Light Mode */
+html[data-theme="light"] .filter-pill[data-filter="all"].active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+html[data-theme="light"] .filter-pill[data-filter="all"].active .pill-badge {
+  background: #ffffff;
+  color: #0369a1;
+}
+
+html[data-theme="light"] .filter-pill[data-filter="médica"].active {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  color: #ffffff;
+  border-color: #0891b2;
+  box-shadow: 0 4px 14px rgba(8, 145, 178, 0.35);
+}
+html[data-theme="light"] .filter-pill[data-filter="médica"].active .pill-badge {
+  background: #ffffff;
+  color: #0e7490;
+}
+
+html[data-theme="light"] .filter-pill[data-filter="administrativa"].active {
+  background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+  color: #ffffff;
+  border-color: #db2777;
+  box-shadow: 0 4px 14px rgba(219, 39, 119, 0.35);
+}
+html[data-theme="light"] .filter-pill[data-filter="administrativa"].active .pill-badge {
+  background: #ffffff;
+  color: #be185d;
+}
+
+html[data-theme="light"] .filter-pill[data-filter="soporte"].active {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+}
+html[data-theme="light"] .filter-pill[data-filter="soporte"].active .pill-badge {
+  background: #ffffff;
+  color: #c2410c;
+}
+
+html[data-theme="light"] .filter-pill[data-filter="apis"].active {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  color: #ffffff;
+  border-color: #4f46e5;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+html[data-theme="light"] .filter-pill[data-filter="apis"].active .pill-badge {
+  background: #ffffff;
+  color: #4338ca;
+}
