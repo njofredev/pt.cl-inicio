@@ -1807,8 +1807,38 @@ export default function Home() {
         <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} apps={appsData} />
       ) : (
         <>
-          {/* Hero Search & Floating Filter Controls (Opción 3) */}
+          {/* Hero Search & Floating Filter Controls (Opción 3 - Botones Arriba) */}
           <section className="controls-hero-section">
+            {/* Floating Filter Pills (Arriba y Centrados) */}
+            <div className="category-floating-bar">
+              <button onClick={() => handleFilterClick('all')} className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
+                <LayoutGrid size={15} />
+                <span>Todos</span>
+                <span className="pill-badge">{getCategoryCount('all')}</span>
+              </button>
+              <button onClick={() => handleFilterClick('médica')} className={`filter-pill ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
+                <Stethoscope size={15} />
+                <span>Área Médica</span>
+                <span className="pill-badge">{getCategoryCount('médica')}</span>
+              </button>
+              <button onClick={() => handleFilterClick('administrativa')} className={`filter-pill ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
+                <Briefcase size={15} />
+                <span>Área Administrativa</span>
+                <span className="pill-badge">{getCategoryCount('administrativa')}</span>
+              </button>
+              <button onClick={() => handleFilterClick('soporte')} className={`filter-pill ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
+                <Wrench size={15} />
+                <span>Soporte & TI</span>
+                <span className="pill-badge">{getCategoryCount('soporte')}</span>
+              </button>
+              <button onClick={() => handleFilterClick('apis')} className={`filter-pill ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
+                <Cpu size={15} />
+                <span>APIs</span>
+                <span className="pill-badge">{getCategoryCount('apis')}</span>
+              </button>
+            </div>
+
+            {/* Buscador Hero */}
             <div className="search-hero-container glass-panel">
               <div className="search-wrapper">
                 <Search className="search-icon" size={20} />
@@ -1854,35 +1884,6 @@ export default function Home() {
                   <span>Ayuda</span>
                 </button>
               </div>
-            </div>
-
-            {/* Floating Filter Pills */}
-            <div className="category-floating-bar">
-              <button onClick={() => handleFilterClick('all')} className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
-                <LayoutGrid size={15} />
-                <span>Todos</span>
-                <span className="pill-badge">{getCategoryCount('all')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('médica')} className={`filter-pill ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
-                <Stethoscope size={15} />
-                <span>Área Médica</span>
-                <span className="pill-badge">{getCategoryCount('médica')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('administrativa')} className={`filter-pill ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
-                <Briefcase size={15} />
-                <span>Área Administrativa</span>
-                <span className="pill-badge">{getCategoryCount('administrativa')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('soporte')} className={`filter-pill ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
-                <Wrench size={15} />
-                <span>Soporte & TI</span>
-                <span className="pill-badge">{getCategoryCount('soporte')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('apis')} className={`filter-pill ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
-                <Cpu size={15} />
-                <span>APIs</span>
-                <span className="pill-badge">{getCategoryCount('apis')}</span>
-              </button>
             </div>
           </section>
 

@@ -551,7 +551,8 @@ html[data-theme="dark"] .logo-img {
 .category-floating-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
   flex-wrap: wrap;
   padding: 4px 2px;
 }
