@@ -1807,65 +1807,81 @@ export default function Home() {
         <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} apps={appsData} />
       ) : (
         <>
-          {/* Sub-header Controls (Search and Filters) */}
-          <section className="controls-section glass-panel">
-            <div className="search-wrapper">
-              <Search className="search-icon" size={18} />
-              <input
-                type="text"
-                placeholder="Buscar aplicación..."
-                aria-label="Buscar aplicación"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              {search && (
+          {/* Hero Search & Floating Filter Controls (Opción 3) */}
+          <section className="controls-hero-section">
+            <div className="search-hero-container glass-panel">
+              <div className="search-wrapper">
+                <Search className="search-icon" size={20} />
+                <input
+                  type="text"
+                  placeholder="¿Qué servicio o aplicación necesitas buscar?..."
+                  aria-label="Buscar aplicación"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                {search && (
+                  <button
+                    type="button"
+                    className="search-clear-btn"
+                    onClick={() => setSearch('')}
+                    aria-label="Limpiar búsqueda"
+                    title="Limpiar búsqueda"
+                  >
+                    <X size={15} />
+                  </button>
+                )}
+              </div>
+
+              <div className="search-actions-group">
                 <button
                   type="button"
-                  className="search-clear-btn"
-                  onClick={() => setSearch('')}
-                  aria-label="Limpiar búsqueda"
-                  title="Limpiar búsqueda"
+                  onClick={handlePromotionsClick}
+                  className="search-action-chip promo-chip promo-mobile-btn"
+                  title="Ver promociones activas"
                 >
-                  <X size={14} />
+                  <Tag size={15} />
+                  <span>Promociones</span>
                 </button>
-              )}
+
+                <button
+                  type="button"
+                  onClick={() => setIsHelpOpen(true)}
+                  className="search-action-chip help-chip"
+                  title="Guía de colores y categorías"
+                  aria-label="Ayuda de categorías"
+                >
+                  <HelpCircle size={16} />
+                  <span>Ayuda</span>
+                </button>
+              </div>
             </div>
 
-            <div className="category-tabs">
-              <button onClick={() => handleFilterClick('all')} className={`tab-btn ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
-                <LayoutGrid size={16} />
+            {/* Floating Filter Pills */}
+            <div className="category-floating-bar">
+              <button onClick={() => handleFilterClick('all')} className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
+                <LayoutGrid size={15} />
                 <span>Todos</span>
-                <span className="tab-count">{getCategoryCount('all')}</span>
+                <span className="pill-badge">{getCategoryCount('all')}</span>
               </button>
-              <button onClick={() => handleFilterClick('médica')} className={`tab-btn ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
-                <Stethoscope size={16} />
+              <button onClick={() => handleFilterClick('médica')} className={`filter-pill ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
+                <Stethoscope size={15} />
                 <span>Área Médica</span>
-                <span className="tab-count">{getCategoryCount('médica')}</span>
+                <span className="pill-badge">{getCategoryCount('médica')}</span>
               </button>
-              <button onClick={() => handleFilterClick('administrativa')} className={`tab-btn ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
-                <Briefcase size={16} />
+              <button onClick={() => handleFilterClick('administrativa')} className={`filter-pill ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
+                <Briefcase size={15} />
                 <span>Área Administrativa</span>
-                <span className="tab-count">{getCategoryCount('administrativa')}</span>
+                <span className="pill-badge">{getCategoryCount('administrativa')}</span>
               </button>
-              <button onClick={() => handleFilterClick('soporte')} className={`tab-btn ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
-                <Wrench size={16} />
+              <button onClick={() => handleFilterClick('soporte')} className={`filter-pill ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
+                <Wrench size={15} />
                 <span>Soporte & TI</span>
-                <span className="tab-count">{getCategoryCount('soporte')}</span>
+                <span className="pill-badge">{getCategoryCount('soporte')}</span>
               </button>
-              <button onClick={() => handleFilterClick('apis')} className={`tab-btn ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
-                <Cpu size={16} />
+              <button onClick={() => handleFilterClick('apis')} className={`filter-pill ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
+                <Cpu size={15} />
                 <span>APIs</span>
-                <span className="tab-count">{getCategoryCount('apis')}</span>
-              </button>
-
-              <button onClick={handlePromotionsClick} className="tab-btn promo-mobile-btn" aria-label="Ver Promociones">
-                <Tag size={16} />
-                Promociones
-              </button>
-
-              <button onClick={() => setIsHelpOpen(true)} className="tab-btn help-btn" aria-label="Ayuda de categorías">
-                <HelpCircle size={16} />
-                Ayuda
+                <span className="pill-badge">{getCategoryCount('apis')}</span>
               </button>
             </div>
           </section>
