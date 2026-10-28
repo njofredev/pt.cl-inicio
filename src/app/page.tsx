@@ -1769,14 +1769,14 @@ export default function Home() {
         <div className="header-right">
           {/* Social Networks */}
           <div className="social-links">
+            <a href="https://gestion.policlinicotabancura.cl/ticket" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip ticket-header-btn" data-tooltip="Tickets TI & Mesa de Ayuda" aria-label="Tickets TI & Mesa de Ayuda">
+              <Ticket size={20} />
+            </a>
             <a href="https://policlinicotabancura.dentalink.cl/sessions/login" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip dentalink-btn" data-tooltip="Acceso Dentalink" aria-label="Acceso Dentalink">
               <Tooth size={20} />
             </a>
             <a href="https://ptabancura.app.softwaremedilink.com/medilink/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip medilink-btn" data-tooltip="Acceso Medilink" aria-label="Acceso Medilink">
               <Stethoscope size={20} />
-            </a>
-            <a href="https://gestion.policlinicotabancura.cl/ticket" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip ticket-header-btn" data-tooltip="Tickets TI & Mesa de Ayuda" aria-label="Tickets TI & Mesa de Ayuda">
-              <Ticket size={20} />
             </a>
             <a href="https://www.instagram.com/politabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Instagram" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
