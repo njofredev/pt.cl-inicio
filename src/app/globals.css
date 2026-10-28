@@ -582,13 +582,6 @@ html[data-theme="dark"] .logo-img {
   transform: translateY(-1px);
 }
 
-.filter-pill.active {
-  background: linear-gradient(135deg, rgba(var(--color-secondary-rgb), 0.22) 0%, rgba(var(--color-secondary-rgb), 0.08) 100%);
-  color: #ffffff;
-  border-color: rgba(var(--color-secondary-rgb), 0.5);
-  box-shadow: 0 4px 14px -3px rgba(var(--color-secondary-rgb), 0.35);
-}
-
 .pill-badge {
   font-size: 0.72rem;
   font-weight: 800;
@@ -600,14 +593,110 @@ html[data-theme="dark"] .logo-img {
   transition: all 0.2s ease;
 }
 
-.filter-pill:hover .pill-badge {
-  background: rgba(255, 255, 255, 0.16);
-  color: var(--color-text-primary);
-}
+/* Category-Specific Theming for Filter Pills */
 
-.filter-pill.active .pill-badge {
+/* 1. Todos (Cyan / Primario) */
+.filter-pill[data-filter="all"] svg {
+  color: var(--color-secondary);
+}
+.filter-pill[data-filter="all"]:hover:not(.active) {
+  border-color: rgba(var(--color-secondary-rgb), 0.3);
+  background: rgba(var(--color-secondary-rgb), 0.06);
+  color: #ffffff;
+}
+.filter-pill[data-filter="all"].active {
+  background: linear-gradient(135deg, rgba(var(--color-secondary-rgb), 0.25) 0%, rgba(var(--color-secondary-rgb), 0.1) 100%);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 16px -2px rgba(var(--color-secondary-rgb), 0.4);
+}
+.filter-pill[data-filter="all"].active .pill-badge {
   background: var(--color-secondary);
   color: #020617;
+  font-weight: 900;
+}
+
+/* 2. Área Médica (Azul / Cyan Clínico) */
+.filter-pill[data-filter="médica"] svg {
+  color: var(--color-medica);
+}
+.filter-pill[data-filter="médica"]:hover:not(.active) {
+  border-color: rgba(var(--color-medica-rgb), 0.35);
+  background: rgba(var(--color-medica-rgb), 0.08);
+  color: #ffffff;
+}
+.filter-pill[data-filter="médica"].active {
+  background: linear-gradient(135deg, rgba(var(--color-medica-rgb), 0.28) 0%, rgba(var(--color-medica-rgb), 0.1) 100%);
+  color: #ffffff;
+  border-color: var(--color-medica);
+  box-shadow: 0 4px 16px -2px rgba(var(--color-medica-rgb), 0.4);
+}
+.filter-pill[data-filter="médica"].active .pill-badge {
+  background: var(--color-medica);
+  color: #020617;
+  font-weight: 900;
+}
+
+/* 3. Área Administrativa (Rosado) */
+.filter-pill[data-filter="administrativa"] svg {
+  color: var(--color-administrativa);
+}
+.filter-pill[data-filter="administrativa"]:hover:not(.active) {
+  border-color: rgba(var(--color-administrativa-rgb), 0.35);
+  background: rgba(var(--color-administrativa-rgb), 0.08);
+  color: #ffffff;
+}
+.filter-pill[data-filter="administrativa"].active {
+  background: linear-gradient(135deg, rgba(var(--color-administrativa-rgb), 0.28) 0%, rgba(var(--color-administrativa-rgb), 0.1) 100%);
+  color: #ffffff;
+  border-color: var(--color-administrativa);
+  box-shadow: 0 4px 16px -2px rgba(var(--color-administrativa-rgb), 0.4);
+}
+.filter-pill[data-filter="administrativa"].active .pill-badge {
+  background: var(--color-administrativa);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* 4. Soporte & TI (Naranja) */
+.filter-pill[data-filter="soporte"] svg {
+  color: var(--color-soporte);
+}
+.filter-pill[data-filter="soporte"]:hover:not(.active) {
+  border-color: rgba(var(--color-soporte-rgb), 0.35);
+  background: rgba(var(--color-soporte-rgb), 0.08);
+  color: #ffffff;
+}
+.filter-pill[data-filter="soporte"].active {
+  background: linear-gradient(135deg, rgba(var(--color-soporte-rgb), 0.28) 0%, rgba(var(--color-soporte-rgb), 0.1) 100%);
+  color: #ffffff;
+  border-color: var(--color-soporte);
+  box-shadow: 0 4px 16px -2px rgba(var(--color-soporte-rgb), 0.4);
+}
+.filter-pill[data-filter="soporte"].active .pill-badge {
+  background: var(--color-soporte);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* 5. APIs (Indigo / Violeta) */
+.filter-pill[data-filter="apis"] svg {
+  color: var(--color-apis);
+}
+.filter-pill[data-filter="apis"]:hover:not(.active) {
+  border-color: rgba(var(--color-apis-rgb), 0.35);
+  background: rgba(var(--color-apis-rgb), 0.08);
+  color: #ffffff;
+}
+.filter-pill[data-filter="apis"].active {
+  background: linear-gradient(135deg, rgba(var(--color-apis-rgb), 0.32) 0%, rgba(var(--color-apis-rgb), 0.12) 100%);
+  color: #ffffff;
+  border-color: var(--color-apis);
+  box-shadow: 0 4px 16px -2px rgba(var(--color-apis-rgb), 0.45);
+}
+.filter-pill[data-filter="apis"].active .pill-badge {
+  background: var(--color-apis);
+  color: #ffffff;
   font-weight: 900;
 }
 
