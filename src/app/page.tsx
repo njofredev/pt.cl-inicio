@@ -1269,6 +1269,7 @@ const AnexosArticleDetail = () => {
     { location: 'Administración - 3er piso', inCharge: 'Andrea Palma', number: '219' },
     { location: 'Administración clínica - 3er piso', inCharge: 'Javiera Marchant', number: '221' },
     { location: 'TIC - 3er piso', inCharge: 'Nicolás Jofré', number: '222' },
+    { location: 'Asistente Contable - 3er piso', inCharge: 'Gisella Guajardo', number: '223' },
     { location: 'Servicios Generales - 3er piso', inCharge: 'Felipe Nilo', number: '224' },
   ];
 
