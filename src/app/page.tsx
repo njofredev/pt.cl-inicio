@@ -1224,10 +1224,11 @@ const AnexosArticleDetail = () => {
     },
     {
       id: 'finanzas',
-      title: 'Finanzas, RRHH y Laboral',
+      title: 'Finanzas, Contabilidad y RRHH',
       icon: <CreditCard size={18} />,
       emails: [
         { label: 'Administración y Finanzas', value: 'avalenzuela@policlinicotabancura.cl' },
+        { label: 'Contabilidad (Gisella Guajardo)', value: 'gguajardo@policlinicotabancura.cl' },
         { label: 'Envío de Transferencias', value: 'pagos@policlinicotabancura.cl' },
         { label: 'Recursos Humanos', value: 'rrhh@policlinicotabancura.cl' },
         { label: 'Área Laboral', value: 'laboral@policlinicotabancura.cl' },
