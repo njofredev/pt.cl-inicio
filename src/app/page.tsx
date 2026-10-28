@@ -1681,12 +1681,6 @@ export default function Home() {
 
   const handleFilterClick = (filter: string) => {
     setActiveFilter(filter);
-    if (typeof window !== 'undefined') {
-      const el = document.getElementById('apps-container');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
   };
 
   const handlePromotionsClick = () => {
