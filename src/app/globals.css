@@ -265,6 +265,8 @@ body {
 }
 
 .dashboard-header {
+  position: relative;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -658,7 +660,7 @@ html[data-theme="dark"] .logo-img {
   font-weight: 900;
 }
 
-/* 4. Soporte & TI (Naranja) */
+/* 4. Soporte y TI (Naranja) */
 .filter-pill[data-filter="soporte"] svg {
   color: var(--color-soporte);
 }
@@ -1561,7 +1563,7 @@ html[data-theme="light"] .branch-filter-btn {
   color: var(--color-administrativa);
 }
 
-/* 3. Soporte & TI (Naranja) */
+/* 3. Soporte y TI (Naranja) */
 .app-card[data-category="soporte"] .icon-container {
   color: var(--color-soporte);
   background: rgba(var(--color-soporte-rgb), 0.08);
@@ -1832,6 +1834,10 @@ html[data-theme="light"] .promo-footer {
   position: relative;
 }
 
+.has-tooltip:hover {
+  z-index: 100;
+}
+
 .has-tooltip::before {
   content: attr(data-tooltip);
   position: absolute;
@@ -1851,8 +1857,10 @@ html[data-theme="light"] .promo-footer {
   pointer-events: none;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  z-index: 99;
-  width: 100px;
+  z-index: 105;
+  width: max-content;
+  min-width: 100px;
+  max-width: 160px;
   text-align: center;
   white-space: normal;
 }

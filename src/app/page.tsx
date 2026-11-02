@@ -127,293 +127,293 @@ const APPS_DATA: Array<{
   isArticle?: boolean;
   helpInfo?: HelpInfo;
 }> = [
-  {
-    id: 1,
-    name: "https://policlinicotabancura.cl",
-    description: "Nueva plataforma web institucional del Policlínico con servicios, profesionales, especialidades e información clave para pacientes.",
-    url: "https://policlinicotabancura.cl",
-    status: "online" as const,
-    category: "Administrativa",
-    metric: "v2.0",
-    metricLabel: "Versión de sitio",
-    icon: <Globe size={24} />,
-    helpInfo: {
-      title: "Soporte Sitio Web Institucional",
-      description: "Si el sitio web presenta lentitud o fallas en el formulario de contacto/reserva:",
-      steps: [
-        "Verifica primero el estado general en 'Estado de Sistemas' (Uptime Kuma).",
-        "Prueba ingresando en modo incógnito para descartar caché del navegador."
-      ],
-      contactName: "Equipo TI Policlínico",
-      contactEmail: "soporte@policlinicotabancura.cl",
-      notes: "Para cambios de contenidos o actualización de profesionales, contactar a Administración."
-    }
-  },
-  {
-    id: 2,
-    name: "Estado de Sistemas",
-    description: "Monitoreo en tiempo real del estado de los servidores, servicios y APIs de la institución.",
-    url: "https://uptime.policlinicotabancura.cl/status/estado",
-    status: "online" as const,
-    category: "Soporte",
-    metric: "99.98%",
-    metricLabel: "Kuma Self-Hosted",
-    icon: <Image src={uptimeKumaLogo} alt="Uptime Kuma" width={24} height={24} style={{ objectFit: 'contain' }} />,
-    helpInfo: {
-      title: "Ayuda Monitor Uptime Kuma",
-      description: "Monitor de disponibilidad técnica para saber si algún servicio interno o externo está caído.",
-      steps: [
-        "Revisa si el servicio afectado aparece en rojo (Degradado/Caído).",
-        "Si observas un servicio caído de forma prolongada, notifica de inmediato al equipo TI."
-      ],
-      contactName: "Mesa de Ayuda TI",
-      contactPhone: "+56 9 8888 0000",
-      contactEmail: "ti@policlinicotabancura.cl"
-    }
-  },
-  {
-    id: 3,
-    name: "Nube Institucional (Admin)",
-    description: "Acceso y administración de la infraestructura de almacenamiento, bases de datos y credenciales de TI.",
-    url: "https://admin.policlinicotabancura.cl",
-    status: "online" as const,
-    category: "Soporte",
-    metric: "Activo",
-    metricLabel: "Acceso TI",
-    icon: <Cloud size={24} />,
-    helpInfo: {
-      title: "Soporte Nube y Accesos TI",
-      description: "Acceso restringido para el equipo administrativo y de sistemas.",
-      steps: [
-        "Si perdiste tus credenciales o el autenticador 2FA falló, solicita un restablecimiento seguro.",
-        "Asegúrate de estar conectado a la red autorizada o VPN institucional."
-      ],
-      contactName: "Administrador de Redes & TI",
-      contactEmail: "ti@policlinicotabancura.cl"
-    }
-  },
-  {
-    id: 4,
-    name: "Validador Tarjeta Mi Vita",
-    description: "Plataforma de validación de beneficios y descuentos asociados a la Tarjeta Mi Vita para pacientes.",
-    url: "http://mivita.policlinicotabancura.cl",
-    status: "online" as const,
-    category: "Administrativa",
-    metric: "Mi Vita",
-    metricLabel: "Convenio Municipal",
-    icon: <CreditCard size={24} />,
-    helpInfo: {
-      title: "Problemas con Tarjeta Mi Vita",
-      description: "En caso de rechazo o no reconocimiento del RUT del paciente:",
-      steps: [
-        "Confirma que el RUT esté ingresado sin puntos y con guion.",
-        "Verifica que la tarjeta Mi Vita del paciente se encuentre vigente en el portal comunal.",
-        "Si el sistema no responde, reportar con el anexo de convenios o caja."
-      ],
-      contactName: "Convenios & Administración",
-      contactPhone: "Anexo 219"
-    }
-  },
-  {
-    id: 5,
-    name: "Registro Digital Dental",
-    description: "Control y seguimiento clínico de los trabajos de laboratorio dental y prótesis solicitados.",
-    status: "online" as const,
-    category: "Médica",
-    metric: "Dental",
-    metricLabel: "Especialidad",
-    icon: <FileText size={24} />,
-    helpInfo: {
-      title: "Ayuda Registro Dental",
-      description: "Seguimiento de órdenes y fichas de laboratorio clínico dental.",
-      steps: [
-        "Si no puedes registrar una orden, valida que el ID de paciente coincida con Dentalink.",
-        "Comunícate con coordinación dental en caso de retraso en prótesis o trabajos externos."
-      ],
-      contactName: "Coordinación Dental",
-      contactPhone: "Anexo 214"
-    }
-  },
-  {
-    id: 6,
-    name: "Cotizador de Exámenes",
-    description: "Herramienta de cotización automatizada en línea para exámenes clínicos de laboratorio y diagnóstico.",
-    url: "https://cotizador.policlinicotabancura.cl/public",
-    status: "online" as const,
-    category: "Administrativa",
-    metric: "En línea",
-    metricLabel: "Cotizaciones",
-    icon: <Calculator size={24} />,
-    helpInfo: {
-      title: "Soporte Cotizador de Exámenes",
-      description: "Asistencia para cotización de exámenes de sangre, imágenes y procedimientos:",
-      steps: [
-        "Verifica que el código de prestación o nombre del examen esté bien escrito.",
-        "Si el arancel parece desactualizado o arroja error de cálculo, notifícalo a Caja/Facturación."
-      ],
-      contactName: "Recepción y Aranceles",
-      contactPhone: "Anexo 201"
-    }
-  },
-  {
-    id: 7,
-    name: "Portal de Derivaciones",
-    description: "Módulo clínico digital para la derivación rápida y segura de pacientes a otros centros y especialistas.",
-    url: "https://derivaciones.policlinicotabancura.cl",
-    status: "online" as const,
-    category: "Médica",
-    metric: "Derivaciones",
-    metricLabel: "Gestión de Pacientes",
-    icon: <GitPullRequest size={24} />,
-    helpInfo: {
-      title: "Ayuda Portal Derivaciones",
-      description: "Emisión y confirmación de interconsultas y derivaciones clínicas.",
-      steps: [
-        "Verifica que los datos de contacto y previsión del paciente estén actualizados antes de derivar.",
-        "Si el centro de destino no confirma la recepción, contacta a Enfermería Coordinadora."
-      ],
-      contactName: "Enfermería Coordinadora",
-      contactPhone: "Anexo 210"
-    }
-  },
+    {
+      id: 1,
+      name: "https://policlinicotabancura.cl",
+      description: "Nueva plataforma web institucional del Policlínico con servicios, profesionales, especialidades e información clave para pacientes.",
+      url: "https://policlinicotabancura.cl",
+      status: "online" as const,
+      category: "Administrativa",
+      metric: "v2.0",
+      metricLabel: "Versión de sitio",
+      icon: <Globe size={24} />,
+      helpInfo: {
+        title: "Soporte Sitio Web Institucional",
+        description: "Si el sitio web presenta lentitud o fallas en el formulario de contacto/reserva:",
+        steps: [
+          "Verifica primero el estado general en 'Estado de Sistemas' (Uptime Kuma).",
+          "Prueba ingresando en modo incógnito para descartar caché del navegador."
+        ],
+        contactName: "Equipo TI Policlínico",
+        contactEmail: "soporte@policlinicotabancura.cl",
+        notes: "Para cambios de contenidos o actualización de profesionales, contactar a Administración."
+      }
+    },
+    {
+      id: 2,
+      name: "Estado de Sistemas",
+      description: "Monitoreo en tiempo real del estado de los servidores, servicios y APIs de la institución.",
+      url: "https://uptime.policlinicotabancura.cl/status/estado",
+      status: "online" as const,
+      category: "Soporte",
+      metric: "99.98%",
+      metricLabel: "Kuma Self-Hosted",
+      icon: <Image src={uptimeKumaLogo} alt="Uptime Kuma" width={24} height={24} style={{ objectFit: 'contain' }} />,
+      helpInfo: {
+        title: "Ayuda Monitor Uptime Kuma",
+        description: "Monitor de disponibilidad técnica para saber si algún servicio interno o externo está caído.",
+        steps: [
+          "Revisa si el servicio afectado aparece en rojo (Degradado/Caído).",
+          "Si observas un servicio caído de forma prolongada, notifica de inmediato al equipo TI."
+        ],
+        contactName: "Mesa de Ayuda TI",
+        contactPhone: "+56 9 8888 0000",
+        contactEmail: "ti@policlinicotabancura.cl"
+      }
+    },
+    {
+      id: 3,
+      name: "Nube Institucional (Admin)",
+      description: "Acceso y administración de la infraestructura de almacenamiento, bases de datos y credenciales de TI.",
+      url: "https://admin.policlinicotabancura.cl",
+      status: "online" as const,
+      category: "Soporte",
+      metric: "Activo",
+      metricLabel: "Acceso TI",
+      icon: <Cloud size={24} />,
+      helpInfo: {
+        title: "Soporte Nube y Accesos TI",
+        description: "Acceso restringido para el equipo administrativo y de sistemas.",
+        steps: [
+          "Si perdiste tus credenciales o el autenticador 2FA falló, solicita un restablecimiento seguro.",
+          "Asegúrate de estar conectado a la red autorizada o VPN institucional."
+        ],
+        contactName: "Administrador de Redes y TI",
+        contactEmail: "ti@policlinicotabancura.cl"
+      }
+    },
+    {
+      id: 4,
+      name: "Validador Tarjeta Mi Vita",
+      description: "Plataforma de validación de beneficios y descuentos asociados a la Tarjeta Mi Vita para pacientes.",
+      url: "http://mivita.policlinicotabancura.cl",
+      status: "online" as const,
+      category: "Administrativa",
+      metric: "Mi Vita",
+      metricLabel: "Convenio Municipal",
+      icon: <CreditCard size={24} />,
+      helpInfo: {
+        title: "Problemas con Tarjeta Mi Vita",
+        description: "En caso de rechazo o no reconocimiento del RUT del paciente:",
+        steps: [
+          "Confirma que el RUT esté ingresado sin puntos y con guion.",
+          "Verifica que la tarjeta Mi Vita del paciente se encuentre vigente en el portal comunal.",
+          "Si el sistema no responde, reportar con el anexo de convenios o caja."
+        ],
+        contactName: "Convenios y Administración",
+        contactPhone: "Anexo 219"
+      }
+    },
+    {
+      id: 5,
+      name: "Registro Digital Dental",
+      description: "Control y seguimiento clínico de los trabajos de laboratorio dental y prótesis solicitados.",
+      status: "online" as const,
+      category: "Médica",
+      metric: "Dental",
+      metricLabel: "Especialidad",
+      icon: <FileText size={24} />,
+      helpInfo: {
+        title: "Ayuda Registro Dental",
+        description: "Seguimiento de órdenes y fichas de laboratorio clínico dental.",
+        steps: [
+          "Si no puedes registrar una orden, valida que el ID de paciente coincida con Dentalink.",
+          "Comunícate con coordinación dental en caso de retraso en prótesis o trabajos externos."
+        ],
+        contactName: "Coordinación Dental",
+        contactPhone: "Anexo 214"
+      }
+    },
+    {
+      id: 6,
+      name: "Cotizador de Exámenes",
+      description: "Herramienta de cotización automatizada en línea para exámenes clínicos de laboratorio y diagnóstico.",
+      url: "https://cotizador.policlinicotabancura.cl/public",
+      status: "online" as const,
+      category: "Administrativa",
+      metric: "En línea",
+      metricLabel: "Cotizaciones",
+      icon: <Calculator size={24} />,
+      helpInfo: {
+        title: "Soporte Cotizador de Exámenes",
+        description: "Asistencia para cotización de exámenes de sangre, imágenes y procedimientos:",
+        steps: [
+          "Verifica que el código de prestación o nombre del examen esté bien escrito.",
+          "Si el arancel parece desactualizado o arroja error de cálculo, notifícalo a Caja/Facturación."
+        ],
+        contactName: "Recepción y Aranceles",
+        contactPhone: "Anexo 201"
+      }
+    },
+    {
+      id: 7,
+      name: "Portal de Derivaciones",
+      description: "Módulo clínico digital para la derivación rápida y segura de pacientes a otros centros y especialistas.",
+      url: "https://derivaciones.policlinicotabancura.cl",
+      status: "online" as const,
+      category: "Médica",
+      metric: "Derivaciones",
+      metricLabel: "Gestión de Pacientes",
+      icon: <GitPullRequest size={24} />,
+      helpInfo: {
+        title: "Ayuda Portal Derivaciones",
+        description: "Emisión y confirmación de interconsultas y derivaciones clínicas.",
+        steps: [
+          "Verifica que los datos de contacto y previsión del paciente estén actualizados antes de derivar.",
+          "Si el centro de destino no confirma la recepción, contacta a Enfermería Coordinadora."
+        ],
+        contactName: "Enfermería Coordinadora",
+        contactPhone: "Anexo 210"
+      }
+    },
 
-  {
-    id: 9,
-    name: "API cotizador En línea",
-    description: "Servicio backend para el procesamiento automatizado y cotizaciones en tiempo real del cotizador de exámenes.",
-    status: "online" as const,
-    category: "APIs",
-    metric: "API REST",
-    metricLabel: "Servicio Cotizador",
-    icon: <Cpu size={24} />,
-    helpInfo: {
-      title: "Soporte API Cotizador",
-      description: "Servicio técnico backend. Si devuelve respuestas 500 o fallas de CORS:",
-      steps: [
-        "Verifica los logs en el panel de Uptime Kuma o Cloudflare.",
-        "Reinicia el contenedor de la API si los timeouts persisten."
-      ],
-      contactName: "Desarrollo & Backend TI",
-      contactEmail: "ti@policlinicotabancura.cl"
+    {
+      id: 9,
+      name: "API cotizador En línea",
+      description: "Servicio backend para el procesamiento automatizado y cotizaciones en tiempo real del cotizador de exámenes.",
+      status: "online" as const,
+      category: "APIs",
+      metric: "API REST",
+      metricLabel: "Servicio Cotizador",
+      icon: <Cpu size={24} />,
+      helpInfo: {
+        title: "Soporte API Cotizador",
+        description: "Servicio técnico backend. Si devuelve respuestas 500 o fallas de CORS:",
+        steps: [
+          "Verifica los logs en el panel de Uptime Kuma o Cloudflare.",
+          "Reinicia el contenedor de la API si los timeouts persisten."
+        ],
+        contactName: "Desarrollo y Backend TI",
+        contactEmail: "ti@policlinicotabancura.cl"
+      }
+    },
+    {
+      id: 10,
+      name: "API Cerebro",
+      description: "Middleware centralizado y consola de orquestación backend del ecosistema digital del Policlínico.",
+      status: "dev" as const,
+      category: "APIs",
+      metric: "API REST",
+      metricLabel: "Servicio Central",
+      icon: <Cpu size={24} />,
+      helpInfo: {
+        title: "Módulo en Desarrollo (API Cerebro)",
+        description: "Esta API se encuentra actualmente en fase de pruebas internas.",
+        notes: "El acceso está reservado exclusivamente al equipo de desarrollo."
+      }
+    },
+    {
+      id: 11,
+      name: "Soporte Klap",
+      description: "Guía paso a paso y manual de solución de problemas para el correcto funcionamiento del terminal de pagos Klap.",
+      url: "/soporte-klap",
+      slug: "soporte-klap",
+      status: "online" as const,
+      category: "Soporte",
+      metric: "Artículo",
+      metricLabel: "Manual de Insumos",
+      icon: <BookOpen size={24} />,
+      isArticle: true,
+      helpInfo: {
+        title: "¿Problemas con el POS Klap?",
+        description: "Si el equipo está pegado, sin papel o la transacción quedó pendiente:",
+        steps: [
+          "Revisa el tutorial paso a paso haciendo clic en esta tarjeta.",
+          "Antes de reintentar el cobro, consulta con Administración para evitar duplicidad."
+        ],
+        contactName: "Andrea Palma (Admin)",
+        contactPhone: "Anexo 219"
+      }
+    },
+    {
+      id: 12,
+      name: "Anexos y correos",
+      description: "Listado oficial de anexos telefónicos internos, cuentas de correo corporativas y canales de comunicación.",
+      url: "/anexos-y-correos",
+      slug: "anexos-y-correos",
+      status: "online" as const,
+      category: "Administrativa",
+      metric: "Artículo",
+      metricLabel: "Directorio TI",
+      icon: <BookOpen size={24} />,
+      isArticle: true,
+      helpInfo: {
+        title: "Directorio Telefónico y Correos",
+        description: "Guía con todas las extensiones por piso, box y especialidad.",
+        contactName: "Mesa Central",
+        contactPhone: "Anexo 200 / 201",
+        notes: "Para solicitar nuevas líneas o cambios de extensión, contactar a TI."
+      }
+    },
+    {
+      id: 14,
+      name: "Recepción",
+      description: "Centro de información, procedimientos, protocolos y noticias de atención para el equipo de recepción.",
+      url: "/recepcion",
+      slug: "recepcion",
+      status: "online" as const,
+      category: "Administrativa",
+      metric: "Artículo",
+      metricLabel: "Procedimientos y Noticias",
+      icon: <BookOpen size={24} />,
+      isArticle: true,
+      helpInfo: {
+        title: "Protocolos de Recepción",
+        description: "Contiene instrucciones para bonos I-Med, bono PAD Fonasa, pagos y flujos de pacientes.",
+        contactName: "Jefatura de Recepción",
+        contactPhone: "Anexo 202"
+      }
+    },
+    {
+      id: 13,
+      name: "Registro de Radiología",
+      description: "Control y registro de todo lo relacionado con los trabajos radiológicos de la institución.",
+      status: "online" as const,
+      category: "Médica",
+      metric: "Radiología",
+      metricLabel: "Especialidad",
+      icon: <FileText size={24} />,
+      helpInfo: {
+        title: "Soporte Servicio Radiología",
+        description: "Asistencia para carga de informes y radiografías dentales / médicas.",
+        contactName: "Tecnólogo / Radiología",
+        contactPhone: "Anexo 212"
+      }
+    },
+    {
+      id: 15,
+      name: "Gestión de Tickets TI",
+      description: "Plataforma oficial para la creación, seguimiento y resolución de requerimientos y tickets de soporte TI.",
+      url: "https://gestion.policlinicotabancura.cl/ticket",
+      status: "online" as const,
+      category: "Soporte",
+      metric: "Tickets",
+      metricLabel: "Mesa de Ayuda",
+      icon: <Ticket size={24} />,
+      helpInfo: {
+        title: "Mesa de Ayuda y Tickets TI",
+        description: "Canal oficial para solicitar asistencia técnica, soporte de sistemas, redes, telefonía o periféricos.",
+        steps: [
+          "Ingresa a la plataforma con tu cuenta institucional o genera un nuevo requerimiento.",
+          "Detalla con claridad la incidencia o necesidad, equipo afectado y piso/box de atención.",
+          "Podrás revisar el estado y las respuestas de TI en tiempo real."
+        ],
+        contactName: "Soporte TI",
+        contactEmail: "ti@policlinicotabancura.cl",
+        contactPhone: "Anexo 104"
+      }
     }
-  },
-  {
-    id: 10,
-    name: "API Cerebro",
-    description: "Middleware centralizado y consola de orquestación backend del ecosistema digital del Policlínico.",
-    status: "dev" as const,
-    category: "APIs",
-    metric: "API REST",
-    metricLabel: "Servicio Central",
-    icon: <Cpu size={24} />,
-    helpInfo: {
-      title: "Módulo en Desarrollo (API Cerebro)",
-      description: "Esta API se encuentra actualmente en fase de pruebas internas.",
-      notes: "El acceso está reservado exclusivamente al equipo de desarrollo."
-    }
-  },
-  {
-    id: 11,
-    name: "Soporte Klap",
-    description: "Guía paso a paso y manual de solución de problemas para el correcto funcionamiento del terminal de pagos Klap.",
-    url: "/soporte-klap",
-    slug: "soporte-klap",
-    status: "online" as const,
-    category: "Soporte",
-    metric: "Artículo",
-    metricLabel: "Manual de Insumos",
-    icon: <BookOpen size={24} />,
-    isArticle: true,
-    helpInfo: {
-      title: "¿Problemas con el POS Klap?",
-      description: "Si el equipo está pegado, sin papel o la transacción quedó pendiente:",
-      steps: [
-        "Revisa el tutorial paso a paso haciendo clic en esta tarjeta.",
-        "Antes de reintentar el cobro, consulta con Administración para evitar duplicidad."
-      ],
-      contactName: "Andrea Palma (Admin)",
-      contactPhone: "Anexo 219"
-    }
-  },
-  {
-    id: 12,
-    name: "Anexos y correos",
-    description: "Listado oficial de anexos telefónicos internos, cuentas de correo corporativas y canales de comunicación.",
-    url: "/anexos-y-correos",
-    slug: "anexos-y-correos",
-    status: "online" as const,
-    category: "Administrativa",
-    metric: "Artículo",
-    metricLabel: "Directorio TI",
-    icon: <BookOpen size={24} />,
-    isArticle: true,
-    helpInfo: {
-      title: "Directorio Telefónico y Correos",
-      description: "Guía con todas las extensiones por piso, box y especialidad.",
-      contactName: "Mesa Central",
-      contactPhone: "Anexo 200 / 201",
-      notes: "Para solicitar nuevas líneas o cambios de extensión, contactar a TI."
-    }
-  },
-  {
-    id: 14,
-    name: "Recepción",
-    description: "Centro de información, procedimientos, protocolos y noticias de atención para el equipo de recepción.",
-    url: "/recepcion",
-    slug: "recepcion",
-    status: "online" as const,
-    category: "Administrativa",
-    metric: "Artículo",
-    metricLabel: "Procedimientos y Noticias",
-    icon: <BookOpen size={24} />,
-    isArticle: true,
-    helpInfo: {
-      title: "Protocolos de Recepción",
-      description: "Contiene instrucciones para bonos I-Med, bono PAD Fonasa, pagos y flujos de pacientes.",
-      contactName: "Jefatura de Recepción",
-      contactPhone: "Anexo 202"
-    }
-  },
-  {
-    id: 13,
-    name: "Registro de Radiología",
-    description: "Control y registro de todo lo relacionado con los trabajos radiológicos de la institución.",
-    status: "online" as const,
-    category: "Médica",
-    metric: "Radiología",
-    metricLabel: "Especialidad",
-    icon: <FileText size={24} />,
-    helpInfo: {
-      title: "Soporte Servicio Radiología",
-      description: "Asistencia para carga de informes y radiografías dentales / médicas.",
-      contactName: "Tecnólogo / Radiología",
-      contactPhone: "Anexo 212"
-    }
-  },
-  {
-    id: 15,
-    name: "Gestión de Tickets TI",
-    description: "Plataforma oficial para la creación, seguimiento y resolución de requerimientos y tickets de soporte TI.",
-    url: "https://gestion.policlinicotabancura.cl/ticket",
-    status: "online" as const,
-    category: "Soporte",
-    metric: "Tickets",
-    metricLabel: "Mesa de Ayuda",
-    icon: <Ticket size={24} />,
-    helpInfo: {
-      title: "Mesa de Ayuda y Tickets TI",
-      description: "Canal oficial para solicitar asistencia técnica, soporte de sistemas, redes, telefonía o periféricos.",
-      steps: [
-        "Ingresa a la plataforma con tu cuenta institucional o genera un nuevo requerimiento.",
-        "Detalla con claridad la incidencia o necesidad, equipo afectado y piso/box de atención.",
-        "Podrás revisar el estado y las respuestas de TI en tiempo real."
-      ],
-      contactName: "Soporte TI",
-      contactEmail: "ti@policlinicotabancura.cl",
-      contactPhone: "Anexo 104"
-    }
-  }
-];
+  ];
 
 interface KlapStep {
   id: number;
@@ -809,7 +809,7 @@ const KlapArticleDetail = () => {
           </div>
 
           <div className="internal-contact-card">
-            <div className="contact-role-badge admin">Financieras & Pagos</div>
+            <div className="contact-role-badge admin">Financieras y Pagos</div>
             <span className="contact-name">Andrea Palma Cabezas</span>
             <span className="contact-title">Encargada de Administración</span>
             <div className="contact-links">
@@ -1239,7 +1239,7 @@ const AnexosArticleDetail = () => {
       title: 'Soporte TI',
       icon: <Wrench size={18} />,
       emails: [
-        { label: 'Soporte & TI', value: 'njofre@policlinicotabancura.cl' },
+        { label: 'Soporte y TI', value: 'njofre@policlinicotabancura.cl' },
       ]
     }
   ];
@@ -1403,8 +1403,8 @@ function ArticleDetailView({ id, onClose, apps }: { id: number; onClose: () => v
 
   const slug = activeArticle.slug || (
     activeArticle.name.toLowerCase().includes('klap') ? 'soporte-klap' :
-    activeArticle.name.toLowerCase().includes('anexo') ? 'anexos-y-correos' :
-    activeArticle.name.toLowerCase().includes('recep') ? 'recepcion' : ''
+      activeArticle.name.toLowerCase().includes('anexo') ? 'anexos-y-correos' :
+        activeArticle.name.toLowerCase().includes('recep') ? 'recepcion' : ''
   );
 
   return (
@@ -1743,556 +1743,556 @@ export default function Home() {
       <main className="dashboard-container">
         {/* Top Header Bar */}
         <header className="dashboard-header glass-panel">
-        <div className="brand-section">
-          <div className="logo-glow">
-            <Image
-              src={logo}
-              alt="Logo Policlínico Tabancura"
-              className="logo-img"
-              width={64}
-              height={64}
-              priority
-            />
-          </div>
-          <div className="brand-text">
-            <h1 className="welcome-title">Portal Digital - Policlínico Tabancura</h1>
-            {isMounted && (
-              <div className="brand-datetime">
-                <span className="brand-time">{time}</span>
-                <span className="brand-date-separator">•</span>
-                <span className="brand-date">{dateStr}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="header-right">
-          {/* Social Networks */}
-          <div className="social-links">
-            <a href="https://gestion.policlinicotabancura.cl/ticket" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip ticket-header-btn" data-tooltip="Tickets TI & Mesa de Ayuda" aria-label="Tickets TI & Mesa de Ayuda">
-              <Ticket size={20} />
-            </a>
-            <a href="https://policlinicotabancura.dentalink.cl/sessions/login" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip dentalink-btn" data-tooltip="Acceso Dentalink" aria-label="Acceso Dentalink">
-              <Tooth size={20} />
-            </a>
-            <a href="https://ptabancura.app.softwaremedilink.com/medilink/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip medilink-btn" data-tooltip="Acceso Medilink" aria-label="Acceso Medilink">
-              <Stethoscope size={20} />
-            </a>
-            <a href="https://www.instagram.com/politabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Instagram" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61568214167163" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Facebook" aria-label="Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/policlinico-tabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="LinkedIn" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
-            </a>
-          </div>
-
-          {/* Theme Toggle Button */}
-          <button onClick={toggleTheme} className="theme-toggle-btn glass-panel has-tooltip" data-tooltip={theme === 'light' ? 'Modo Oscuro' : 'Modo Claro'} aria-label="Cambiar tema">
-            {theme === 'light' ? <Sun className="sun-icon" size={20} /> : <Moon className="moon-icon" size={20} />}
-          </button>
-
-        </div>
-      </header>
-
-      {activeArticleId !== null ? (
-        <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} apps={appsData} />
-      ) : (
-        <>
-          {/* Hero Search & Floating Filter Controls (Opción 3 - Botones Arriba) */}
-          <section className="controls-hero-section">
-            {/* Floating Filter Pills (Arriba y Centrados) */}
-            <div className="category-floating-bar">
-              <button onClick={() => handleFilterClick('all')} className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
-                <LayoutGrid size={15} />
-                <span>Todos</span>
-                <span className="pill-badge">{getCategoryCount('all')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('médica')} className={`filter-pill ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
-                <Stethoscope size={15} />
-                <span>Área Médica</span>
-                <span className="pill-badge">{getCategoryCount('médica')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('administrativa')} className={`filter-pill ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
-                <Briefcase size={15} />
-                <span>Área Administrativa</span>
-                <span className="pill-badge">{getCategoryCount('administrativa')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('soporte')} className={`filter-pill ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
-                <Wrench size={15} />
-                <span>Soporte & TI</span>
-                <span className="pill-badge">{getCategoryCount('soporte')}</span>
-              </button>
-              <button onClick={() => handleFilterClick('apis')} className={`filter-pill ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
-                <Cpu size={15} />
-                <span>APIs</span>
-                <span className="pill-badge">{getCategoryCount('apis')}</span>
-              </button>
-            </div>
-
-            {/* Buscador Hero */}
-            <div className="search-hero-container glass-panel">
-              <div className="search-wrapper">
-                <Search className="search-icon" size={20} />
-                <input
-                  type="text"
-                  placeholder="¿Qué servicio o aplicación necesitas buscar?..."
-                  aria-label="Buscar aplicación"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                {search && (
-                  <button
-                    type="button"
-                    className="search-clear-btn"
-                    onClick={() => setSearch('')}
-                    aria-label="Limpiar búsqueda"
-                    title="Limpiar búsqueda"
-                  >
-                    <X size={15} />
-                  </button>
-                )}
-              </div>
-
-              <div className="search-actions-group">
-                <button
-                  type="button"
-                  onClick={handlePromotionsClick}
-                  className="search-action-chip promo-chip promo-mobile-btn"
-                  title="Ver promociones activas"
-                >
-                  <Tag size={15} />
-                  <span>Promociones</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setIsHelpOpen(true)}
-                  className="search-action-chip help-chip"
-                  title="Guía de colores y categorías"
-                  aria-label="Ayuda de categorías"
-                >
-                  <HelpCircle size={16} />
-                  <span>Ayuda</span>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          {/* Main Grid Layout */}
-          <div className="main-dashboard-grid">
-            {/* LEFT column: Widgets */}
-            <aside className="widgets-sidebar">
-              <div className="widget-wrapper promotions-widget glass-panel" id="promotions-widget">
-                <h3 className="widget-title">
-                  <Tag size={18} />
-                  Promociones activas
-                </h3>
-                <div className="promotions-content" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {PROMOTIONS_DATA.length > 0 ? (
-                    PROMOTIONS_DATA.map((promo) => (
-                      <div key={promo.id} className="promo-card glow-card">
-                        {promo.badge && <div className="promo-badge">{promo.badge}</div>}
-                        <h4 className="promo-title">{promo.title}</h4>
-
-                        <div
-                          className="promo-image-clickable"
-                          onClick={() => setSelectedPromoModal(promo)}
-                          title="Haz clic para ver en detalle"
-                        >
-                          <Image
-                            src={promo.image}
-                            alt={`Promo ${promo.title}`}
-                            placeholder="blur"
-                            style={{ width: '100%', height: 'auto', display: 'block' }}
-                          />
-                          <div className="promo-image-hover-overlay">
-                            <ZoomIn size={18} />
-                            <span>Ver en detalle</span>
-                          </div>
-                        </div>
-
-                        <div className="promo-includes">
-                          <span className="includes-title">Incluye:</span>
-                          <ul>
-                            {promo.includes.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="promo-price-box">
-                          <span className="price-old">Antes: ${promo.priceOld}</span>
-                          <div className="price-current-wrapper">
-                            <span className="price-currency">$</span>
-                            <span className="price-value">{promo.priceCurrent}</span>
-                          </div>
-                        </div>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
-                          <a
-                            href={promo.scheduleUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="promo-cta-btn"
-                          >
-                            Agendar
-                          </a>
-                          <a
-                            href={promo.imageDownloadPath}
-                            download={promo.downloadFilename}
-                            className="promo-download-btn"
-                          >
-                            <Download size={16} />
-                            Descargar Imagen
-                          </a>
-                        </div>
-
-                        <div className="promo-footer">
-                          <span>{promo.footerText}</span>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="no-promotions">
-                      No hay promociones activas por el momento.
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="widget-wrapper">
-                <CalendarWidget />
-              </div>
-            </aside>
-
-            {/* RIGHT column: App Grid */}
-            <section className="apps-container" id="apps-container">
-              <div className="section-title">
-                <h2>Apps</h2>
-                <span className="apps-count">
-                  {getCountText()}
-                </span>
-              </div>
-
-              <div className={`apps-grid ${isReloading ? 'pop-animation' : ''}`}>
-                {filteredApps.map((app) => (
-                  <AppCard
-                    key={app.id}
-                    id={app.id}
-                    name={app.name}
-                    description={app.description}
-                    url={app.url}
-                    status={app.status}
-                    category={app.category}
-                    metric={app.metric}
-                    metricLabel={app.metricLabel}
-                    icon={app.icon}
-                    isArticle={app.isArticle}
-                    onOpenArticle={handleOpenArticle}
-                    helpInfo={app.helpInfo}
-                    onOpenHelp={(appName, help) => setSelectedAppHelp({ appName, help })}
-                  />
-                ))}
-              </div>
-            </section>
-          </div>
-        </>
-      )}
-
-      {/* Dashboard Footer */}
-      <footer className="dashboard-footer-new glass-panel">
-        <div className="footer-branches">
-          {/* Logo & Branding column */}
-          <div className="footer-brand-column">
+          <div className="brand-section">
             <div className="logo-glow">
               <Image
                 src={logo}
                 alt="Logo Policlínico Tabancura"
-                className="logo-img-footer"
-                width={80}
-                height={80}
+                className="logo-img"
+                width={64}
+                height={64}
+                priority
               />
             </div>
-            <p className="footer-brand-desc">
-              Tecnología y cuidado humano al servicio de tu salud.
-            </p>
+            <div className="brand-text">
+              <h1 className="welcome-title">Portal Digital - Policlínico Tabancura</h1>
+              {isMounted && (
+                <div className="brand-datetime">
+                  <span className="brand-time">{time}</span>
+                  <span className="brand-date-separator">•</span>
+                  <span className="brand-date">{dateStr}</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="footer-branch">
-            <h4 className="branch-title">Sucursal Vitacura</h4>
-            <div className="branch-info">
-              <div className="info-item">
-                <MapPin size={16} />
-                <a href="https://g.page/r/CQnnnRuZmSXvEAE" target="_blank" rel="noopener noreferrer">Av. Vitacura #8620</a>
+          <div className="header-right">
+            {/* Social Networks */}
+            <div className="social-links">
+              <a href="https://gestion.policlinicotabancura.cl/ticket" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip ticket-header-btn" data-tooltip="Tickets TI y Mesa de Ayuda" aria-label="Tickets TI y Mesa de Ayuda">
+                <Ticket size={20} />
+              </a>
+              <a href="https://policlinicotabancura.dentalink.cl/sessions/login" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip dentalink-btn" data-tooltip="Acceso Dentalink" aria-label="Acceso Dentalink">
+                <Tooth size={20} />
+              </a>
+              <a href="https://ptabancura.app.softwaremedilink.com/medilink/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip medilink-btn" data-tooltip="Acceso Medilink" aria-label="Acceso Medilink">
+                <Stethoscope size={20} />
+              </a>
+              <a href="https://www.instagram.com/politabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Instagram" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61568214167163" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="Facebook" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+              </a>
+              <a href="https://www.linkedin.com/company/policlinico-tabancura/" target="_blank" rel="noopener noreferrer" className="social-link-btn glass-panel has-tooltip" data-tooltip="LinkedIn" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+              </a>
+            </div>
+
+            {/* Theme Toggle Button */}
+            <button onClick={toggleTheme} className="theme-toggle-btn glass-panel has-tooltip" data-tooltip={theme === 'light' ? 'Modo Oscuro' : 'Modo Claro'} aria-label="Cambiar tema">
+              {theme === 'light' ? <Sun className="sun-icon" size={20} /> : <Moon className="moon-icon" size={20} />}
+            </button>
+
+          </div>
+        </header>
+
+        {activeArticleId !== null ? (
+          <ArticleDetailView id={activeArticleId} onClose={handleCloseArticle} apps={appsData} />
+        ) : (
+          <>
+            {/* Hero Search & Floating Filter Controls (Opción 3 - Botones Arriba) */}
+            <section className="controls-hero-section">
+              {/* Floating Filter Pills (Arriba y Centrados) */}
+              <div className="category-floating-bar">
+                <button onClick={() => handleFilterClick('all')} className={`filter-pill ${activeFilter === 'all' ? 'active' : ''}`} data-filter="all">
+                  <LayoutGrid size={15} />
+                  <span>Todos</span>
+                  <span className="pill-badge">{getCategoryCount('all')}</span>
+                </button>
+                <button onClick={() => handleFilterClick('médica')} className={`filter-pill ${activeFilter === 'médica' ? 'active' : ''}`} data-filter="médica">
+                  <Stethoscope size={15} />
+                  <span>Área Médica</span>
+                  <span className="pill-badge">{getCategoryCount('médica')}</span>
+                </button>
+                <button onClick={() => handleFilterClick('administrativa')} className={`filter-pill ${activeFilter === 'administrativa' ? 'active' : ''}`} data-filter="administrativa">
+                  <Briefcase size={15} />
+                  <span>Área Administrativa</span>
+                  <span className="pill-badge">{getCategoryCount('administrativa')}</span>
+                </button>
+                <button onClick={() => handleFilterClick('soporte')} className={`filter-pill ${activeFilter === 'soporte' ? 'active' : ''}`} data-filter="soporte">
+                  <Wrench size={15} />
+                  <span>Soporte y TI</span>
+                  <span className="pill-badge">{getCategoryCount('soporte')}</span>
+                </button>
+                <button onClick={() => handleFilterClick('apis')} className={`filter-pill ${activeFilter === 'apis' ? 'active' : ''}`} data-filter="apis">
+                  <Cpu size={15} />
+                  <span>APIs</span>
+                  <span className="pill-badge">{getCategoryCount('apis')}</span>
+                </button>
               </div>
-              <div className="info-item">
-                <Phone size={16} />
-                <a href="tel:+56229336740">+56 2 2933 6740</a>
+
+              {/* Buscador Hero */}
+              <div className="search-hero-container glass-panel">
+                <div className="search-wrapper">
+                  <Search className="search-icon" size={20} />
+                  <input
+                    type="text"
+                    placeholder="¿Qué servicio o aplicación necesitas buscar?..."
+                    aria-label="Buscar aplicación"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  {search && (
+                    <button
+                      type="button"
+                      className="search-clear-btn"
+                      onClick={() => setSearch('')}
+                      aria-label="Limpiar búsqueda"
+                      title="Limpiar búsqueda"
+                    >
+                      <X size={15} />
+                    </button>
+                  )}
+                </div>
+
+                <div className="search-actions-group">
+                  <button
+                    type="button"
+                    onClick={handlePromotionsClick}
+                    className="search-action-chip promo-chip promo-mobile-btn"
+                    title="Ver promociones activas"
+                  >
+                    <Tag size={15} />
+                    <span>Promociones</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsHelpOpen(true)}
+                    className="search-action-chip help-chip"
+                    title="Guía de colores y categorías"
+                    aria-label="Ayuda de categorías"
+                  >
+                    <HelpCircle size={16} />
+                    <span>Ayuda</span>
+                  </button>
+                </div>
               </div>
-              <div className="info-item">
-                <WhatsAppIcon size={16} />
-                <a href="https://wa.me/56965781253" target="_blank" rel="noopener noreferrer">+56 9 6578 1253</a>
+            </section>
+
+            {/* Main Grid Layout */}
+            <div className="main-dashboard-grid">
+              {/* LEFT column: Widgets */}
+              <aside className="widgets-sidebar">
+                <div className="widget-wrapper promotions-widget glass-panel" id="promotions-widget">
+                  <h3 className="widget-title">
+                    <Tag size={18} />
+                    Promociones activas
+                  </h3>
+                  <div className="promotions-content" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    {PROMOTIONS_DATA.length > 0 ? (
+                      PROMOTIONS_DATA.map((promo) => (
+                        <div key={promo.id} className="promo-card glow-card">
+                          {promo.badge && <div className="promo-badge">{promo.badge}</div>}
+                          <h4 className="promo-title">{promo.title}</h4>
+
+                          <div
+                            className="promo-image-clickable"
+                            onClick={() => setSelectedPromoModal(promo)}
+                            title="Haz clic para ver en detalle"
+                          >
+                            <Image
+                              src={promo.image}
+                              alt={`Promo ${promo.title}`}
+                              placeholder="blur"
+                              style={{ width: '100%', height: 'auto', display: 'block' }}
+                            />
+                            <div className="promo-image-hover-overlay">
+                              <ZoomIn size={18} />
+                              <span>Ver en detalle</span>
+                            </div>
+                          </div>
+
+                          <div className="promo-includes">
+                            <span className="includes-title">Incluye:</span>
+                            <ul>
+                              {promo.includes.map((item, i) => (
+                                <li key={i}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="promo-price-box">
+                            <span className="price-old">Antes: ${promo.priceOld}</span>
+                            <div className="price-current-wrapper">
+                              <span className="price-currency">$</span>
+                              <span className="price-value">{promo.priceCurrent}</span>
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+                            <a
+                              href={promo.scheduleUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="promo-cta-btn"
+                            >
+                              Agendar
+                            </a>
+                            <a
+                              href={promo.imageDownloadPath}
+                              download={promo.downloadFilename}
+                              className="promo-download-btn"
+                            >
+                              <Download size={16} />
+                              Descargar Imagen
+                            </a>
+                          </div>
+
+                          <div className="promo-footer">
+                            <span>{promo.footerText}</span>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="no-promotions">
+                        No hay promociones activas por el momento.
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="widget-wrapper">
+                  <CalendarWidget />
+                </div>
+              </aside>
+
+              {/* RIGHT column: App Grid */}
+              <section className="apps-container" id="apps-container">
+                <div className="section-title">
+                  <h2>Apps</h2>
+                  <span className="apps-count">
+                    {getCountText()}
+                  </span>
+                </div>
+
+                <div className={`apps-grid ${isReloading ? 'pop-animation' : ''}`}>
+                  {filteredApps.map((app) => (
+                    <AppCard
+                      key={app.id}
+                      id={app.id}
+                      name={app.name}
+                      description={app.description}
+                      url={app.url}
+                      status={app.status}
+                      category={app.category}
+                      metric={app.metric}
+                      metricLabel={app.metricLabel}
+                      icon={app.icon}
+                      isArticle={app.isArticle}
+                      onOpenArticle={handleOpenArticle}
+                      helpInfo={app.helpInfo}
+                      onOpenHelp={(appName, help) => setSelectedAppHelp({ appName, help })}
+                    />
+                  ))}
+                </div>
+              </section>
+            </div>
+          </>
+        )}
+
+        {/* Dashboard Footer */}
+        <footer className="dashboard-footer-new glass-panel">
+          <div className="footer-branches">
+            {/* Logo & Branding column */}
+            <div className="footer-brand-column">
+              <div className="logo-glow">
+                <Image
+                  src={logo}
+                  alt="Logo Policlínico Tabancura"
+                  className="logo-img-footer"
+                  width={80}
+                  height={80}
+                />
               </div>
-              <div className="info-item align-start">
-                <Mail size={16} style={{ marginTop: '3px' }} />
-                <div className="emails-list">
-                  <a href="mailto:recepciondental@policlinicotabancura.cl">recepciondental@policlinicotabancura.cl</a>
-                  <a href="mailto:recepcionmedica@policlinicotabancura.cl">recepcionmedica@policlinicotabancura.cl</a>
+              <p className="footer-brand-desc">
+                Tecnología y cuidado humano al servicio de tu salud.
+              </p>
+            </div>
+
+            <div className="footer-branch">
+              <h4 className="branch-title">Sucursal Vitacura</h4>
+              <div className="branch-info">
+                <div className="info-item">
+                  <MapPin size={16} />
+                  <a href="https://g.page/r/CQnnnRuZmSXvEAE" target="_blank" rel="noopener noreferrer">Av. Vitacura #8620</a>
+                </div>
+                <div className="info-item">
+                  <Phone size={16} />
+                  <a href="tel:+56229336740">+56 2 2933 6740</a>
+                </div>
+                <div className="info-item">
+                  <WhatsAppIcon size={16} />
+                  <a href="https://wa.me/56965781253" target="_blank" rel="noopener noreferrer">+56 9 6578 1253</a>
+                </div>
+                <div className="info-item align-start">
+                  <Mail size={16} style={{ marginTop: '3px' }} />
+                  <div className="emails-list">
+                    <a href="mailto:recepciondental@policlinicotabancura.cl">recepciondental@policlinicotabancura.cl</a>
+                    <a href="mailto:recepcionmedica@policlinicotabancura.cl">recepcionmedica@policlinicotabancura.cl</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-branch">
+              <h4 className="branch-title">Casa Matriz - Los Tribunales</h4>
+              <div className="branch-info">
+                <div className="info-item">
+                  <MapPin size={16} />
+                  <a href="https://g.page/r/CQIjawVKOBfhEAE" target="_blank" rel="noopener noreferrer">Calle Los Tribunales #1268</a>
+                </div>
+                <div className="info-item">
+                  <Phone size={16} />
+                  <a href="tel:+56222172635">+56 2 2217 2635</a>
+                </div>
+                <div className="info-item">
+                  <WhatsAppIcon size={16} />
+                  <a href="https://wa.me/56966187736" target="_blank" rel="noopener noreferrer">+56 9 6618 7736</a>
+                </div>
+                <div className="info-item">
+                  <Mail size={16} />
+                  <a href="mailto:secretaria@policlinicotabancura.cl">secretaria@policlinicotabancura.cl</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="footer-branch">
-            <h4 className="branch-title">Casa Matriz - Los Tribunales</h4>
-            <div className="branch-info">
-              <div className="info-item">
-                <MapPin size={16} />
-                <a href="https://g.page/r/CQIjawVKOBfhEAE" target="_blank" rel="noopener noreferrer">Calle Los Tribunales #1268</a>
+          <div className="footer-bottom">
+            <span>© 2026 Policlínico Tabancura - TI e Infraestructura Médica. Todos los derechos reservados.</span>
+            <div className="footer-links">
+              <a href="https://policlinicotabancura.cl" target="_blank" rel="noopener noreferrer">Web Principal</a>
+              <span>•</span>
+              <a href="#" onClick={handleReload}>{reloadText}</a>
+              <span>•</span>
+              <a href="/admin" className="admin-footer-link" title="Panel de Administración TI">Admin</a>
+            </div>
+          </div>
+        </footer>
+
+        {/* App Specific Help Modal / Popup */}
+        {selectedAppHelp && (
+          <div className="help-modal-overlay" onClick={() => setSelectedAppHelp(null)}>
+            <div className="app-help-modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <div className="app-help-title-area">
+                  <div className="app-help-icon-wrap">
+                    <HelpCircle size={22} />
+                  </div>
+                  <div>
+                    <div className="app-help-name">{selectedAppHelp.appName}</div>
+                    <h3 className="app-help-heading">{selectedAppHelp.help.title || "Ayuda y Soporte Técnico"}</h3>
+                  </div>
+                </div>
+                <button
+                  className="modal-close-btn"
+                  onClick={() => setSelectedAppHelp(null)}
+                  aria-label="Cerrar ventana de ayuda"
+                >
+                  <X size={20} />
+                </button>
               </div>
-              <div className="info-item">
-                <Phone size={16} />
-                <a href="tel:+56222172635">+56 2 2217 2635</a>
-              </div>
-              <div className="info-item">
-                <WhatsAppIcon size={16} />
-                <a href="https://wa.me/56966187736" target="_blank" rel="noopener noreferrer">+56 9 6618 7736</a>
-              </div>
-              <div className="info-item">
-                <Mail size={16} />
-                <a href="mailto:secretaria@policlinicotabancura.cl">secretaria@policlinicotabancura.cl</a>
+
+              <div className="app-help-body">
+                {selectedAppHelp.help.description && (
+                  <p className="app-help-desc">{selectedAppHelp.help.description}</p>
+                )}
+
+                {selectedAppHelp.help.steps && selectedAppHelp.help.steps.length > 0 && (
+                  <div>
+                    <div className="app-help-section-title">Pasos de solución / Verificación:</div>
+                    <ul className="app-help-steps-list">
+                      {selectedAppHelp.help.steps.map((step, idx) => (
+                        <li key={idx} className="app-help-step-item">
+                          <span className="app-help-step-number">{idx + 1}</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {(selectedAppHelp.help.contactName || selectedAppHelp.help.contactPhone || selectedAppHelp.help.contactEmail) && (
+                  <div className="app-help-contact-box">
+                    <div className="app-help-section-title" style={{ margin: 0 }}>Canales de soporte directo:</div>
+                    <div className="app-help-contact-row">
+                      {selectedAppHelp.help.contactName && (
+                        <span className="app-help-contact-name">{selectedAppHelp.help.contactName}</span>
+                      )}
+                      {selectedAppHelp.help.contactPhone && (
+                        <a href={`tel:${selectedAppHelp.help.contactPhone}`} className="app-help-contact-link">
+                          <Phone size={14} />
+                          <span>{selectedAppHelp.help.contactPhone}</span>
+                        </a>
+                      )}
+                      {selectedAppHelp.help.contactEmail && (
+                        <a href={`mailto:${selectedAppHelp.help.contactEmail}`} className="app-help-contact-link">
+                          <Mail size={14} />
+                          <span>{selectedAppHelp.help.contactEmail}</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {selectedAppHelp.help.guideUrl && (
+                  <a
+                    href={selectedAppHelp.help.guideUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="app-help-guide-btn"
+                  >
+                    <BookOpen size={16} />
+                    <span>Ver artículo o manual completo</span>
+                  </a>
+                )}
+
+                {selectedAppHelp.help.notes && (
+                  <p className="app-help-notes">
+                    ℹ️ {selectedAppHelp.help.notes}
+                  </p>
+                )}
               </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="footer-bottom">
-          <span>© 2026 Policlínico Tabancura - TI & Infraestructura Médica. Todos los derechos reservados.</span>
-          <div className="footer-links">
-            <a href="https://policlinicotabancura.cl" target="_blank" rel="noopener noreferrer">Web Principal</a>
-            <span>•</span>
-            <a href="#" onClick={handleReload}>{reloadText}</a>
-            <span>•</span>
-            <a href="/admin" className="admin-footer-link" title="Panel de Administración TI">Admin</a>
-          </div>
-        </div>
-      </footer>
+        {isHelpOpen && (
+          <div className="help-modal-overlay" onClick={() => setIsHelpOpen(false)}>
+            <div className="help-modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>Guía de Categorías</h3>
+                <button className="modal-close-btn" onClick={() => setIsHelpOpen(false)} aria-label="Cerrar">
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="modal-body">
+                <p className="modal-intro">
+                  Usa los colores y categorías para identificar y filtrar rápidamente las herramientas de la plataforma:
+                </p>
 
-      {/* App Specific Help Modal / Popup */}
-      {selectedAppHelp && (
-        <div className="help-modal-overlay" onClick={() => setSelectedAppHelp(null)}>
-          <div className="app-help-modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <div className="app-help-title-area">
-                <div className="app-help-icon-wrap">
-                  <HelpCircle size={22} />
-                </div>
-                <div>
-                  <div className="app-help-name">{selectedAppHelp.appName}</div>
-                  <h3 className="app-help-heading">{selectedAppHelp.help.title || "Ayuda y Soporte Técnico"}</h3>
+                <div className="category-help-list">
+                  <div className="category-help-item">
+                    <div className="category-color-dot medica"></div>
+                    <div className="category-help-info">
+                      <h4>Área Médica</h4>
+                      <p>Sistemas clínicos y de especialidades directas para la atención de pacientes, como registros digitales o derivaciones.</p>
+                    </div>
+                  </div>
+
+                  <div className="category-help-item">
+                    <div className="category-color-dot administrativa"></div>
+                    <div className="category-help-info">
+                      <h4>Área Administrativa</h4>
+                      <p>Herramientas de gestión comercial, validador de convenios, cotizaciones públicas de exámenes y sitio web institucional.</p>
+                    </div>
+                  </div>
+
+                  <div className="category-help-item">
+                    <div className="category-color-dot soporte"></div>
+                    <div className="category-help-info">
+                      <h4>Soporte y TI</h4>
+                      <p>Monitoreo de estado de servidores, almacenamiento en nube del equipo técnico, y manuales o artículos de autoayuda.</p>
+                    </div>
+                  </div>
+
+                  <div className="category-help-item">
+                    <div className="category-color-dot apis"></div>
+                    <div className="category-help-info">
+                      <h4>APIs</h4>
+                      <p>Servicios de consulta y sincronización de datos en tiempo real que operan de forma silenciosa en el backend.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+        {/* Promo Image & Details Modal Viewer */}
+        {selectedPromoModal && (
+          <div className="promo-modal-backdrop" onClick={() => setSelectedPromoModal(null)}>
+            <div className="promo-modal-container glass-panel" onClick={(e) => e.stopPropagation()}>
               <button
-                className="modal-close-btn"
-                onClick={() => setSelectedAppHelp(null)}
-                aria-label="Cerrar ventana de ayuda"
+                className="promo-modal-close"
+                onClick={() => setSelectedPromoModal(null)}
+                aria-label="Cerrar modal"
+                title="Cerrar (Escape)"
               >
                 <X size={20} />
               </button>
-            </div>
 
-            <div className="app-help-body">
-              {selectedAppHelp.help.description && (
-                <p className="app-help-desc">{selectedAppHelp.help.description}</p>
-              )}
-
-              {selectedAppHelp.help.steps && selectedAppHelp.help.steps.length > 0 && (
-                <div>
-                  <div className="app-help-section-title">Pasos de solución / Verificación:</div>
-                  <ul className="app-help-steps-list">
-                    {selectedAppHelp.help.steps.map((step, idx) => (
-                      <li key={idx} className="app-help-step-item">
-                        <span className="app-help-step-number">{idx + 1}</span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <div className="promo-modal-body">
+                <div className="promo-modal-image-col">
+                  <Image
+                    src={selectedPromoModal.image}
+                    alt={selectedPromoModal.title}
+                    placeholder="blur"
+                    className="promo-modal-img"
+                  />
                 </div>
-              )}
 
-              {(selectedAppHelp.help.contactName || selectedAppHelp.help.contactPhone || selectedAppHelp.help.contactEmail) && (
-                <div className="app-help-contact-box">
-                  <div className="app-help-section-title" style={{ margin: 0 }}>Canales de soporte directo:</div>
-                  <div className="app-help-contact-row">
-                    {selectedAppHelp.help.contactName && (
-                      <span className="app-help-contact-name">{selectedAppHelp.help.contactName}</span>
-                    )}
-                    {selectedAppHelp.help.contactPhone && (
-                      <a href={`tel:${selectedAppHelp.help.contactPhone}`} className="app-help-contact-link">
-                        <Phone size={14} />
-                        <span>{selectedAppHelp.help.contactPhone}</span>
-                      </a>
-                    )}
-                    {selectedAppHelp.help.contactEmail && (
-                      <a href={`mailto:${selectedAppHelp.help.contactEmail}`} className="app-help-contact-link">
-                        <Mail size={14} />
-                        <span>{selectedAppHelp.help.contactEmail}</span>
-                      </a>
-                    )}
+                <div className="promo-modal-details-col">
+                  {selectedPromoModal.badge && (
+                    <div className="promo-badge">{selectedPromoModal.badge}</div>
+                  )}
+                  <h3 className="promo-modal-title">{selectedPromoModal.title}</h3>
+
+                  <div className="promo-includes">
+                    <span className="includes-title">Incluye:</span>
+                    <ul>
+                      {selectedPromoModal.includes.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              )}
 
-              {selectedAppHelp.help.guideUrl && (
-                <a
-                  href={selectedAppHelp.help.guideUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="app-help-guide-btn"
-                >
-                  <BookOpen size={16} />
-                  <span>Ver artículo o manual completo</span>
-                </a>
-              )}
-
-              {selectedAppHelp.help.notes && (
-                <p className="app-help-notes">
-                  ℹ️ {selectedAppHelp.help.notes}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isHelpOpen && (
-        <div className="help-modal-overlay" onClick={() => setIsHelpOpen(false)}>
-          <div className="help-modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Guía de Categorías</h3>
-              <button className="modal-close-btn" onClick={() => setIsHelpOpen(false)} aria-label="Cerrar">
-                <X size={20} />
-              </button>
-            </div>
-            <div className="modal-body">
-              <p className="modal-intro">
-                Usa los colores y categorías para identificar y filtrar rápidamente las herramientas de la plataforma:
-              </p>
-
-              <div className="category-help-list">
-                <div className="category-help-item">
-                  <div className="category-color-dot medica"></div>
-                  <div className="category-help-info">
-                    <h4>Área Médica</h4>
-                    <p>Sistemas clínicos y de especialidades directas para la atención de pacientes, como registros digitales o derivaciones.</p>
+                  <div className="promo-price-box">
+                    <span className="price-old">Antes: ${selectedPromoModal.priceOld}</span>
+                    <div className="price-current-wrapper">
+                      <span className="price-currency">$</span>
+                      <span className="price-value">{selectedPromoModal.priceCurrent}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="category-help-item">
-                  <div className="category-color-dot administrativa"></div>
-                  <div className="category-help-info">
-                    <h4>Área Administrativa</h4>
-                    <p>Herramientas de gestión comercial, validador de convenios, cotizaciones públicas de exámenes y sitio web institucional.</p>
+                  <div className="promo-modal-actions">
+                    <a
+                      href={selectedPromoModal.scheduleUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="promo-cta-btn"
+                      style={{ textAlign: 'center' }}
+                    >
+                      Agendar Promoción
+                    </a>
+                    <a
+                      href={selectedPromoModal.imageDownloadPath}
+                      download={selectedPromoModal.downloadFilename}
+                      className="promo-download-btn"
+                    >
+                      <Download size={16} />
+                      Descargar Imagen Completa
+                    </a>
                   </div>
-                </div>
 
-                <div className="category-help-item">
-                  <div className="category-color-dot soporte"></div>
-                  <div className="category-help-info">
-                    <h4>Soporte & TI</h4>
-                    <p>Monitoreo de estado de servidores, almacenamiento en nube del equipo técnico, y manuales o artículos de autoayuda.</p>
-                  </div>
-                </div>
-
-                <div className="category-help-item">
-                  <div className="category-color-dot apis"></div>
-                  <div className="category-help-info">
-                    <h4>APIs</h4>
-                    <p>Servicios de consulta y sincronización de datos en tiempo real que operan de forma silenciosa en el backend.</p>
+                  <div className="promo-footer">
+                    <span>{selectedPromoModal.footerText}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-      {/* Promo Image & Details Modal Viewer */}
-      {selectedPromoModal && (
-        <div className="promo-modal-backdrop" onClick={() => setSelectedPromoModal(null)}>
-          <div className="promo-modal-container glass-panel" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="promo-modal-close"
-              onClick={() => setSelectedPromoModal(null)}
-              aria-label="Cerrar modal"
-              title="Cerrar (Escape)"
-            >
-              <X size={20} />
-            </button>
-
-            <div className="promo-modal-body">
-              <div className="promo-modal-image-col">
-                <Image
-                  src={selectedPromoModal.image}
-                  alt={selectedPromoModal.title}
-                  placeholder="blur"
-                  className="promo-modal-img"
-                />
-              </div>
-
-              <div className="promo-modal-details-col">
-                {selectedPromoModal.badge && (
-                  <div className="promo-badge">{selectedPromoModal.badge}</div>
-                )}
-                <h3 className="promo-modal-title">{selectedPromoModal.title}</h3>
-
-                <div className="promo-includes">
-                  <span className="includes-title">Incluye:</span>
-                  <ul>
-                    {selectedPromoModal.includes.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="promo-price-box">
-                  <span className="price-old">Antes: ${selectedPromoModal.priceOld}</span>
-                  <div className="price-current-wrapper">
-                    <span className="price-currency">$</span>
-                    <span className="price-value">{selectedPromoModal.priceCurrent}</span>
-                  </div>
-                </div>
-
-                <div className="promo-modal-actions">
-                  <a
-                    href={selectedPromoModal.scheduleUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="promo-cta-btn"
-                    style={{ textAlign: 'center' }}
-                  >
-                    Agendar Promoción
-                  </a>
-                  <a
-                    href={selectedPromoModal.imageDownloadPath}
-                    download={selectedPromoModal.downloadFilename}
-                    className="promo-download-btn"
-                  >
-                    <Download size={16} />
-                    Descargar Imagen Completa
-                  </a>
-                </div>
-
-                <div className="promo-footer">
-                  <span>{selectedPromoModal.footerText}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </main>
+        )}
+      </main>
     </>
   );
 }

@@ -35,7 +35,7 @@ Reúne en una sola interfaz moderna, rápida e intuitiva todas las herramientas 
 - **🚀 Lanzador de Aplicaciones (App Hub):**
   - Acceso directo a plataformas clave como Dentalink, Medilink, Imed, Transbank, SII, Uptime Kuma y Nube Institucional.
   - Indicadores visuales de estado del servicio (*Online*, *Métricas de disponibilidad*).
-  - Categorización clara: **Médica**, **Dental**, **Administrativa**, **Soporte & TI** y **APIs**.
+  - Categorización clara: **Médica**, **Dental**, **Administrativa**, **Soporte y TI** y **APIs**.
 
 - **🔍 Búsqueda y Filtrado Instantáneo:**
   - Buscador en tiempo real por nombre, descripción o palabras clave.
@@ -67,7 +67,7 @@ Reúne en una sola interfaz moderna, rápida e intuitiva todas las herramientas 
 
 | Tecnología | Descripción |
 | :--- | :--- |
-| **Framework** | [Next.js 16](https://nextjs.org/) (App Router & Turbopack) |
+| **Framework** | [Next.js 16](https://nextjs.org/) (App Router y Turbopack) |
 | **Librería UI** | [React 19](https://react.dev/) |
 | **Lenguaje** | [TypeScript 5](https://www.typescriptlang.org/) |
 | **Iconografía** | [Lucide React](https://lucide.dev/) |

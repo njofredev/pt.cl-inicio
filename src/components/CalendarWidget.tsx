@@ -135,7 +135,7 @@ export default function CalendarWidget() {
       1: [{ text: "🎂 Cumpleaños: Anabela Bello", type: "primary", branch: "tribunales" }],
       3: [{ text: "🎂 Cumpleaños: Gardenia Saldia", type: "primary", branch: "tribunales" }],
       8: [{ text: "Feriado: Inmaculada Concepción", type: "warning", branch: "all" }],
-      9: [{ text: "🎂 Cumpleaños: Andrea P. & Valeria M.", type: "primary", branch: "vitacura" }],
+      9: [{ text: "🎂 Cumpleaños: Andrea P. y Valeria M.", type: "primary", branch: "vitacura" }],
       24: [{ text: "🎂 Cumpleaños: Ximena Greene", type: "primary", branch: "tribunales" }],
       25: [{ text: "Feriado: Navidad 🎄", type: "warning", branch: "all" }],
       26: [{ text: "🎂 Cumpleaños: Nicole J.", type: "primary", branch: "vitacura" }],

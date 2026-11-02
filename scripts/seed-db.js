@@ -72,7 +72,7 @@ const INITIAL_APPS = [
         "Si perdiste tus credenciales o el autenticador 2FA falló, solicita un restablecimiento seguro.",
         "Asegúrate de estar conectado a la red autorizada o VPN institucional."
       ],
-      contactName: "Administrador de Redes & TI",
+      contactName: "Administrador de Redes y TI",
       contactEmail: "ti@policlinicotabancura.cl"
     }
   },
@@ -94,7 +94,7 @@ const INITIAL_APPS = [
         "Verifica que la tarjeta Mi Vita del paciente se encuentre vigente en el portal comunal.",
         "Si el sistema no responde, reportar con el anexo de convenios o caja."
       ],
-      contactName: "Convenios & Administración",
+      contactName: "Convenios y Administración",
       contactPhone: "Anexo 219"
     }
   },
@@ -178,7 +178,7 @@ const INITIAL_APPS = [
         "Verifica los logs en el panel de Uptime Kuma o Cloudflare.",
         "Reinicia el contenedor de la API si los timeouts persisten."
       ],
-      contactName: "Desarrollo & Backend TI",
+      contactName: "Desarrollo y Backend TI",
       contactEmail: "ti@policlinicotabancura.cl"
     }
   },
