@@ -45,6 +45,7 @@ import promoOrtodoncia from '../assets/promociones-activas/promoOrtodoncia.jpg';
 import promoLimpieza from '../assets/promociones-activas/promoLimpieza.png';
 import promocionOrtodonciaAgosto from '../assets/promociones-activas/promocionOrtodonciaAgosto.jpg';
 import promocionLimpiezaSeptiembre from '../assets/promociones-activas/PromocionLimpiezaSeptiembre.png';
+import promocionLimpiezaOct from '../assets/promociones-activas/PromocionLimpiezaOct.png';
 
 interface Promotion {
   id: string;
@@ -60,7 +61,25 @@ interface Promotion {
   footerText: string;
 }
 
-const PROMOTIONS_DATA: Promotion[] = [];
+const PROMOTIONS_DATA: Promotion[] = [
+  {
+    id: 'limpieza-dental',
+    badge: 'Nueva Promoción',
+    title: 'Limpieza Dental',
+    image: promocionLimpiezaOct,
+    imageDownloadPath: '/promociones-activas/PromocionLimpiezaOct.png',
+    downloadFilename: 'Promo_Limpieza_Dental_Tabancura.png',
+    includes: [
+      'Evaluación Dental',
+      'Limpieza Profilaxis',
+      'RX Bitewing Bilateral'
+    ],
+    priceOld: '47.000',
+    priceCurrent: '24.000',
+    scheduleUrl: 'https://ff.healthatom.io/be3WhX',
+    footerText: '* Promoción para personas sobre 15 años. Sujeto a evaluación clínica. Sólo pago vía web. Promoción válida hasta el 15 de Noviembre del 2026. Promoción excluye pacientes con Diagnóstico de Periodontitis.'
+  }
+];
 
 const Tooth = ({ size = 20 }: { size?: number }) => (
   <svg
@@ -1446,11 +1465,23 @@ export default function Home() {
         const found = appsData.find(app => app.slug === 'recepcion') || APPS_DATA.find(app => app.slug === 'recepcion');
         if (found) handleOpenArticle(found.id);
       }
+    },
+    {
+      id: 'promo-limpieza',
+      type: 'promo',
+      badge: 'Promoción Activa',
+      icon: <Tag size={15} />,
+      text: '¡Nueva promoción de Limpieza Dental disponible a $24.000!',
+      actionLabel: 'Ver promoción',
+      onClick: () => {
+        const promo = PROMOTIONS_DATA.find(p => p.id === 'limpieza-dental');
+        if (promo) setSelectedPromoModal(promo);
+      }
     }
   ];
 
   useEffect(() => {
-    if (!isBannerVisible || bannerSlides.length <= 1) return;
+    if (!isBannerVisible) return;
     const interval = setInterval(() => {
       setBannerSlideIndex((prev) => (prev + 1) % bannerSlides.length);
     }, 6000);
